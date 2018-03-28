@@ -11,6 +11,8 @@ https://docs.djangoproject.com/en/2.0/ref/settings/
 """
 
 import os
+import pymysql
+pymysql.install_as_MySQLdb()
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
@@ -75,8 +77,12 @@ WSGI_APPLICATION = 'PharmaLiv.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
+        'ENGINE': 'django.db.backends.mysql',   # Backends disponibles : 'postgresql', 'mysql', 'sqlite3' et 'oracle'.
+        'NAME': 'pharmaLiv',             # Nom de la base de données
+        'USER': 'birame',
+        'PASSWORD': 'cheickh',        
+        'HOST': 'localhost',                    # Utile si votre base de données est sur une autre machine
+        'PORT': '3307',                         # ... et si elle utilise un autre port que celui par défaut
     }
 }
 
