@@ -40,6 +40,10 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'patient',
+    'medecin',
+    'pharmacie',
+    'livreur',
+    'payementLigne',
 ]
 
 MIDDLEWARE = [
