@@ -11,7 +11,8 @@ class Patient(models.Model):
     traitement = models.CharField(max_length=100,null=True)
     dateNaissance = models.DateTimeField(auto_now_add=True, auto_now=False,
     verbose_name="Date de naissance")
-    
+    adresse = models.CharField(max_length=100, null=False)
+
     def __str__(self):
         """
         Cette méthode que nous définirons dans tous les modèles
