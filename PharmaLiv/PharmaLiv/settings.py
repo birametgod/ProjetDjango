@@ -56,12 +56,15 @@ MIDDLEWARE = [
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
 
-ROOT_URLCONF = 'PharmaLiv.urls'
 
+
+ROOT_URLCONF = 'PharmaLiv.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
+        'DIRS': [            # Cette ligne ajoute le dossier templates/ à la racine du projet
+            os.path.join(BASE_DIR, 'templates'),
+            ],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -129,3 +132,8 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/2.0/howto/static-files/
 
 STATIC_URL = '/static/'
+
+STATICFILES_DIRS = (
+    os.path.join(BASE_DIR, 'assets'), # le chemin vers ces fichiers sur votre disque dur à partir de la racine du projet.
+                                        #Nous enregistrerons les fichiers liés globalement au projet : CSS et Javascript global, images du design
+)
