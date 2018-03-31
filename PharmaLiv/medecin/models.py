@@ -1,27 +1,36 @@
 from django.db import models
+from django.utils.text import slugify
 
 # Create your models here.
 
 class Medecin(models.Model):
+    profil = models.ImageField(default = 'medecin.jpg', blank = True)
     login = models.CharField(max_length=30, null=False)  
-    #Le paramètre null, lorsque mis à False, indique à Django que ce champ ne peut être laissé vide et qu'il n'est donc pas optionnel.  
     password = models.CharField(max_length=30,null=False)
     nom = models.CharField(max_length=30, null = False)
     prenom = models.CharField(max_length=30, null = False)
     dateNaissance = models.DateTimeField(auto_now_add=True, auto_now=False, verbose_name="Date de naissance")
-    specialite = models.CharField(max_length=30)
-
-
+    telephone = models.IntegerField(max_length = 9, null = False)
+    specialite = models.CharField(max_length=30, null = False)
+    hopital = models.CharField(max_length=30, null = False)
+    slug = models.SlugField()
+    
     def __str__(self):
-        """
-        Cette méthode que nous définirons dans tous les modèles
-        nous permettra de reconnaître facilement les différents objets que 
-        nous traiterons plus tard dans l'administration
-        """
-        return self.nom 
+        return self.nom
 
+    def _get_unique_slug(self):
+        slug = slugify(self.nom)
+        unique_slug = slug
+        num = 1
+        while Medecin.objects.filter(slug=unique_slug).exists():
+            unique_slug = '{}-{}'.format(slug, num)
+            num += 1
+        return unique_slug
 
-    def __unicode__(self):
-        return 
+    def save(self, *args, **kwargs):
+        if not self.slug:
+            self.slug = self._get_unique_slug()
+        super().save()
+    
 
 

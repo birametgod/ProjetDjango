@@ -57,7 +57,7 @@ MIDDLEWARE = [
 ]
 
 
-
+LOGIN_REDIRECT_URL='/thanks'
 ROOT_URLCONF = 'PharmaLiv.urls'
 TEMPLATES = [
     {
