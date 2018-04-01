@@ -10,6 +10,7 @@ pour nous permettre de gerer plus facilement la connexion et la deconnexion ...
 
 urlpatterns = [
     path('', views.home), 
+    #path pour gerer connexion patient ce sera la meme chose pour les autres apps
     path('patient/', include([
         path('', patient_views.home),
         path('inscription/', patient_views.connexionView.as_view()),
