@@ -1,0 +1,17 @@
+{% extends 'layout.html' %}
+
+{% block body %}
+<div class="container">
+    <div class="row">
+        {% if user.is_authenticated %}
+        <p>hello</p>
+        <p>welcome {{ user.username }}</p>
+        <p><a href="/patient/logout">Logout</a></p>
+        {% else %}
+        <p><a href="patient/login">Login</a></p>
+        <p><a href="/">Inscrire</a></p>
+        {% endif %}
+    </div>
+</div>
+{% endblock body %}
+    
