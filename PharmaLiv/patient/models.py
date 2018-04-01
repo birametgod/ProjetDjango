@@ -1,19 +1,14 @@
 from django.db import models
+from PharmaLiv import settings
 from medecin.models import Medecin
-from django.contrib.auth.models import User
-from django.contrib.auth.models import AbstractUser
 
 # Create your models here.
 class Patient(models.Model):
-    login = models.CharField(max_length=30,null=False,unique=True)  #Le paramètre null, lorsque mis à True, indique à Django que ce champ peut être laissé vide et qu'il est donc optionnel.  
-    password = models.CharField(max_length=30,null=False)
-    nom = models.CharField(max_length=30, null = False)
-    prenom = models.CharField(max_length=30, null = False)
+    user = models.ForeignKey(settings.AUTH_USER_MODEL,on_delete=models.CASCADE)
     sexe = models.CharField(max_length=30, null = False)
     allergie = models.CharField(max_length=100, null = False)
     traitement = models.CharField(max_length=100,null= False)
-    dateNaissance = models.DateTimeField(auto_now_add=True, auto_now=False,
-    verbose_name="Date de naissance")
+    dateNaissance = models.DateField(null=True, blank=True)
     adresse = models.CharField(max_length=100, null=False)
 
     def __str__(self):
@@ -37,13 +32,4 @@ class Ordonnances(models.Model):
 
     def __unicode__(self):
         return 
-
-class userbi(models.Model):
-    user = models.OneToOneField(User,on_delete=models.CASCADE)
-    bio = models.TextField(max_length=500, blank=True)
-    location = models.CharField(max_length=30, blank=True)
-    birth_date = models.DateField(null=True, blank=True)
-    def __str__(self):
-        return self.user
-        
 

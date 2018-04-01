@@ -1,23 +1,38 @@
 from django import forms
-from .models import userbi
+from PharmaLiv import settings
+from .models import Patient
+from connexion.models import User
+from django.contrib.auth.forms import UserCreationForm
 from django.contrib.admin.widgets import AdminDateWidget
-class userbiForm(forms.ModelForm):
-    """Form definition for Muserbi"""
+from django.db import transaction
+
+
+class signUp(UserCreationForm):
+    """
+    UserCreationForm, which defines the username and password fields
+    """
+    sexe = forms.CharField( max_length=155, label='sexe',required=True)
+    allergie = forms.CharField( max_length=32, label='allergie',required=True)
+    traitement = forms.CharField(max_length=100,label="Traitement",required= True)
+    dateNaissance =forms.DateField (input_formats=settings.DATE_INPUT_FORMATS)
+    adresse = forms.CharField(max_length=100, required=True)
 
     class Meta:
-        """Meta definition for Muserbiorm."""
+        """
+        il est possible de préciser quelques informations supplémentaires à Django via la classe Meta. 
+        Celle-ci permet de préciser des comportements propres au modèle lui-même.
 
-        model = userbi
-        fields = ('user', 'bio', 'location', 'birth_date')
+        """
+        model = User
+        fields = ('username','first_name','last_name','email',)
+        
+        
 
-class signUp(forms.Form):
-    """signUp definition."""
-    login = forms.CharField(max_length=32, label='login',required=True)
-    email = forms.CharField(max_length=32, label='email',required=True,widget = forms.EmailInput()) 
-    password = forms.CharField(max_length=32, label='password',required=True,widget = forms.PasswordInput())
-    bio = forms.CharField(max_length=155, label='bio',required=True)
-    location = forms.CharField(max_length=32, label='location',required=True)
-    birth_date = forms.DateField(required=True)
-
+    @transaction.atomic  #make sure those  operations are done in a single database transaction and avoid data inconsistencies in case of error.
+    def save(self):
+        user = super().save(commit=False) # Call the real save() method, modify what it's saving, it will do save(commit=False)
+        user.is_patient = True
+        user.save()
+        Patient.objects.create(user=user,sexe=self.cleaned_data.get('sexe'),allergie=self.cleaned_data.get('allergie'),traitement=self.cleaned_data.get('traitement'),dateNaissance=self.cleaned_data.get('dateNaissance'),adresse=self.cleaned_data.get('adresse'))
+        return user
     # TODO: Define form fields here
- 

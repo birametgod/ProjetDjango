@@ -6,7 +6,7 @@
         <form enctype="multipart/form-data" action="" method="post">
             <table>
                 {% csrf_token %}
-                {{ formulaire.as_table }}
+                {{ form.as_table }}
             </table>
             <input type="submit" value="enregistrer">
         </form>

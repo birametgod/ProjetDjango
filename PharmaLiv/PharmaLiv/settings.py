@@ -44,6 +44,7 @@ INSTALLED_APPS = [
     'pharmacie',
     'livreur',
     'payementLigne',
+    'connexion',
 ]
 
 MIDDLEWARE = [
@@ -57,7 +58,6 @@ MIDDLEWARE = [
 ]
 
 
-LOGIN_REDIRECT_URL='/thanks'
 ROOT_URLCONF = 'PharmaLiv.urls'
 TEMPLATES = [
     {
@@ -95,6 +95,7 @@ DATABASES = {
 }
 
 
+
 # Password validation
 # https://docs.djangoproject.com/en/2.0/ref/settings/#auth-password-validators
 
@@ -127,6 +128,7 @@ USE_L10N = True
 
 USE_TZ = True
 
+AUTH_USER_MODEL = 'connexion.User'
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/2.0/howto/static-files/
@@ -137,3 +139,5 @@ STATICFILES_DIRS = (
     os.path.join(BASE_DIR, 'assets'), # le chemin vers ces fichiers sur votre disque dur à partir de la racine du projet.
                                         #Nous enregistrerons les fichiers liés globalement au projet : CSS et Javascript global, images du design
 )
+
+DATE_INPUT_FORMATS = ['%d-%m-%Y']

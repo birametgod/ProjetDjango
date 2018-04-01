@@ -25,6 +25,7 @@ from patient import views
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', include('patient.urls')),
+    path('', include('connexion.urls')),
 ]
 
 
