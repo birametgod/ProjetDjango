@@ -11,8 +11,18 @@ class signUp(UserCreationForm):
     """
     UserCreationForm, which defines the username and password fields
     """
-    sexe = forms.CharField( max_length=155, label='sexe',required=True)
-    allergie = forms.CharField( max_length=32, label='allergie',required=True)
+    sexe = forms.CharField(widget=forms.TextInput(
+        attrs={
+            'class' : 'form-control',
+            'placeholder' : 'Sexe',
+        }
+    ))
+    allergie = forms.CharField(widget=forms.TextInput(
+        attrs={
+            'class' : 'form-control',
+            'placeholder' : 'Allergie',
+        }
+    ))
     traitement = forms.CharField(max_length=100,label="Traitement",required= True)
     dateNaissance =forms.DateField (input_formats=settings.DATE_INPUT_FORMATS)
     adresse = forms.CharField(max_length=100, required=True)
@@ -25,6 +35,14 @@ class signUp(UserCreationForm):
         """
         model = User
         fields = ('username','first_name','last_name','email',)
+        widgets = {
+            'username' : forms.TextInput(attrs={'class':'form-control','placeholder':'Login',}),
+            'first_name' : forms.TextInput(attrs={'class':'form-control','placeholder':'prenom',}),
+            'last_name' : forms.TextInput(attrs={'class':'form-control','placeholder':'nom',}),
+            'email' : forms.TextInput(attrs={'class':'form-control','placeholder':'Email',}),
+
+
+        }
         
         
 

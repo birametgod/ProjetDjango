@@ -87,10 +87,10 @@ DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',   # Backends disponibles : 'postgresql', 'mysql', 'sqlite3' et 'oracle'.
         'NAME': 'pharmaLiv',             # Nom de la base de données
-        'USER': 'root',
-        'PASSWORD': '',        
+        'USER': 'birame',
+        'PASSWORD': 'cheickh',        
         'HOST': 'localhost',                    # Utile si votre base de données est sur une autre machine
-        'PORT': '3306',                         # ... et si elle utilise un autre port que celui par défaut
+        'PORT': '3307',                         # ... et si elle utilise un autre port que celui par défaut
     }
 }
 
