@@ -11,7 +11,11 @@ class signUp(UserCreationForm):
     """
     UserCreationForm, which defines the username and password fields
     """
-    sexe = forms.CharField( max_length=155, label='sexe',required=True)
+    sexes = (
+        ('Options 1', 'M'),
+        ('Option 2', 'F'),
+    )
+    sexe = forms.ChoiceField(choices=sexes)
     allergie = forms.CharField( max_length=32, label='allergie',required=True)
     traitement = forms.CharField(max_length=100,label="Traitement",required= True)
     dateNaissance =forms.DateField (input_formats=settings.DATE_INPUT_FORMATS)

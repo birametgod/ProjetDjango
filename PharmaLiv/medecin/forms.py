@@ -1,6 +1,6 @@
 from django import forms
 from PharmaLiv import settings
-from .models import Medecin
+from .models import *
 from connexion.models import User
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.admin.widgets import AdminDateWidget
@@ -13,7 +13,27 @@ class signUp(UserCreationForm):
     """
     dateNaissance = forms.DateField (input_formats=settings.DATE_INPUT_FORMATS, required=True)
     telephone = forms.IntegerField(required=True, label='telephone')
-    specialite = forms.CharField(max_length=30, required=True, label='specialite')
+    CHOICES = (
+        ('Option 1', 'Cardiologie'),
+        ('Option 2', 'Chirurgie'),
+        ('Option 3', 'Dermatologie'),
+        ('Option 4', 'Gynécologie'),
+        ('Option 5', 'Immunologie'),
+        ('Option 6', 'Infectiologie'),
+        ('Option 7', 'Néonatologie'),
+        ('Option 8', 'Neurologie'),
+        ('Option 9', 'Odontologie'),
+        ('Option 10', 'Ophtalmologie'),
+        ('Option 11', 'Orthopédie'),
+        ('Option 12', 'Pédiatrie'),
+        ('Option 13', 'Pneumologie'),
+        ('Option 14', 'Psychiatrie'),
+        ('Option 15', 'Radiologie'),
+        ('Option 16', 'Radiothérapie'),
+        ('Option 17', 'Rhumatologie'),
+        ('Option 18', 'Urologie'),
+    )
+    specialite = forms.ChoiceField(choices=CHOICES)
     hopital = forms.CharField(max_length=30, required=True, label='hopital')
 
     class Meta:
