@@ -5,6 +5,11 @@
     <div class="row">
         <form enctype="multipart/form-data" action="" method="post">
                 {% csrf_token %}
+                {% for error in form.non_field_errors %}
+                <div class="form-group has-errors text-danger small">
+                    {{error}}
+                </div>
+                {% endfor %}
                 {% for field in form  %}
                     <div class=" form-group">
                         {{field}}

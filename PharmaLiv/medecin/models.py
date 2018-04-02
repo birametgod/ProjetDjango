@@ -5,7 +5,7 @@ from django import forms
 # Create your models here.
 
 class Specialite(models.Model):
-	nom = models.CharField(max_length=20, null=False)
+    	nom = models.CharField(max_length=20, null=False)
 
 class Medecin(models.Model):
 	user = models.ForeignKey(settings.AUTH_USER_MODEL,on_delete=models.CASCADE)

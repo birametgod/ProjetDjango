@@ -5,7 +5,7 @@ from django import forms
 # Create your models here.
 class Patient(models.Model):
     user = models.ForeignKey(settings.AUTH_USER_MODEL,on_delete=models.CASCADE)
-    sexe = forms.ChoiceField()
+    sexe = models.CharField(max_length=100, null = False)
     allergie = models.CharField(max_length=100, null = False)
     traitement = models.CharField(max_length=100,null= False)
     dateNaissance = models.DateField(null=True, blank=True)

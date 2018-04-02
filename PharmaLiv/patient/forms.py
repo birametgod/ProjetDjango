@@ -11,27 +11,32 @@ class signUp(UserCreationForm):
     """
     UserCreationForm, which defines the username and password fields
     """
-    sexe = forms.CharField(widget=forms.TextInput(
-        attrs={
-            'class' : 'form-control',
-            'placeholder' : 'Sexe',
-        }
-    ))
+
     allergie = forms.CharField(widget=forms.TextInput(
         attrs={
             'class' : 'form-control',
             'placeholder' : 'Allergie',
         }
     ))
-    #sexes = (
-    #   ('Options 1', 'M'),
-    #    ('Option 2', 'F'),
-    #)
-    #sexe = forms.ChoiceField(choices=sexes)
+    sexes = (
+        ('homme', 'M'),
+        ('femme', 'F'),
+    )
+    sexe = forms.ChoiceField(choices=sexes)
     #allergie = forms.CharField( max_length=32, label='allergie',required=True)
-    traitement = forms.CharField(max_length=100,label="Traitement",required= True)
+    traitement = forms.CharField(widget=forms.TextInput(
+        attrs={
+            'class' : 'form-control',
+            'placeholder' : 'Traitement',
+        }
+    ))
     dateNaissance =forms.DateField (input_formats=settings.DATE_INPUT_FORMATS)
-    adresse = forms.CharField(max_length=100, required=True)
+    adresse = forms.CharField(widget=forms.TextInput(
+        attrs={
+            'class' : 'form-control',
+            'placeholder' : 'Adresse',
+        }
+    ))
 
     class Meta:
         """
@@ -40,10 +45,11 @@ class signUp(UserCreationForm):
 
         """
         model = User
-        fields = ('username','first_name','last_name','email',)
+        fields = ('username','first_name','last_name','email')
         widgets = {
             'username' : forms.TextInput(attrs={'class':'form-control','placeholder':'Login',}),
             'first_name' : forms.TextInput(attrs={'class':'form-control','placeholder':'prenom',}),
+            'password' : forms.PasswordInput(attrs={'class':'form-control','placeholder':'prenom',}), 
             'last_name' : forms.TextInput(attrs={'class':'form-control','placeholder':'nom',}),
             'email' : forms.TextInput(attrs={'class':'form-control','placeholder':'Email',}),
 
