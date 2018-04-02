@@ -1,14 +1,12 @@
 from django.db import models
 from django.utils.text import slugify
-
+from PharmaLiv import settings
 # Create your models here.
 
 
 class Pharmacie(models.Model):
-    login = models.CharField(max_length = 30, null = False)  
-    password = models.CharField(max_length = 30, null = False)
+    pharmacie = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
     profil = models.ImageField(default = 'pharmacie.jpg', blank = True)
-    nom = models.CharField(max_length = 50, null = False)
     adresse = models.CharField(max_length = 100, null = False)
     telephone = models.IntegerField(max_length = 9, null = False)
     horaire = models.CharField(max_length = 50, null = False)

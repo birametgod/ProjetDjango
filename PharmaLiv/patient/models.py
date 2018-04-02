@@ -1,11 +1,11 @@
 from django.db import models
 from PharmaLiv import settings
 from medecin.models import Medecin
-
+from django import forms
 # Create your models here.
 class Patient(models.Model):
     user = models.ForeignKey(settings.AUTH_USER_MODEL,on_delete=models.CASCADE)
-    sexe = models.CharField(max_length=30, null = False)
+    sexe = forms.ChoiceField()
     allergie = models.CharField(max_length=100, null = False)
     traitement = models.CharField(max_length=100,null= False)
     dateNaissance = models.DateField(null=True, blank=True)

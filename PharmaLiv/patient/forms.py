@@ -23,6 +23,12 @@ class signUp(UserCreationForm):
             'placeholder' : 'Allergie',
         }
     ))
+    #sexes = (
+    #   ('Options 1', 'M'),
+    #    ('Option 2', 'F'),
+    #)
+    #sexe = forms.ChoiceField(choices=sexes)
+    #allergie = forms.CharField( max_length=32, label='allergie',required=True)
     traitement = forms.CharField(max_length=100,label="Traitement",required= True)
     dateNaissance =forms.DateField (input_formats=settings.DATE_INPUT_FORMATS)
     adresse = forms.CharField(max_length=100, required=True)
