@@ -1,17 +1,51 @@
-{% extends 'layout.html' %}
-
-{% block body %}
+{% extends 'layout.html' %} {% block body %}
 <div class="container">
     <div class="row">
         {% if user.is_authenticated %}
-        <p>hello</p>
-        <p>welcome {{ user.username }}</p>
-        <p><a href="/medecin/logout">Logout</a></p>
+        <br>
+        <div class="jumbotron">
+            <h1>Bienvenue, Mr {{user.last_name}}</h1>
+            <p>This example is a quick exercise to illustrate how the default, static and fixed to top navbar work. It includes
+                the responsive CSS and HTML, so it also adapts to your viewport and device.</p>
+            <p>To see the difference between static and fixed top navbars, just scroll.</p>
+            <p>
+                <a class="btn btn-lg btn-primary" href="#" role="button">View navbar docs »</a>
+            </p>
+        </div>
+        <div class="jumbotron">
+            <form class="form-horizontal" enctype="multipart/form-data" action="" method="post">
+
+                {% csrf_token %} {% for error in form.non_field_errors %}
+                <div class="form-group has-errors text-danger small">
+                    {{error}}
+                </div>
+                {% endfor %}
+                <div class="form-group has-errors text-danger small">
+                    {{form.errors}}
+                </div>
+                <div class=" form-group">
+                    {{form.libelle}}
+                </div>
+                <div class=" form-group">
+                        {{form.patien}}
+                </div> 
+                <div class="form-group">
+                    {{form.medicaments}}
+                </div>
+                <p>
+                    <input type="submit" class="btn btn-lg btn-success" value="enregistrer">
+                </p>
+            </form>
+        </div>
+
         {% else %}
-        <p><a href="medecin/login">Login</a></p>
-        <p><a href="/">Inscrire</a></p>
+        <p>
+            <a href="medecin/login">Login</a>
+        </p>
+        <p>
+            <a href="/">Inscrire</a>
+        </p>
         {% endif %}
     </div>
 </div>
 {% endblock body %}
-    

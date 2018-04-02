@@ -23,8 +23,8 @@ class Patient(models.Model):
         return 
 
 class Ordonnances(models.Model):
-    libelle = models.CharField(max_length=100, null=False)
-    medicaments = models.CharField(max_length=255, null =False)
+    libelle = models.CharField(max_length=255, null=False)
+    medicaments = models.ImageField(default='default.png', blank=True)
     patient = models.ForeignKey(Patient,on_delete=models.CASCADE) # en cas de suppression de la catégorie, tous les articles ayant cette catégorie seront également supprimé (provoquant une cascade de suppression) ;
     medecin = models.ForeignKey(Medecin,on_delete=models.CASCADE)
     def __str__(self):
