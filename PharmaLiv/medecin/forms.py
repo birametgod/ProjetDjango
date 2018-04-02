@@ -14,7 +14,7 @@ class signUp(UserCreationForm):
     dateNaissance = forms.DateField (input_formats=settings.DATE_INPUT_FORMATS, required=True, label="Date de Naissance")
     telephone = forms.IntegerField(required=True, label='Téléphone')
     #CHOICES = Specialite.objects.all().values()
-    #specialite =forms.ChoiceField(choices=[(choice.pk, choice) for choice in Specialite.objects.all()], label="Spécialité")
+    specialite =forms.ChoiceField(choices=[(choice.pk, choice.nom) for choice in Specialite.objects.all()], label="Spécialité")
     hopital = forms.CharField(max_length=30, required=True, label='Hopital')
 
     class Meta:
@@ -33,7 +33,7 @@ class signUp(UserCreationForm):
         user = super().save(commit=False) # Call the real save() method, modify what it's saving, it will do save(commit=False)
         user.is_medecin = True
         user.save()
-        Medecin.objects.create(user=user,dateNaissance=self.cleaned_data.get('dateNaissance'),telephone=self.cleaned_data.get('telephone'),specialite=self.cleaned_data.get('specialite'),hopital=self.cleaned_data.get('hopital'))
+        Medecin.objects.create(user=user,dateNaissance=self.cleaned_data.get('dateNaissance'),telephone=self.cleaned_data.get('telephone'),specialite_id=self.cleaned_data.get('specialite'),hopital=self.cleaned_data.get('hopital'))
         return user
     # TODO: Define form fields here
 
