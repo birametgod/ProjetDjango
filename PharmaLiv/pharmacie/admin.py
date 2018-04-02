@@ -4,8 +4,8 @@ from .models import *
 # Register your models here.
 
 class PharmacieAdmin(admin.ModelAdmin):
-	list_display = ('profil', 'nom', 'adresse', 'telephone', 'horaire', )
-	ordering = ('nom', )
+	list_display = ('profil', 'pharmacie', 'adresse', 'telephone', 'horaire', )
+	ordering = ('pharmacie', )
 
 
 class Fiche_ProduitAdmin(admin.ModelAdmin):
