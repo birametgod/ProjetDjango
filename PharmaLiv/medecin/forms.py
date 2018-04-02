@@ -14,7 +14,7 @@ class signUp(UserCreationForm):
     dateNaissance = forms.DateField (input_formats=settings.DATE_INPUT_FORMATS, required=True, label="Date de Naissance")
     telephone = forms.IntegerField(required=True, label='Téléphone')
     #CHOICES = Specialite.objects.all().values()
-    specialite =forms.ChoiceField(choices=[(choice.pk, choice) for choice in Specialite.objects.all()], label="Spécialité")
+    #specialite =forms.ChoiceField(choices=[(choice.pk, choice) for choice in Specialite.objects.all()], label="Spécialité")
     hopital = forms.CharField(max_length=30, required=True, label='Hopital')
 
     class Meta:
