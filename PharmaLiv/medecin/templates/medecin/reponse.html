@@ -5,14 +5,16 @@
         <br>
         <div class="jumbotron">
             <h1>Bienvenue, Mr {{user.last_name}}</h1>
-            <p>This example is a quick exercise to illustrate how the default, static and fixed to top navbar work. It includes
-                the responsive CSS and HTML, so it also adapts to your viewport and device.</p>
-            <p>To see the difference between static and fixed top navbars, just scroll.</p>
+            <p>Vous pouvez envoyer l'ordonnance de votre patient sur son compte.</p>
+            <p></p>
             <p>
-                <a class="btn btn-lg btn-primary" href="#" role="button">View navbar docs »</a>
+                <a class="btn btn-lg btn-primary" data-toggle="collapse" href="#collapseExample" role="button" aria-expanded="false" aria-controls="collapseExample">Cliquer pour envoyer »</a>
             </p>
         </div>
-        <div class="jumbotron">
+
+        <div class="collapse" id="collapseExample">
+          <div class="card card-body">
+            <div class="jumbotron">
             <form class="form-horizontal" enctype="multipart/form-data" action="" method="post">
 
                 {% csrf_token %} {% for error in form.non_field_errors %}
@@ -27,16 +29,20 @@
                     {{form.libelle}}
                 </div>
                 <div class=" form-group">
-                        {{form.patien}}
+                    {{form.patien}}
                 </div> 
                 <div class="form-group">
                     {{form.medicaments}}
                 </div>
                 <p>
-                    <input type="submit" class="btn btn-lg btn-success" value="enregistrer">
+                    <input type="submit" class="btn btn-lg btn-success" value="Envoyer" style="float: right;">
                 </p>
             </form>
         </div>
+          </div>
+        </div>
+
+        
 
         {% else %}
         <p>

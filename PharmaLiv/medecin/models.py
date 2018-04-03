@@ -16,7 +16,7 @@ class Medecin(models.Model):
 	
 
 	def __str__(self):
-		return self.nom
+		return self.user.first_name
 
 
 	def __unicode__(self):
