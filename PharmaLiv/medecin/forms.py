@@ -1,6 +1,7 @@
 from django import forms
 from PharmaLiv import settings
 from .models import *
+from patient.models import Ordonnances
 from connexion.models import User
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.admin.widgets import AdminDateWidget
@@ -36,6 +37,20 @@ class signUp(UserCreationForm):
         Medecin.objects.create(user=user,dateNaissance=self.cleaned_data.get('dateNaissance'),telephone=self.cleaned_data.get('telephone'),specialite_id=self.cleaned_data.get('specialite'),hopital=self.cleaned_data.get('hopital'))
         return user
     # TODO: Define form fields here
+
+class envoiOrdonnance(forms.ModelForm):
+    """Form definition for MODELNAME."""
+
+    class Meta:
+        """Meta definition for MODELNAMEform."""
+        
+
+        model = Ordonnances
+        fields = ('libelle','medicaments','patient')
+        widgets = {
+            'libelle' : forms.Textarea(attrs={'class':'form-control','placeholder':"Ecrire l'ordonnance",}),
+        }
+
 
 
 
