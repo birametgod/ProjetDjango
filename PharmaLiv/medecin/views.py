@@ -7,7 +7,10 @@ class reponse(FormView):
     template_name="medecin/reponse.html"
     form_class = envoiOrdonnance
     success_url ='/medecin/thanks/'
-    #return render(request,'medecin/reponse.html')
+    
+    def form_valid(self,form):
+        form.save()
+        return super(reponse, self).form_valid(form)
 
 def home(request):
     return render(request,'medecin/home.html')

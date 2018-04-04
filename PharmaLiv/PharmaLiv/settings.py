@@ -87,11 +87,12 @@ DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',   # Backends disponibles : 'postgresql', 'mysql', 'sqlite3' et 'oracle'.
         'NAME': 'pharmaLiv',             # Nom de la base de données
-        'USER': 'root',
-        'PASSWORD': '',        
+        'USER': 'birame',
+        'PASSWORD': 'cheickh',        
         'HOST': 'localhost',                    # Utile si votre base de données est sur une autre machine
-        'PORT': '3306',                         # ... et si elle utilise un autre port que celui par défaut
+        'PORT': '3307',                         # ... et si elle utilise un autre port que celui par défaut
     }
+    
 }
 
 
@@ -118,7 +119,7 @@ AUTH_PASSWORD_VALIDATORS = [
 # Internationalization
 # https://docs.djangoproject.com/en/2.0/topics/i18n/
 
-LANGUAGE_CODE = 'en-us'
+LANGUAGE_CODE = 'fr-FR'
 
 TIME_ZONE = 'UTC'
 

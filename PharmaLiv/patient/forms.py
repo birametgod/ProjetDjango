@@ -30,6 +30,7 @@ class signUp(UserCreationForm):
             'placeholder' : 'Traitement',
         }
     ))
+    
     dateNaissance =forms.DateField (input_formats=settings.DATE_INPUT_FORMATS)
     adresse = forms.CharField(widget=forms.TextInput(
         attrs={
@@ -45,7 +46,7 @@ class signUp(UserCreationForm):
 
         """
         model = User
-        fields = ('username','first_name','last_name','email')
+        fields = ('username','first_name','last_name','email','password',)
         widgets = {
             'username' : forms.TextInput(attrs={'class':'form-control','placeholder':'Login',}),
             'first_name' : forms.TextInput(attrs={'class':'form-control','placeholder':'Prénom',}),
