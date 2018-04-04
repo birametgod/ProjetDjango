@@ -1,0 +1,89 @@
+{% extends 'layout.html' %}
+{% load static from staticfiles %}
+{% block body %}
+	<style type="text/css">
+		h5{
+			display: block;
+		}
+		a:hover{
+			text-decoration: none;
+		}
+	</style>
+	
+	<div class="container" style="margin-top: 50px;">
+		<div class="panel panel-info">
+		  <div class="panel-heading">
+		  	<h3>Pharmacie Serigne Fallou Mbacké 
+		  		<span style="float: right;"><a href="#" class=" btn-lg btn-info">Mes notifications</a></span>
+		  	</h3>
+		  </div>
+		  <div class="panel-body">
+		  	 <div class="row">
+			  <div class="col-xs-4 col-sm-4 col-lg-4">
+			  <img src="{% static 'img/avatarpharma.jpg' %}">
+			  </div>
+			  <div class="col-xs-4 col-sm-4 col-lg-4" style="margin-top: 30px; font-weight: bold;">
+			  	<div class="row">
+			  		<div class="col-sm-4">
+			  			Nom :
+			  		</div>
+			  		<div class="col-sm-6">
+			  		 Pharmacie Serigne Fallou Mbacké
+			  		</div>
+			  	</div>
+			  	<br>
+			  	<div class="row">
+			  		<div class="col-sm-4">
+			  			Adresse :
+			  		</div>
+			  		<div class="col-sm-6">
+			  		 En Face Hopital Nabil Chouc Air
+			  		</div>
+			  	</div>
+			  	<br>
+			  	<div class="row">
+			  		<div class="col-sm-4">
+			  			Téléphone :
+			  		</div>
+			  		<div class="col-sm-6">
+			  		 	XX-XXX-XX-XX
+			  		</div>
+			  	</div>
+			  	<br>
+			  	<div class="row">
+			  		<div class="col-sm-4">
+			  			Horaire :
+			  		</div>
+			  		<div class="col-sm-6">
+			  		 	Xh - Xh
+			  		</div>
+			  	</div>
+			  	<br>
+			  	<div class="row">
+			  		<div class="col-sm-4">
+			  			Page E-commerce :
+			  		</div>
+			  		<div class="col-sm-6">
+			  		 	<a href="#">Link</a>
+			  		</div>
+			  	</div>
+			  </div>
+			  <div class="col-xs-7 col-sm-4 col-lg-4" style="margin-top: 100px">
+			  	<a href="#" class="btn btn-lg btn-success">Modifier mes informations</a>
+			  </div>
+			</div> 
+		  </div>
+		</div>
+	</div>
+
+	<div class="container" style="margin-top: 50px;">
+		<div class="panel panel-info">
+		  <div class="panel-heading" href="#demo" data-toggle="collapse"><h3>Fiche produit</h3></div>
+		  
+		  	<div id="demo" class="panel-body collapse">
+			    <h4>Creer une fiche de produit</h4>
+			</div>  
+		</div>
+	</div>
+	
+{% endblock body %}

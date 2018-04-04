@@ -14,7 +14,7 @@ def partenaire(request):
     context = {
         'partenaires': Pharmacie.objects.raw('SELECT * FROM pharmacie_pharmacie where partenaire=1')
     }
-    return render(request, 'pharmacie/partenaire.html', context)
+    return render(request, 'pharmacie/acceuil_pharma.html', context)
 
 def nonpartenaire(request):
     context = {
