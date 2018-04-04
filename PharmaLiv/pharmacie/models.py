@@ -10,6 +10,7 @@ class Pharmacie(models.Model):
     adresse = models.CharField(max_length = 100, null = False)
     telephone = models.IntegerField(max_length = 9, null = False)
     horaire = models.CharField(max_length = 50, null = False)
+    partenaire = models.BooleanField(default="1")
     slug = models.SlugField()
 
     def __str__(self):
