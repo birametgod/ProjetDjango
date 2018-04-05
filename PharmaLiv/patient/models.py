@@ -17,7 +17,7 @@ class Patient(models.Model):
         nous permettra de reconnaître facilement les différents objets que 
         nous traiterons plus tard dans l'administration
         """
-        return self.nom 
+        return self.allergie 
 
     def __unicode__(self):
         return 

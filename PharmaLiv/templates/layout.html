@@ -16,7 +16,8 @@
 
 <body>
 
-  <nav class="navbar navbar-inverse navbar-fixed-top" style="height: 80px">
+{% block header %}
+<nav class="navbar navbar-inverse navbar-fixed-top" style="height: 80px">
     <div class="container-fluid">
       <div class="navbar-header">
         <a class="navbar-brand" href="/" style="margin-top: 10px">
@@ -63,7 +64,9 @@
             <span class="caret"></span>
             <ul class="dropdown-menu" style="margin-top: 10px">
               <li>
+                  <a href="/patient/thanks">Profil</a>
                 <a href="{% url 'patient_deconn' %} "> Se deconnecter</a>
+                
               </li>
             </ul>
           </a>
@@ -75,6 +78,7 @@
             <span class="caret"></span>
             <ul class="dropdown-menu" style="margin-top: 20px">
               <li>
+                  <a href="/medecin/thanks">Profil</a>
                 <a href="{% url 'medecin_deconn' %} "> Se deconnecter</a>
               </li>
             </ul>
@@ -131,8 +135,11 @@
       </ul>
     </div>
   </nav>
+{% endblock header %}
+  
+  
   <div class="container" style="margin-top: 40px;">
-     
+  
 
     {% block body %} {% endblock body %}
   </div>
