@@ -1,4 +1,5 @@
 {% extends 'layout.html' %} {% block header %}
+
 <nav class="navbar navbar-inverse navbar-fixed-top" style="height: 80px">
     <div class="container-fluid">
         <div class="navbar-header">
@@ -40,150 +41,29 @@
                         </li>
                             <li>
                                 <a href="javascript:void(0)" data-toggle="search-form">
-                                    <i class="icon-search icon-2x"></i>
-                                    <p>Search</p>
+
+                                    <i class="material-icons md-light">search</i>
+                                    <span class="notification-bubble hidden" id="products-in-cart">
+                                            0
+                                        </span>
+                                        <p>Search </p>
                                 </a>
                             </li>
             
-                        <li class="dropdown dropdown-categories" data-no-turbolink="">
-                            <a href="" class="dropdown-toggle" data-toggle="dropdown">
-                                <i class="icon-th-large icon-2x"></i>
-                                <p>
-                                    Categories
-                                    <span class="caret"></span>
-                                </p>
+                    
             
-                            </a>
-            
-                        <ul class="dropdown-menu">
-                            <li>
-                                <a href="/bootstrap-themes">
-                                    All Categories
-                                </a>
-                            </li>
-                            <li>
-                                <a href="/bootstrap-themes/admin-dashboard">
-                                    Admin &amp; Dashboards
-                                </a>
-                            </li>
-                            <li>
-                                <a href="/bootstrap-themes/ui-kit">
-                                    UI Kits
-                                </a>
-                            </li>
-                            <li>
-                                <a href="/bootstrap-themes/free">
-                                    Free Themes
-                                </a>
-                            </li>
-                            <li>
-                                <a href="/bootstrap-themes/premium">
-                                    Premium Themes
-                                </a>
-                            </li>
-                            <li>
-                                <a href="/bootstrap-themes/angular-dashboard">
-                                    Angular Dashboards
-                                </a>
-                            </li>
-                            <li>
-                                <a href="/bootstrap-themes/landing-page">
-                                    Landing Pages
-                                </a>
-                            </li>
-                            <li>
-                                <a href="/bootstrap-themes/e-commerce">
-                                    E-commerce
-                                </a>
-                            </li>
-                            <li>
-                                <a href="/bootstrap-themes/one-page-template">
-                                    One Page Templates
-                                </a>
-                            </li>
-                            <li>
-                                <a href="/bootstrap-themes/wizard">
-                                    Wizards
-                                </a>
-                            </li>
-                            <li>
-                                <a href="/bootstrap-themes/calendar">
-                                    Calendar
-                                </a>
-                            </li>
-                            <li>
-                                <a href="/bootstrap-themes/login-form">
-                                    Login Forms
-                                </a>
-                            </li>
-                            <li>
-                                <a href="/bootstrap-themes/components">
-                                    Components
-                                </a>
-                            </li>
-                        </ul>
-                    </li>
-            
-                    <li class="big-bundle dropdown dropdown-categories" data-no-turbolink="">
-            
-                        <a href="" class="dropdown-toggle" data-toggle="dropdown">
-                            <i class="icon-gift icon-2x"></i>
-                            <p>
-                                Bundles
-                                <span class="caret"></span>
-                            </p>
-                            <span class="notification-bubble notification-inverted">New</span>
-            
-                        </a>
-                        <ul class="dropdown-menu">
-                                <li>
-                <a href="/product/buy/bundle/big-bundle">
-                    <div class="bundle-name">
-                        Big Bundle
-                        <small> 24 PRODUCTS </small>
-                    </div>
-            
-                    <div class="bundle-price">
-                        $249
-                    </div>
-                </a>
-            </li>
-            
-                                <li>
-                <a href="/product/buy/bundle/2017-bundle">
-                    <div class="bundle-name">
-                        2017 Bundle
-                        <small> 10 PRODUCTS </small>
-                    </div>
-            
-                    <div class="bundle-price">
-                        $199
-                    </div>
-                </a>
-            </li>
-            
-                                <li>
-                <a href="/product/buy/bundle/2016-bundle">
-                    <div class="bundle-name">
-                        2016 Bundle
-                        <small> 8 PRODUCTS </small>
-                    </div>
-            
-                    <div class="bundle-price">
-                        $199
-                    </div>
-                </a>
-            </li>
-            
-                        </ul>
-                    </li>
+                    
             
             
             
                         <li class="dropdown dropdown-notifications">
                             <a href="" class="dropdown-toggle" data-toggle="dropdown">
-                                <i class="icon-bell icon-2x"></i>
-                                <p> Notifications <span class="caret"></span></p>
+                                    <i class="material-icons md-light">notifications</i>
+                                    <span class="notification-bubble hidden" id="products-in-cart">
+                                            0
+                                        </span>
+                                        <p>notifications</p>
+                                    
                             </a>
             
             
@@ -217,15 +97,15 @@
                         <li class="dropdown">
                             <a href="" class="dropdown-toggle" data-toggle="dropdown">
                                 <div class="user-photo">
-                                    <img class="photo" src="https://s3.amazonaws.com/creativetim_bucket/anonymous_thumb.png" alt="Anonymous thumb">
+                                        <i class="material-icons md-light">perm_identity</i> 
                                 </div>
-                                <p>Birame <span class="caret"></span></p>
+                                <p>{{user.username}} <span class="caret"></span></p>
                             </a>
             
                             <ul class="dropdown-menu dropdown-menu-navbar">
                                 <li data-no-turbolink="">
                                     <a href="/downloads">
-                                    <i class="icon-shopping-cart"></i>
+                                        <i class="material-icons md-light">shopping_cart</i>
                                     <p>My Purchases</p>
             </a>                    </li>
             
@@ -252,11 +132,11 @@
             
                         <li class="noty-cart">
                             <a href="#" data-toggle="modal" data-target="#product-cart-modal">
-                                <i class="icon-shopping-cart icon-2x"></i>
+                                    <i class="material-icons md-light">shopping_cart</i>
                                 <span class="notification-bubble hidden" id="products-in-cart">
                                     0
                                 </span>
-                                <p>Your Cart </p>
+                                <p>Panier </p>
                             </a>
                         </li>
             
