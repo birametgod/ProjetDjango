@@ -15,6 +15,7 @@ urlpatterns = [
     path('', views.home), 
     #conexion et deconnexion patient
     path('patient/', include([
+        path('notifications', patient_views.notification, name="notif"),
         path('', patient_views.home),
         path('inscription/', patient_views.connexionView.as_view()),
         path('thanks/', patient_views.reponse,name="afficher_reponse"),

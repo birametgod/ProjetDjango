@@ -30,7 +30,7 @@ class Ordonnances(models.Model):
     dateSoumission = models.DateField(null=True, blank=True)
     notifications = models.CharField(max_length=100, null = False) 
     def __str__(self):
-        return self.libelle
+        return self.notifications
 
     def __unicode__(self):
         return 

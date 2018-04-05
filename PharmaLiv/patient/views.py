@@ -7,13 +7,19 @@ from patient.models import Ordonnances
 def reponse(request):
     context = {
         'notifications':Ordonnances.objects.filter(patient_id=request.user.id).filter(notifications='non lu').count(),
-        
+        'messages':Ordonnances.objects.filter(patient_id=request.user.id).filter(notifications='non lu'),
     }
     return render(request,'patient/reponse.html',context)
 
 def home(request):
     return render(request,'patient/home.html')
 
+def notification(request):
+    context = {
+        'messages':Ordonnances.objects.filter(patient_id=request.user.id) 
+    } 
+    Ordonnances.objects.filter(patient_id=request.user.id).update(notifications='lu')
+    return render(request,'patient/messages.html',context)
 
 class connexionView(FormView):
     template_name="patient/newForm.html" #juste pour tester le formulaire de materialize bootstrap

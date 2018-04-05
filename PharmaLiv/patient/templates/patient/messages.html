@@ -1,10 +1,4 @@
-<<<<<<< HEAD
-{% extends 'layout.html' %} 
-{% block header %} 
-{% if user.is_patient  %}
-=======
-{% extends 'layout.html' %} {% block header %} {% if user.is_patient %}
->>>>>>> 3ed4c8d827115297758332182d5c0e11740a5e98
+{% extends "layout.html" %} {% block header %} {% if user.is_patient %}
 <nav class="navbar navbar-inverse navbar-fixed-top" style="height: 80px">
     <div class="container-fluid">
         <div class="navbar-header">
@@ -58,43 +52,6 @@
                             <p>Search </p>
                         </a>
                     </li>
-
-
-                    <li class="dropdown dropdown-notifications">
-                        <a href="" class="dropdown-toggle" data-toggle="dropdown">
-
-                            {% if notifications > 0 %}
-                            <button class="btn btn-danger" type="button">
-                                <i class="material-icons md-light">notifications</i>
-                                <span class="badge"> {{notifications}}</span>
-                            </button>
-                            {% else %}
-                            <button class="btn btn-success" type="button">
-                                <i class="material-icons md-light">notifications</i>
-                                <span class="badge">0</span>
-                            </button>
-                            {% endif %}
-                        </a>
-
-
-                        <div class="dropdown-menu ">
-
-                            <a href="javascript:void(0)" class="btn-read-all disabled">Mark All as Read</a>
-                            <ul class="scroll-area">
-                                <li data-no-turbolink="">
-                                    {% for mess in messages %}
-                                    <a href="{% url 'notif'  %} "> 
-                                        {{mess.medecin.user.first_name}} {{mess.medecin.user.last_name}}
-                                    </a>
-                                    {% endfor %}
-                                </li>
-                            </ul>
-                            <div class="clearfix"></div>
-                        </div>
-
-                    </li>
-
-
                     <li class="dropdown">
                         <a href="" class="dropdown-toggle" data-toggle="dropdown">
                             <div class="user-photo">
@@ -172,47 +129,124 @@
         </ul>-->
     </div>
 </nav>
-{% endif %} {% endblock header %} {% block body %} {% if user.is_patient %}
-<br>
-<br>
-<div class="row">
-<<<<<<< HEAD
+{% endif %} {% endblock header %} {% block body %}
 
-<h2>fghjk</h2>   
-
-=======
-        <div class="jumbotron">
-                <h1>Bonjour, Mr {{user.last_name}}</h1>
-                <p class="lead">PharmaLiv vous souhaite la Bienvenue parmi nous, Nous vous offrons la possiblité d'envoyer l'ordonnance de votre patient directement sur son compte .</p>
-                <p>Vous venez de recevoir des notifications,veuillez cliquer sur le bouton ci-dessous afin de les lire</p>
-                <p>
-                    <a class="btn btn-lg btn-success" data-toggle="collapse" href="#collapseExample" role="button" aria-expanded="false" aria-controls="collapseExample">Cliquez pour Ouvrir »</a>
-                </p>
-        </div>
-        <hr>
-        <div class="collapse" id="collapseExample">
-            <div class="card card-body">
-                <div class="jumbotron">
-                    
-                </div>
-            </div>
-        </div>
->>>>>>> 3ed4c8d827115297758332182d5c0e11740a5e98
+<div class="col-sm-3 col-md-2 sidebar">
+    <ul class="nav nav-sidebar">
+        <li class="active">
+            <a href="#">Ordonnance
+                <span class="sr-only">(current)</span>
+            </a>
+        </li>
+        <li>
+            <a href="#">Pharmacie</a>
+        </li>
+        <li>
+            <a href="#">Analytics</a>
+        </li>
+        <li>
+            <a href="#">Export</a>
+        </li>
+    </ul>
+    <ul class="nav nav-sidebar">
+        <li>
+            <a href="">Nav item</a>
+        </li>
+        <li>
+            <a href="">Nav item again</a>
+        </li>
+        <li>
+            <a href="">One more nav</a>
+        </li>
+        <li>
+            <a href="">Another nav item</a>
+        </li>
+        <li>
+            <a href="">More navigation</a>
+        </li>
+    </ul>
+    <ul class="nav nav-sidebar">
+        <li>
+            <a href="">Nav item again</a>
+        </li>
+        <li>
+            <a href="">One more nav</a>
+        </li>
+        <li>
+            <a href="">Another nav item</a>
+        </li>
+    </ul>
 </div>
+<div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
+        <h1 class="page-header">Notifications</h1>
+
+        <div class="row placeholders">
+          <div class="col-xs-6 col-sm-3 placeholder">
+            <img src="data:image/gif;base64,R0lGODlhAQABAIAAAHd3dwAAACH5BAAAAAAALAAAAAABAAEAAAICRAEAOw==" width="200" height="200" class="img-responsive" alt="Generic placeholder thumbnail">
+            <h4>Label</h4>
+            <span class="text-muted">Something else</span>
+          </div>
+          <div class="col-xs-6 col-sm-3 placeholder">
+            <img src="data:image/gif;base64,R0lGODlhAQABAIAAAHd3dwAAACH5BAAAAAAALAAAAAABAAEAAAICRAEAOw==" width="200" height="200" class="img-responsive" alt="Generic placeholder thumbnail">
+            <h4>Label</h4>
+            <span class="text-muted">Something else</span>
+          </div>
+          <div class="col-xs-6 col-sm-3 placeholder">
+            <img src="data:image/gif;base64,R0lGODlhAQABAIAAAHd3dwAAACH5BAAAAAAALAAAAAABAAEAAAICRAEAOw==" width="200" height="200" class="img-responsive" alt="Generic placeholder thumbnail">
+            <h4>Label</h4>
+            <span class="text-muted">Something else</span>
+          </div>
+          <div class="col-xs-6 col-sm-3 placeholder">
+            <img src="data:image/gif;base64,R0lGODlhAQABAIAAAHd3dwAAACH5BAAAAAAALAAAAAABAAEAAAICRAEAOw==" width="200" height="200" class="img-responsive" alt="Generic placeholder thumbnail">
+            <h4>Label</h4>
+            <span class="text-muted">Something else</span>
+          </div>
+        </div>
+
+        <h2 class="sub-header">Section title</h2>
+        <div class="table-responsive">
+          <table class="table table-striped">
+            <thead>
+              <tr>
+                <th>#</th>
+                <th>Header</th>
+                <th>Header</th>
+                <th>Header</th>
+                <th>Header</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>1,001</td>
+                <td>Lorem</td>
+                <td>ipsum</td>
+                <td>dolor</td>
+                <td>sit</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
 <script>
-    $(function () {
-        $("#cherche").click(function () { $('form').slideToggle() })
+    $(function(){
+        
+        
     })
-<<<<<<< HEAD
 </script>
-    {% else %}
-    <h1>Connexion non autorisée</h1>
-{% endif %} 
+<style>
+        .sidebar {
+            position: fixed;
+            top: 51px;
+            bottom: 0;
+            left: 0;
+            z-index: 1000;
+            display: block;
+            padding: 20px;
+            overflow-x: hidden;
+            overflow-y: auto;
+            background-color: #f5f5f5;
+            border-right: 1px solid #eee;
+        }
+</style>
 
 {% endblock body %}
-
-=======
-</script> {% else %}
-<h1>GO out</h1>
-{% endif %} {% endblock body %}
->>>>>>> 3ed4c8d827115297758332182d5c0e11740a5e98
