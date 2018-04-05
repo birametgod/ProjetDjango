@@ -6,17 +6,18 @@ from .models import *
 # Create your views here.
 def reponse(request):
     context = {
-        'livrees': Commandes_Effectuees.objects.raw('SELECT * FROM pharmacie_commandes_effectuees where livree=1'),
-        'nonlivrees': Commandes_Effectuees.objects.raw('SELECT * FROM pharmacie_commandes_effectuees where livree=0')
-    }
+        'notifications': Commandes_Effectuees.objects.filter(livree=0).count(), 
+        'livrees': Commandes_Effectuees.objects.filter(livree=1),
+        'nonlivrees': Commandes_Effectuees.objects.filter(livree=0),
+        }
     return render(request,'pharmacie/reponse.html', context)
 
 def home(request):
     return render(request,'pharmacie/home.html')
 
 def partenaire(request):
-    context = {
-        'notifications': Commandes_Effectuees.objects.raw('SELECT COUNT(*) FROM pharmacie_commandes_effectuees where livree=0'),     
+    context = { 
+        'notifications': Commandes_Effectuees.objects.filter(livree=0).count(), 
         'partenaires': Pharmacie.objects.raw('SELECT * FROM pharmacie_pharmacie where partenaire=1')
     }
     return render(request, 'pharmacie/acceuil_pharma.html', context)

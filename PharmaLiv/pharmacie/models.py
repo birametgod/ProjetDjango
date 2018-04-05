@@ -84,6 +84,7 @@ class Commandes_Effectuees(models.Model):
     dateCommande = models.DateTimeField(auto_now_add = True, auto_now = False, verbose_name = "Date de la commande")
     dateLivraison = models.DateTimeField(auto_now_add = True, auto_now = False, verbose_name = "Date de livrason")
     livree = models.BooleanField(default = False)
+    #lu = models.BooleanField(default=False)
     slug = models.SlugField()
 
     def __str__(self):

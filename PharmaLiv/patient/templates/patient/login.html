@@ -3,7 +3,7 @@
 {% block body %}
 <style>
     body{
-        background-image: url('static/img/patient.jpg');
+        background-image: url('{% static 'img/patient.jpg' %}');
         background-size: cover;
         background-attachment: fixed;
     }
@@ -73,7 +73,7 @@
     }
 </style>
 
-<div class="container" style="width: 75%">
+<div class="container" style="width: 75%; margin-top: 40px">
     <div class="row">
         <form  action="" method="POST" class="form1">
 
