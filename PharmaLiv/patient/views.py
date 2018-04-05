@@ -4,6 +4,7 @@ from django.views.generic.edit import FormView
 from .forms import signUp
 # Create your views here.
 def reponse(request):
+    
     return render(request,'patient/reponse.html')
 
 def home(request):
