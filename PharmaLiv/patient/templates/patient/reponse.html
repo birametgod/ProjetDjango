@@ -1,4 +1,6 @@
-{% extends 'layout.html' %} {% block header %} {% if user.is_patient  %}
+{% extends 'layout.html' %} 
+{% block header %} 
+{% if user.is_patient  %}
 <nav class="navbar navbar-inverse navbar-fixed-top" style="height: 80px">
     <div class="container-fluid">
         <div class="navbar-header">
@@ -52,11 +54,6 @@
                             <p>Search </p>
                         </a>
                     </li>
-
-
-
-
-
 
 
                     <li class="dropdown dropdown-notifications">
@@ -190,7 +187,7 @@
 <br><br>
 <div class="row">
 
-   
+<h2>fghjk</h2>   
 
 </div>
 <script>
@@ -199,7 +196,7 @@
     })
 </script>
     {% else %}
-    <h1>GO out</h1>
+    <h1>Connexion non autorisée</h1>
 {% endif %} 
 
 {% endblock body %}
