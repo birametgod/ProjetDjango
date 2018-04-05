@@ -46,11 +46,10 @@ class signUp(UserCreationForm):
 
         """
         model = User
-        fields = ('username','first_name','last_name','email','password',)
+        fields = ('username','first_name','last_name','email',)
         widgets = {
             'username' : forms.TextInput(attrs={'class':'form-control','placeholder':'Login',}),
             'first_name' : forms.TextInput(attrs={'class':'form-control','placeholder':'Prénom',}),
-            'password' : forms.PasswordInput(attrs={'class':'form-control','placeholder':'Mot de passe',}), 
             'last_name' : forms.TextInput(attrs={'class':'form-control','placeholder':'Nom',}),
             'email' : forms.TextInput(attrs={'class':'form-control','placeholder':'Email',}),
 

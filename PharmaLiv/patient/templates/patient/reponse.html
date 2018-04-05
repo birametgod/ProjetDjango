@@ -1,17 +1,179 @@
-{% extends 'layout.html' %}
+{% extends 'layout.html' %} {% block header %}
 
-{% block body %}
+<nav class="navbar navbar-inverse navbar-fixed-top" style="height: 80px">
+    <div class="container-fluid">
+        <div class="navbar-header">
+            <a class="navbar-brand" href="/" style="margin-top: 10px">
+                <span class="glyphicon glyphicon-plus"></span>PharmaLiv
+            </a>
+        </div>
+
+        <div class="container">
+                <div class="notification">
+                    <div id="notif-message" class="notif-message" style="display: none;" notice-type="success">
+                        Welcome!
+                    </div>
+                </div>
+                <div class="navbar-header">
+                    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-ex1-collapse">
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+                
+            
+                </div>
+            
+            
+                <div class="collapse navbar-collapse navbar-ex1-collapse">
+            
+                    <ul class="nav navbar-nav navbar-right" data-no-turbolink="">
+            
+                        <li>
+                                <div itemscope="" itemtype="http://schema.org/WebSite">
+                                    <meta itemprop="url" content="https://www.creative-tim.com/">
+                                    <form class="navbar-form navbar-right navbar-search-form" itemprop="potentialAction" itemscope="itemscope" itemtype="http://schema.org/SearchAction" style="display: none;" action="/search" accept-charset="UTF-8" method="get"><input name="utf8" type="hidden" value="✓">
+                                    <div class="form-group">
+                                        <meta itemprop="target" content="https://www.creative-tim.com/search?q={}">
+                                        <input type="text" name="q" id="q" class="form-control search" placeholder="Search..." itemprop="query-input">
+                                    </div>
+            </form>            	    </div>
+                        </li>
+                            <li>
+                                <a href="#" id="cherche" data-toggle="search-form">
+
+                                    <i class="material-icons md-light">search</i>
+                                    <span class="notification-bubble hidden" id="products-in-cart">
+                                            0
+                                        </span>
+                                        <p>Search </p>
+                                </a>
+                            </li>
+            
+                    
+            
+                    
+            
+            
+            
+                        <li class="dropdown dropdown-notifications">
+                            <a href="" class="dropdown-toggle" data-toggle="dropdown">
+                                    <i class="material-icons md-light">notifications</i>
+                                    <span class="notification-bubble hidden" id="products-in-cart">
+                                            0
+                                        </span>
+                                        <p>notifications</p>
+                                    
+                            </a>
+            
+            
+                            <div class="dropdown-menu ">
+            
+                                <a href="javascript:void(0)" class="btn-read-all disabled">Mark All as Read</a>
+            
+                                <ul class="scroll-area">
+                                    
+                
+                    <li data-no-turbolink="">
+                        
+                        <a href="/products">
+                            Hey! Thank you for registering 😊 Have you had a chance to browse our newest products?
+                            <br><small>2 days ago</small>
+                        </a>
+                        
+            
+                    </li>
+                
+            
+                                </ul>
+            
+            
+                                <div class="clearfix"></div>
+                            </div>
+            
+                        </li>
+            
+            
+                        <li class="dropdown">
+                            <a href="" class="dropdown-toggle" data-toggle="dropdown">
+                                <div class="user-photo">
+                                        <i class="material-icons md-light">perm_identity</i> 
+                                </div>
+                                <p>{{user.username}} <span class="caret"></span></p>
+                            </a>
+            
+                            <ul class="dropdown-menu dropdown-menu-navbar">
+                                <li data-no-turbolink="">
+                                    <a href="/downloads">
+                                        <i class="material-icons md-light">shopping_cart</i>
+                                    Achats
+            </a>                    </li>
+            
+                                <li>
+                                    <a href="/user/credit-history">
+                                        <i class="fa fa-diamond"></i>
+                                        Credits · 0 
+            </a>                    </li>
+            
+                                <li>
+                                    <a href="/account">
+                                        <i class="material-icons">settings</i>
+                                    Reglages
+            </a>                    </li>
+            
+                                <li>
+                                    <a href="/logout">
+                                        <i class="material-icons md-light">highlight_off</i>                                        
+                                        Se deconnecter
+            </a>                    </li>
+                            </ul>
+                        </li>
+            
+            
+                        <li class="noty-cart">
+                            <a href="#" data-toggle="modal" data-target="#product-cart-modal">
+                                    <i class="material-icons md-light">shopping_cart</i>
+                                <span class="notification-bubble hidden" id="products-in-cart">
+                                    0
+                                </span>
+                                <p>Panier </p>
+                            </a>
+                        </li>
+            
+                    </ul>
+            
+                </div>
+            </div>
+       <!-- <ul class="nav navbar-nav navbar-right" style="margin-top: 20px">
+
+            <li class="dropdown">
+                <a class="dropdown-toggle" data-toggle="dropdown" href="#">
+                    <span class="glyphicon glyphicon-log-in"></span> {{user.username}}
+                    <span class="caret"></span>
+                    <ul class="dropdown-menu" style="margin-top: 10px">
+                        <li>
+                            <a href="/patient/thanks">Profil</a>
+                            <a href="{% url 'patient_deconn' %} "> Se deconnecter</a>
+
+                        </li>
+                    </ul>
+                </a>
+            </li>
+
+            </a>
+            </li>
+        </ul>-->
+    </div>
+</nav>
+{% endblock header %} {% block body %}
 <div class="container">
     <div class="row">
-        {% if user.is_authenticated %}
-        <p>hello</p>
-        <p>welcome {{ user.username }}</p>
-        <p><a href="/patient/logout">Logout</a></p>
-        {% else %}
-        <p><a href="patient/login">Login</a></p>
-        <p><a href="/">Inscrire</a></p>
-        {% endif %}
+
     </div>
 </div>
+<script>
+    $(function () {
+        $("#cherche").click(function(){$('form').slideToggle()})
+    })
+</script>
 {% endblock body %}
-    
