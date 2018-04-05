@@ -1,7 +1,8 @@
-{% extends 'layout.html' %} {% block body %}
+{% extends 'layout.html' %} 
+{% block body %}
 <div class="container">
     <div class="row">
-        {% if user.is_authenticated %}
+        {% if user.is_medecin %}
         <br>
         <div class="jumbotron">
             <h1>Bonjour, Mr {{user.last_name}}</h1>
@@ -62,12 +63,7 @@
         {% endif %}
     </div>
 </div>
-<script src="{% static 'js/jquery-2.2.4.min.js' %}" type="text/javascript"></script>
-<script src="{% static 'js/bootstrap.min.js' %}" type="text/javascript"></script>
-<script src="{% static 'js/jquery.bootstrap.js' %}" type="text/javascript"></script>
 
-<!--  Plugin for the Wizard -->
-<script src="{% static 'js/material-bootstrap-wizard.js' %}"></script>
 
 <script>
         $(function () {

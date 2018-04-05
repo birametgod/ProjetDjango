@@ -3,7 +3,7 @@
 {% block body %}
 	
 		<div class="container" style="margin-top: 25px">
-		  <h1>Liste des pharmacies Partenaire de PharmaLiv</h1>
+		  <h1>Liste des pharmacies partenaire de PharmaLiv</h1>
 		  <h5>Visitez leurs pages en cliquant sur le lien</h5> 
 
 		  <div id="search">
@@ -17,11 +17,11 @@
 		  <table class="table table-hover" id="myTable">
 		    <thead>
 		      <tr class="success">
-		      	<th>Profil</th>
-		        <th>Nom</th>
-		        <th>Adresse</th>
-		        <th>Téléphone</th>
-		        <th>Page E-commerce</th>
+		      	<th> <i class="fa fa-camera"> Profil</th>
+		        <th> <i class="fa fa-institution"> Nom</i> </th>
+		        <th> <i class="fa fa-map"></i> Adresse</th>
+		        <th> <i class="fa fa-phone"></i> Téléphone</th>
+		        <th> <i class="fa fa-laptop"> Page E-commerce</th>
 		      </tr>
 		    </thead>
 		    <tbody>
@@ -45,6 +45,7 @@
 		</div>
 
 		<script type="text/javascript">
+			//fonction de recherche
 			function myFunction() {
 			  var input, filter, table, tr, td, i;
 			  input = document.getElementById("myInput");

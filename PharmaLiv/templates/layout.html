@@ -10,6 +10,7 @@
 />
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/latest/css/font-awesome.min.css" />
   <link rel="stylesheet" href="{% static 'bootstrap-3.3.7-dist/css/bootstrap.min.css' %}">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
   <script src="{% static 'bootstrap-3.3.7-dist/js/jquery.min.js' %}"></script>
   <script src="{% static 'bootstrap-3.3.7-dist/js/bootstrap.min.js' %}"></script>
   <title>PharmaLiv | Accueil </title>
@@ -23,7 +24,7 @@
 <nav class="navbar navbar-inverse navbar-fixed-top" style="height: 80px">
     <div class="container-fluid">
       <div class="navbar-header">
-        <a class="navbar-brand" href="/" style="margin-top: 10px">
+        <a class="navbar-brand" href="/" style="margin-top: 20px">
           <span class="glyphicon glyphicon-plus"></span>PharmaLiv
         </a>
       </div>
@@ -146,6 +147,16 @@
 
     {% block body %} {% endblock body %}
   </div>
+
+  <div class="footer" style="margin-top: 15px ; height: 50px;">
+    <div class="container text-center">
+      <b>
+        Made By <i class="fa fa-heart heart" style="color: red"></i> 
+        <a href="#">Birame&Diop</a> | &copy;  <i class="fa fa-plus" style="color: green"></i>Pharmaliv 2018
+      </b>
+    </div>
+  </div>
+
 </body>
 <script>
   $(function () {
