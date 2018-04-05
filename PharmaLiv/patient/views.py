@@ -8,6 +8,7 @@ def reponse(request):
     context = {
         'notifications':Ordonnances.objects.filter(patient_id=request.user.id).filter(notifications='non lu').count(),
         'messages':Ordonnances.objects.filter(patient_id=request.user.id).filter(notifications='non lu'),
+        'ordo':Ordonnances.objects.filter(patient_id=request.user.id).order_by('-dateSoumission'),  
     }
     return render(request,'patient/reponse.html',context)
 

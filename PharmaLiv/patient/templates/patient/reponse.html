@@ -82,7 +82,7 @@
                             <ul class="scroll-area">
                                 <li data-no-turbolink="">
                                     {% for mess in messages %}
-                                    <a href="{% url 'notif'  %} "> 
+                                    <a href="{% url 'notif'  %} ">
                                         {{mess.medecin.user.first_name}} {{mess.medecin.user.last_name}}
                                     </a>
                                     {% endfor %}
@@ -175,26 +175,46 @@
 <br>
 <br>
 <div class="row">
-        <div class="jumbotron">
-                <h1>Bonjour, Mr {{user.last_name}}</h1>
-                <p class="lead">PharmaLiv vous souhaite la Bienvenue parmi nous, Nous vous offrons la possiblité d'envoyer l'ordonnance de votre patient directement sur son compte .</p>
-                <p>Vous venez de recevoir des notifications,veuillez cliquer sur le bouton ci-dessous afin de les lire</p>
-                <p>
-                    <a class="btn btn-lg btn-success" data-toggle="collapse" href="#collapseExample" role="button" aria-expanded="false" aria-controls="collapseExample">Cliquez pour Ouvrir »</a>
-                </p>
-        </div>
-        <hr>
-        <div class="collapse" id="collapseExample">
-            <div class="card card-body">
-                <div class="jumbotron">
-                    
-                </div>
+    <div class="jumbotron">
+        <h1>Bonjour, Mr {{user.last_name}}</h1>
+        <p class="lead">PharmaLiv vous souhaite la Bienvenue parmi nous, Nous vous offrons la possiblité de </p>
+        <p>veuillez cliquer sur le bouton ci-dessous afin de voir vos ordonnances</p>
+        <p>
+            <a class="btn btn-lg btn-success" data-toggle="collapse" href="#collapseExample" role="button" aria-expanded="false" aria-controls="collapseExample">Cliquez pour Ouvrir »</a>
+        </p>
+    </div>
+    <hr>
+    <div class="collapse" id="collapseExample">
+        <div class="card card-body">
+            <div class="jumbotron">
+                    <div class="row">
+                {% for ordonnanc in ordo %}
+
+               
+                    <div class="col-sm-6 col-md-4">
+                        <div class="thumbnail">
+                            <img src="{{ordonnanc.medicaments.url}}" alt="... ">
+                            <div class="caption ">
+                                    <h1>{{ordonnanc.medecin.specialite.nom}} </h1>
+                                <h2>{{ordonnanc.medecin.user.first_name}} {{ordonnanc.medecin.user.last_name}} </h3>
+                                <h3>{{ordonnanc.dateSoumission}}</h3>
+                                <p>{{ordonnanc.libelle}}</p>
+                            
+                            </div>
+                        </div>
+                    </div>
+               
+                {% endfor %}
             </div>
+            </div>
+
+
         </div>
+    </div>
 </div>
 <script>
     $(function () {
-        $("#cherche").click(function () { $('form').slideToggle() })
+        $("#cherche ").click(function () { $('form').slideToggle() })
     })
 </script> {% else %}
 <h1>GO out</h1>
