@@ -2,9 +2,14 @@ from django.shortcuts import render,redirect
 from django.contrib.auth import authenticate, login
 from django.views.generic.edit import FormView
 from .forms import signUp
+from patient.models import Ordonnances
 # Create your views here.
 def reponse(request):
-    return render(request,'patient/reponse.html')
+    context = {
+        'notifications':Ordonnances.objects.filter(patient_id=request.user.id).filter(notifications='non lu').count(),
+        
+    }
+    return render(request,'patient/reponse.html',context)
 
 def home(request):
     return render(request,'patient/home.html')

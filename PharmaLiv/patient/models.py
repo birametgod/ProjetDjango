@@ -28,6 +28,7 @@ class Ordonnances(models.Model):
     patient = models.ForeignKey(Patient,on_delete=models.CASCADE) # en cas de suppression de la catégorie, tous les articles ayant cette catégorie seront également supprimé (provoquant une cascade de suppression) ;
     medecin= models.ForeignKey(Medecin, on_delete=models.CASCADE)
     dateSoumission = models.DateField(null=True, blank=True)
+    notifications = models.CharField(max_length=100, null = False) 
     def __str__(self):
         return self.libelle
 
