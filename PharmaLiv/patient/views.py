@@ -6,10 +6,10 @@ from patient.models import Ordonnances
 # Create your views here.
 def reponse(request):
     context = {
-        'notifications':Ordonnances.objects.filter(patient_id=1).count(),
+        'notifications':Ordonnances.objects.filter(patient_id=request.user.id).filter(notifications='non lu').count(),
         
     }
-    return render(request,'patient/reponse.html')
+    return render(request,'patient/reponse.html',context)
 
 def home(request):
     return render(request,'patient/home.html')

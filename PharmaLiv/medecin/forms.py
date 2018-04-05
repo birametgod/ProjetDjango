@@ -71,7 +71,7 @@ class envoiOrdonnance(forms.Form):
     def save(self):
         id=self.cleaned_data.get('medecin')
         Medecin.objects.filter(user_id=id).update(id=id)
-        Ordonnances.objects.create(libelle=self.cleaned_data.get('libelle'),medicaments=self.cleaned_data.get('medicaments'),patient_id=self.cleaned_data.get('patient'),dateSoumission=self.cleaned_data.get('birth_date'),medecin_id=id)
+        Ordonnances.objects.create(libelle=self.cleaned_data.get('libelle'),medicaments=self.cleaned_data.get('medicaments'),patient_id=self.cleaned_data.get('patient'),dateSoumission=self.cleaned_data.get('birth_date'),medecin_id=id,notifications='non lu')
         
 
     
