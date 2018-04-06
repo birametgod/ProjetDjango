@@ -76,16 +76,20 @@
                         </a>
 
 
+
                         <div class="dropdown-menu ">
 
-                            <a href="javascript:void(0)" class="btn-read-all disabled">Mark All as Read</a>
+                            <a href="javascript:void(0)" class="btn-read-all disabled"></a>
                             <ul class="scroll-area">
+                                {% for mess in messages %}
                                 <li data-no-turbolink="">
-                                    {% for mess in messages %}
                                     <a href="{% url 'notif'  %} ">
                                         {{mess.medecin.user.first_name}} {{mess.medecin.user.last_name}}
                                     </a>
-                                    {% endfor %}
+                                </li>
+                                {% endfor %}
+                                <li>
+                                    <a href="{% url 'notif'  %}">Autres</a>
                                 </li>
                             </ul>
                             <div class="clearfix"></div>
@@ -120,14 +124,14 @@
                             </li>
 
                             <li>
-                                <a href="/account">
+                                <a href="">
                                     <i class="material-icons">settings</i>
                                     Reglages
                                 </a>
                             </li>
 
                             <li>
-                                <a href="/logout">
+                                    <a href="{% url 'patient_deconn' %}">
                                     <i class="material-icons md-light">highlight_off</i>
                                     Se deconnecter
                                 </a>
@@ -177,35 +181,40 @@
 <div class="row">
     <div class="jumbotron">
         <h1>Bonjour, Mr {{user.last_name}}</h1>
-        <p class="lead">PharmaLiv vous souhaite la Bienvenue parmi nous, Nous vous offrons la possiblité de </p>
+        <p class="lead">PharmaLiv vous souhaite la Bienvenue parmi nous, Nous vous offrons la possiblité de passer vos commandes plus facilement
+            et dans un temps trés court tout en prenant en compte votre localisation. </p>
         <p>veuillez cliquer sur le bouton ci-dessous afin de voir vos ordonnances</p>
         <p>
             <a class="btn btn-lg btn-success" data-toggle="collapse" href="#collapseExample" role="button" aria-expanded="false" aria-controls="collapseExample">Cliquez pour Ouvrir »</a>
         </p>
+        <div class="col-md-2 col-md-offset-9">
+                        <a class="btn btn-lg btn-danger" data-toggle="collapse" href="" >Acceder à la parapharmacie »</a>
+        </div>
+        <br>
     </div>
     <hr>
     <div class="collapse" id="collapseExample">
         <div class="card card-body">
             <div class="jumbotron">
-                    <div class="row">
-                {% for ordonnanc in ordo %}
+                <div class="row">
+                    {% for ordonnanc in ordo %}
 
-               
+
                     <div class="col-sm-6 col-md-4">
                         <div class="thumbnail">
                             <img src="{{ordonnanc.medicaments.url}}" alt="... ">
                             <div class="caption ">
-                                    <h1>{{ordonnanc.medecin.specialite.nom}} </h1>
+                                <h1>{{ordonnanc.medecin.specialite.nom}} </h1>
                                 <h2>{{ordonnanc.medecin.user.first_name}} {{ordonnanc.medecin.user.last_name}} </h3>
-                                <h3>{{ordonnanc.dateSoumission}}</h3>
-                                <p>{{ordonnanc.libelle}}</p>
-                            
+                                    <h3>{{ordonnanc.dateSoumission}}</h3>
+                                    <p>{{ordonnanc.libelle}}</p>
+
                             </div>
                         </div>
                     </div>
-               
-                {% endfor %}
-            </div>
+
+                    {% endfor %}
+                </div>
             </div>
 
 

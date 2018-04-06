@@ -17,7 +17,7 @@ def home(request):
 
 
 class connexionView(FormView):
-    template_name="medecin/formulaire.html"
+    template_name="medecin/newForm.html"
     form_class = signUp
     success_url ='/medecin/thanks/'
 
