@@ -29,7 +29,8 @@ def home(request):
 
 def notification(request):
     context = {
-        'messages':Ordonnances.objects.filter(patient_id=request.user.id) 
+        'ordo':Ordonnances.objects.filter(patient_id=request.user.id).order_by('-dateSoumission'),  
+        'messages':Ordonnances.objects.filter(patient_id=request.user.id).order_by('-dateSoumission'),
     } 
     Ordonnances.objects.filter(patient_id=request.user.id).update(notifications='lu')
     return render(request,'patient/messages.html',context)

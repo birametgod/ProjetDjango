@@ -1,101 +1,264 @@
-{% extends "patient/reponse.html" %}  {% block body %}
+
+ {% extends "patient/reponse.html" %} {% load static from staticfiles %} {% block header %} {% if user.is_patient %}
+<style type="text/css">
+    body{
+        position: relative;
+    }
+</style>
+<div data-spy="scroll" data-target=".navbar" data-offset="50">
+<nav class="navbar navbar-inverse navbar-fixed-top" style="height: 80px">
+    <div class="container-fluid">
+        <div class="navbar-header">
+            <a class="navbar-brand" href="/" style="margin-top: 10px">
+                <span class="glyphicon glyphicon-plus"></span>PharmaLiv
+            </a>
+        </div>
+
+        <div class="container">
+            <div class="notification">
+                <div id="notif-message" class="notif-message" style="display: none;" notice-type="success">
+                    Welcome!
+                </div>
+            </div>
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-ex1-collapse">
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+
+
+            </div>
+
+
+            <div class="collapse navbar-collapse navbar-ex1-collapse">
+
+                <ul class="nav navbar-nav navbar-right" data-no-turbolink="">
+
+                    <li>
+                        <div itemscope="" itemtype="http://schema.org/WebSite">
+                            <meta itemprop="url" content="https://www.creative-tim.com/">
+                            <form class="navbar-form navbar-right navbar-search-form" itemprop="potentialAction" itemscope="itemscope" itemtype="http://schema.org/SearchAction"
+                                style="display: none;" action="/search" accept-charset="UTF-8" method="get">
+                                <input name="utf8" type="hidden" value="✓">
+                                <div class="form-group">
+                                    <meta itemprop="target" content="https://www.creative-tim.com/search?q={}">
+                                    <input type="text" name="q" id="q" class="form-control search" placeholder="Search..." itemprop="query-input">
+                                    <input type="submit" class="btn btn-success" value="rechercher">
+                                </div>
+                            </form>
+                        </div>
+                    </li>
+                    <li>
+                        <a href="#" id="cherche" data-toggle="search-form">
+
+                            <i class="material-icons md-light">search</i>
+                            <span class="notification-bubble hidden" id="products-in-cart">
+                                0
+                            </span>
+                            <p>Search </p>
+                        </a>
+                    </li>
+                    <li class="dropdown">
+                        <a href="" class="dropdown-toggle" data-toggle="dropdown">
+                            <div class="user-photo">
+                                <i class="material-icons md-light">perm_identity</i>
+                            </div>
+                            <p>{{user.username}}
+                                <span class="caret"></span>
+                            </p>
+                        </a>
+
+                        <ul class="dropdown-menu dropdown-menu-navbar">
+                            <li data-no-turbolink="">
+                                <a href="/downloads">
+                                    <i class="material-icons md-light">shopping_cart</i>
+                                    Achats
+                                </a>
+                            </li>
+
+                            <li>
+                                <a href="/user/credit-history">
+                                    <i class="fa fa-diamond"></i>
+                                    Credits · 0
+                                </a>
+                            </li>
+
+                            <li>
+                                <a href="/account">
+                                    <i class="material-icons">settings</i>
+                                    Reglages
+                                </a>
+                            </li>
+
+                            <li>
+                                <a href="/logout">
+                                    <i class="material-icons md-light">highlight_off</i>
+                                    Se deconnecter
+                                </a>
+                            </li>
+                        </ul>
+                    </li>
+
+
+                    <li class="noty-cart">
+                        <a href="#" data-toggle="modal" data-target="#product-cart-modal">
+                            <i class="material-icons md-light">shopping_cart</i>
+                            <span class="notification-bubble hidden" id="products-in-cart">
+                                0
+                            </span>
+                            <p>Panier </p>
+                        </a>
+                    </li>
+
+                </ul>
+
+            </div>
+        </div>
+        <!-- <ul class="nav navbar-nav navbar-right" style="margin-top: 20px">
+
+            <li class="dropdown">
+                <a class="dropdown-toggle" data-toggle="dropdown" href="#">
+                    <span class="glyphicon glyphicon-log-in"></span> {{user.username}}
+                    <span class="caret"></span>
+                    <ul class="dropdown-menu" style="margin-top: 10px">
+                        <li>
+                            <a href="/patient/thanks">Profil</a>
+                            <a href="{% url 'patient_deconn' %} "> Se deconnecter</a>
+
+                        </li>
+                    </ul>
+                </a>
+            </li>
+
+            </a>
+            </li>
+        </ul>-->
+    </div>
+</nav>
+{% endif %} {% endblock header %} 
+
+  {% block body %}
+ 
 
 <div class="col-sm-3 col-md-2 sidebar">
-    <ul class="nav nav-sidebar">
+    <ul class="nav nav-sidebar" style="margin-top: 30px">
         <li class="active">
-            <a href="#">Ordonnance
+            <a href="#section1">Ordonnance
                 <span class="sr-only">(current)</span>
             </a>
         </li>
         <li>
-            <a href="#">Pharmacie</a>
+            <a href="#section2">Pharmacie</a>
         </li>
         <li>
             <a href="#">Analytics</a>
         </li>
         <li>
-            <a href="#">Export</a>
+            <a href="#"></a>
         </li>
     </ul>
     <ul class="nav nav-sidebar">
         <li>
-            <a href="">Nav item</a>
+            <a href=""></a>
         </li>
         <li>
-            <a href="">Nav item again</a>
+            <a href=""></a>
         </li>
         <li>
-            <a href="">One more nav</a>
+            <a href=""></a>
         </li>
         <li>
-            <a href="">Another nav item</a>
+            <a href=""></a>
         </li>
         <li>
-            <a href="">More navigation</a>
+            <a href=""></a>
         </li>
     </ul>
     <ul class="nav nav-sidebar">
         <li>
-            <a href="">Nav item again</a>
+            <a href=""></a>
         </li>
         <li>
-            <a href="">One more nav</a>
+            <a href=""></a>
         </li>
         <li>
-            <a href="">Another nav item</a>
+            <a href=""></a>
         </li>
     </ul>
 </div>
-<div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
-        <h1 class="page-header">Notifications</h1>
+      <div id="section1" class="container-fluid">
+        <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main" style="margin-top: 50px">
+            <h1 class="page-header">Notifications Medecins</h1>
 
-        <div class="row placeholders">
-          <div class="col-xs-6 col-sm-3 placeholder">
-            <img src="data:image/gif;base64,R0lGODlhAQABAIAAAHd3dwAAACH5BAAAAAAALAAAAAABAAEAAAICRAEAOw==" width="200" height="200" class="img-responsive" alt="Generic placeholder thumbnail">
-            <h4>Label</h4>
-            <span class="text-muted">Something else</span>
-          </div>
-          <div class="col-xs-6 col-sm-3 placeholder">
-            <img src="data:image/gif;base64,R0lGODlhAQABAIAAAHd3dwAAACH5BAAAAAAALAAAAAABAAEAAAICRAEAOw==" width="200" height="200" class="img-responsive" alt="Generic placeholder thumbnail">
-            <h4>Label</h4>
-            <span class="text-muted">Something else</span>
-          </div>
-          <div class="col-xs-6 col-sm-3 placeholder">
-            <img src="data:image/gif;base64,R0lGODlhAQABAIAAAHd3dwAAACH5BAAAAAAALAAAAAABAAEAAAICRAEAOw==" width="200" height="200" class="img-responsive" alt="Generic placeholder thumbnail">
-            <h4>Label</h4>
-            <span class="text-muted">Something else</span>
-          </div>
-          <div class="col-xs-6 col-sm-3 placeholder">
-            <img src="data:image/gif;base64,R0lGODlhAQABAIAAAHd3dwAAACH5BAAAAAAALAAAAAABAAEAAAICRAEAOw==" width="200" height="200" class="img-responsive" alt="Generic placeholder thumbnail">
-            <h4>Label</h4>
-            <span class="text-muted">Something else</span>
-          </div>
+            <div class="row">
+                    {% for ordonnanc in ordo %}
+
+
+                    <div class="col-sm-6 col-md-4">
+                        <div class="thumbnail">
+                            <a href="{{ordonnanc.medicaments.url}}"><img src="{{ordonnanc.medicaments.url}}" alt="image" width="500" height="500" /></a> 
+                            <div class="caption ">
+                                <h3>{{ordonnanc.medecin.specialite.nom}} </h3>
+                                <h4>{{ordonnanc.medecin.user.first_name}} {{ordonnanc.medecin.user.last_name}} </h4>
+                                    <h5>{{ordonnanc.dateSoumission}}</h5>
+                                    <p>{{ordonnanc.libelle}}</p>
+
+                            </div>
+                        </div>
+                    </div>
+
+                    {% endfor %}
+                </div>
+
+            <h2 class="sub-header">Section title</h2>
+            <div class="table-responsive">
+              <table class="table table-striped">
+                <thead>
+                  <tr>
+                    <th>#</th>
+                    <th>Header</th>
+                    <th>Header</th>
+                    <th>Header</th>
+                    <th>Header</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td>1,001</td>
+                    <td>Lorem</td>
+                    <td>ipsum</td>
+                    <td>dolor</td>
+                    <td>sit</td>
+                  </tr>
+                </tbody>
+              </table>
         </div>
+      </div>
+    </div>
 
-        <h2 class="sub-header">Section title</h2>
-        <div class="table-responsive">
-          <table class="table table-striped">
+    <div id="section2" class="container-fluid" style="height: 500px; margin-left: 200px">
+          <h1 class="page-header">Notifications Pharmacies</h1>
+          <table class="table table-hover" id="myTable">
             <thead>
-              <tr>
-                <th>#</th>
-                <th>Header</th>
-                <th>Header</th>
-                <th>Header</th>
-                <th>Header</th>
+              <tr class="success">
+                <th> <i class="fa fa-map"></i> Expéditeur</th>
+                <th> <i class="fa fa-map"></i> Contenu</th>
+                <th> <i class="fa fa-calendar"></i> Date</th>
               </tr>
             </thead>
             <tbody>
-              <tr>
-                <td>1,001</td>
-                <td>Lorem</td>
-                <td>ipsum</td>
-                <td>dolor</td>
-                <td>sit</td>
-              </tr>
+              {% for msg in messages %}
+                  <tr>  
+                    <td>{{Pharmacie.user.first_name}}</td>
+                    <td>{{ msg.libelle}}</td>
+                    <td>{{ msg.dateSoumission }}</td>
+                  </tr>
+              {% endfor %}
             </tbody>
           </table>
-        </div>
-      </div>
+    </div>
+</div>
 <script>
     $(function(){
         

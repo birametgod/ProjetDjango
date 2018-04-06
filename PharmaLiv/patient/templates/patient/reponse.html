@@ -1,4 +1,5 @@
 {% extends 'layout.html' %} {% block header %} {% if user.is_patient %}
+
 <nav class="navbar navbar-inverse navbar-fixed-top" style="height: 80px">
     <div class="container-fluid">
         <div class="navbar-header">
@@ -54,11 +55,6 @@
                     </li>
 
 
-
-
-
-
-
                     <li class="dropdown dropdown-notifications">
                         <a href="" class="dropdown-toggle" data-toggle="dropdown">
 
@@ -92,6 +88,7 @@
                                     <a href="{% url 'notif'  %}">Autres</a>
                                 </li>
                             </ul>
+                            <a href="{% url 'notif'  %} ">Autres</a>
                             <div class="clearfix"></div>
                         </div>
 
@@ -223,13 +220,13 @@
                     {% for ordonnanc in ordo %}
 
 
-                    <div class="col-sm-6 col-md-4">
+                     <div class="col-sm-6 col-md-4">
                         <div class="thumbnail">
-                            <img src="{{ordonnanc.medicaments.url}}" alt="... ">
+                            <a href="{{ordonnanc.medicaments.url}}"><img src="{{ordonnanc.medicaments.url}}" alt="image" width="500" height="500" /></a> 
                             <div class="caption ">
-                                <h1>{{ordonnanc.medecin.specialite.nom}} </h1>
-                                <h2>{{ordonnanc.medecin.user.first_name}} {{ordonnanc.medecin.user.last_name}} </h3>
-                                    <h3>{{ordonnanc.dateSoumission}}</h3>
+                                <h3>{{ordonnanc.medecin.specialite.nom}} </h3>
+                                <h4>{{ordonnanc.medecin.user.first_name}} {{ordonnanc.medecin.user.last_name}} </h4>
+                                    <h5>{{ordonnanc.dateSoumission}}</h5>
                                     <p>{{ordonnanc.libelle}}</p>
 
                             </div>
@@ -269,6 +266,10 @@
     $(function () {
         $("#cherche ").click(function () { $('form').slideToggle() })
     })
-</script> {% else %}
-<h1>GO out</h1>
-{% endif %} {% endblock body %}
+
+</script>
+    {% else %}
+    <h1>Connexion non autorisée</h1>
+{% endif %} 
+
+{% endblock body %}
