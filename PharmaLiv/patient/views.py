@@ -15,8 +15,6 @@ def reponse(request):
     return render(request,'patient/reponse.html',context)
 
 
-<<<<<<< HEAD
-=======
 class reponseFemme(FormView):
     template_name="patient/etat.html"
     form_class = FemmeForm
@@ -26,7 +24,6 @@ class reponseFemme(FormView):
         form.save()
         return super(reponseFemme, self).form_valid(form)
 
->>>>>>> 724a64ad786672f87f0a27302a957ff8ec74e33c
 def home(request):
     return render(request,'patient/home.html')
 
@@ -34,6 +31,7 @@ def notification(request):
     context = {
         'ordo':Ordonnances.objects.filter(patient_id=request.user.id).order_by('-dateSoumission'),  
         'messages':Ordonnances.objects.filter(patient_id=request.user.id).order_by('-dateSoumission'),
+        'nb_ordo': Ordonnances.objects.filter(patient_id=request.user.id).count(),
     } 
     Ordonnances.objects.filter(patient_id=request.user.id).update(notifications='lu')
     return render(request,'patient/messages.html',context)
