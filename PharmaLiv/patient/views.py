@@ -2,13 +2,15 @@ from django.shortcuts import render,redirect
 from django.contrib.auth import authenticate, login
 from django.views.generic.edit import FormView
 from .forms import signUp
-from patient.models import Ordonnances
+from patient.models import Ordonnances,Patient
 # Create your views here.
 def reponse(request):
+    Patient.objects.filter(user_id=request.user.id).update(id=request.user.id),  
     context = {
         'notifications':Ordonnances.objects.filter(patient_id=request.user.id).filter(notifications='non lu').count(),
         'messages':Ordonnances.objects.filter(patient_id=request.user.id).filter(notifications='non lu'),
-        'ordo':Ordonnances.objects.filter(patient_id=request.user.id).order_by('-dateSoumission'),  
+        'ordo':Ordonnances.objects.filter(patient_id=request.user.id).order_by('-dateSoumission'), 
+        'patien':Patient.objects.get(id=request.user.id),  
     }
     return render(request,'patient/reponse.html',context)
 

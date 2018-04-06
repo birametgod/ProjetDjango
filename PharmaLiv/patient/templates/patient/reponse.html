@@ -178,20 +178,43 @@
 {% endif %} {% endblock header %} {% block body %} {% if user.is_patient %}
 <br>
 <br>
+{% if patien.sexe == "femme" %}
 <div class="row">
-    <div class="jumbotron">
-        <h1>Bonjour, Mr {{user.last_name}}</h1>
-        <p class="lead">PharmaLiv vous souhaite la Bienvenue parmi nous, Nous vous offrons la possiblité de passer vos commandes plus facilement
-            et dans un temps trés court tout en prenant en compte votre localisation. </p>
-        <p>veuillez cliquer sur le bouton ci-dessous afin de voir vos ordonnances</p>
-        <p>
-            <a class="btn btn-lg btn-success" data-toggle="collapse" href="#collapseExample" role="button" aria-expanded="false" aria-controls="collapseExample">Cliquez pour Ouvrir »</a>
-        </p>
-        <div class="col-md-2 col-md-offset-9">
-                        <a class="btn btn-lg btn-danger" data-toggle="collapse" href="" >Visiter Pharmacies »</a>
+        <div class="jumbotron">
+            <h1>Bonjour, Mme {{user.last_name}}</h1>
+            <p class="lead">PharmaLiv vous souhaite la Bienvenue parmi nous, Nous vous offrons la possiblité de passer vos commandes plus facilement
+                et dans un temps trés court tout en prenant en compte votre localisation. </p>
+            <p>veuillez cliquer sur le bouton ci-dessous afin de voir vos ordonnances</p>
+            <p>Avant de commencer veuiller preciser votre etat, c'est à dire si vous etes en Etat de grossesse ou pas <a class="btn btn-xs btn-default" data-toggle="collapse" href="#etat" role="button" aria-expanded="false" aria-controls="collapseExample">Renseigner Mon Etat »</a></p>
+            
+                
+            
+            <p>
+                    <a class="btn btn-lg btn-success" data-toggle="collapse" href="#collapseExample" role="button" aria-expanded="false" aria-controls="collapseExample">Cliquez pour Ouvrir »</a>
+
+            </p>
+            <div class="col-md-2 col-md-offset-9">
+                            <a class="btn btn-lg btn-danger" data-toggle="collapse" href="" >Visiter Pharmacies »</a>
+            </div>
+            <br>
         </div>
-        <br>
-    </div>
+        {% else %} 
+        <div class="row">
+                <div class="jumbotron">
+                    <h1>Bonjour, Mr {{user.first_name}}</h1>
+                    <p class="lead">PharmaLiv vous souhaite la Bienvenue parmi nous, Nous vous offrons la possiblité de passer vos commandes plus facilement
+                        et dans un temps trés court tout en prenant en compte votre localisation. </p>
+                    <p>veuillez cliquer sur le bouton ci-dessous afin de voir vos ordonnances</p>
+                    <p>
+                        <a class="btn btn-lg btn-success" data-toggle="collapse" href="#collapseExample" role="button" aria-expanded="false" aria-controls="collapseExample">Cliquez pour Ouvrir »</a>
+                    </p>
+                    <div class="col-md-2 col-md-offset-9">
+                                    <a class="btn btn-lg btn-danger" data-toggle="collapse" href="" >Visiter Pharmacies »</a>
+                    </div>
+                    <br>
+        </div>
+{% endif %}
+
     <hr>
     <div class="collapse" id="collapseExample">
         <div class="card card-body">
@@ -220,6 +243,24 @@
 
         </div>
     </div>
+    <div class="collapse" id="etat">
+            <div class="card card-body">
+                <div class="jumbotron">
+                    <div class="row">
+                        <form class="form-horizontal" enctype="multipart/form-data" action="" method="post">
+                            <div class="form-group">
+                                <input type="text" placeholder="etat" name="" id="">
+                            </div>
+                            <p>
+                                    <input type="submit" class="btn btn-lg btn-success" value="Envoyer" style="float: right;">
+                            </p>
+                        </form>
+                    </div>
+                </div>
+    
+    
+            </div>
+        </div>
 </div>
 <script>
     $(function () {

@@ -64,14 +64,16 @@ class envoiOrdonnance(forms.Form):
             'class' : 'form-control',
         }
     ))
-    patient =forms.ChoiceField(choices= [(choice.pk, choice.user.username) for choice in Patient.objects.all()])
+    patient =forms.ChoiceField(choices= [(choice.user.id, choice.user.username) for choice in Patient.objects.all()])
     birth_date = forms.DateField(widget=forms.SelectDateWidget( empty_label=("Choose Year", "Choose Month", "Choose Day"),),)
     
     #make sure those  operations are done in a single database transaction and avoid data inconsistencies in case of error.
     def save(self):
+        id_patient=self.cleaned_data.get('patient')
         id=self.cleaned_data.get('medecin')
         Medecin.objects.filter(user_id=id).update(id=id)
-        Ordonnances.objects.create(libelle=self.cleaned_data.get('libelle'),medicaments=self.cleaned_data.get('medicaments'),patient_id=self.cleaned_data.get('patient'),dateSoumission=self.cleaned_data.get('birth_date'),medecin_id=id,notifications='non lu')
+        Patient.objects.filter(user_id=id_patient).update(id=id_patient)
+        Ordonnances.objects.create(libelle=self.cleaned_data.get('libelle'),medicaments=self.cleaned_data.get('medicaments'),patient_id=id_patient,dateSoumission=self.cleaned_data.get('birth_date'),medecin_id=id,notifications='non lu')
         
 
     
