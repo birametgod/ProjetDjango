@@ -20,7 +20,15 @@ class Patient(models.Model):
         return self.allergie 
 
     def __unicode__(self):
-        return 
+        return
+
+class Femme(models.Model):
+    patient = models.ForeignKey(Patient,on_delete=models.CASCADE)  
+    etat = models.CharField(max_length=100, null=False)
+
+    def __str__(self):
+        return self.etat
+
 
 class Ordonnances(models.Model):
     libelle = models.CharField(max_length=255, null=False)

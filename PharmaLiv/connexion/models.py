@@ -17,5 +17,6 @@ class User(usermodels.AbstractUser):
     is_medecin= models.BooleanField(default=False)
     is_livreur = models.BooleanField(default=False)
     is_pharmacie=models.BooleanField(default = False)
-    is_userbi = models.BooleanField(default=False)
+    is_userbi = models.BooleanField(default=False )
+    
 
