@@ -1,6 +1,6 @@
 from django import forms
 from PharmaLiv import settings
-from .models import Patient
+from .models import Patient,Femme
 from connexion.models import User
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.admin.widgets import AdminDateWidget
@@ -66,3 +66,17 @@ class signUp(UserCreationForm):
         Patient.objects.create(user=user,sexe=self.cleaned_data.get('sexe'),allergie=self.cleaned_data.get('allergie'),traitement=self.cleaned_data.get('traitement'),dateNaissance=self.cleaned_data.get('dateNaissance'),adresse=self.cleaned_data.get('adresse'))
         return user
     # TODO: Define form fields here
+
+
+class FemmeForm(forms.Form):
+    """Form definition for MODELNAME."""
+    etat = forms.CharField(widget=forms.Textarea(
+        attrs={
+            'class' : 'form-control',
+            'placeholder' : "Quel est votre etat ? ",
+        }
+    ))
+    patient=forms.IntegerField(required=True, label='Téléphone')
+    #make sure those  operations are done in a single database transaction and avoid data inconsistencies in case of error.
+    def save(self):
+        Femme.objects.create(etat=self.cleaned_data.get('etat'),patient_id=self.cleaned_data.get('patient'))
