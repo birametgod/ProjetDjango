@@ -176,18 +176,6 @@
 <br>
 <br>
 <div class="row">
-<<<<<<< HEAD
-  
-
-
-        <div class="jumbotron">
-                <h1>Bonjour, Mr {{user.last_name}}</h1>
-                <p class="lead">PharmaLiv vous souhaite la Bienvenue parmi nous, Nous vous offrons la possiblité d'envoyer l'ordonnance de votre patient directement sur son compte .</p>
-                <p>Vous venez de recevoir des notifications,veuillez cliquer sur le bouton ci-dessous afin de les lire</p>
-                <p>
-                    <a class="btn btn-lg btn-success" data-toggle="collapse" href="#collapseExample" role="button" aria-expanded="false" aria-controls="collapseExample">Cliquez pour Ouvrir »</a>
-                </p>
-=======
     <div class="jumbotron">
         <h1>Bonjour, Mr {{user.last_name}}</h1>
         <p class="lead">PharmaLiv vous souhaite la Bienvenue parmi nous, Nous vous offrons la possiblité de passer vos commandes plus facilement
@@ -198,7 +186,6 @@
         </p>
         <div class="col-md-2 col-md-offset-9">
                         <a class="btn btn-lg btn-danger" data-toggle="collapse" href="" >Visiter Pharmacies »</a>
->>>>>>> 9e39df37b2a0f3c743bfa43bdf1701213bf09735
         </div>
         <br>
     </div>
@@ -210,13 +197,13 @@
                     {% for ordonnanc in ordo %}
 
 
-                    <div class="col-sm-6 col-md-4">
+                     <div class="col-sm-6 col-md-4">
                         <div class="thumbnail">
-                            <img src="{{ordonnanc.medicaments.url}}" alt="... ">
+                            <a href="{{ordonnanc.medicaments.url}}"><img src="{{ordonnanc.medicaments.url}}" alt="image" width="500" height="500" /></a> 
                             <div class="caption ">
-                                <h1>{{ordonnanc.medecin.specialite.nom}} </h1>
-                                <h2>{{ordonnanc.medecin.user.first_name}} {{ordonnanc.medecin.user.last_name}} </h3>
-                                    <h3>{{ordonnanc.dateSoumission}}</h3>
+                                <h3>{{ordonnanc.medecin.specialite.nom}} </h3>
+                                <h4>{{ordonnanc.medecin.user.first_name}} {{ordonnanc.medecin.user.last_name}} </h4>
+                                    <h5>{{ordonnanc.dateSoumission}}</h5>
                                     <p>{{ordonnanc.libelle}}</p>
 
                             </div>
