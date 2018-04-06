@@ -1,10 +1,5 @@
-<<<<<<< HEAD
-{% extends 'layout.html' %} 
-{% block header %} 
-{% if user.is_patient  %}
-=======
 {% extends 'layout.html' %} {% block header %} {% if user.is_patient %}
->>>>>>> 3ed4c8d827115297758332182d5c0e11740a5e98
+
 <nav class="navbar navbar-inverse navbar-fixed-top" style="height: 80px">
     <div class="container-fluid">
         <div class="navbar-header">
@@ -89,6 +84,7 @@
                                     {% endfor %}
                                 </li>
                             </ul>
+                            <a href="{% url 'notif'  %} ">Autres</a>
                             <div class="clearfix"></div>
                         </div>
 
@@ -176,11 +172,9 @@
 <br>
 <br>
 <div class="row">
-<<<<<<< HEAD
+  
 
-<h2>fghjk</h2>   
 
-=======
         <div class="jumbotron">
                 <h1>Bonjour, Mr {{user.last_name}}</h1>
                 <p class="lead">PharmaLiv vous souhaite la Bienvenue parmi nous, Nous vous offrons la possiblité d'envoyer l'ordonnance de votre patient directement sur son compte .</p>
@@ -197,22 +191,15 @@
                 </div>
             </div>
         </div>
->>>>>>> 3ed4c8d827115297758332182d5c0e11740a5e98
 </div>
 <script>
     $(function () {
         $("#cherche").click(function () { $('form').slideToggle() })
     })
-<<<<<<< HEAD
+
 </script>
     {% else %}
     <h1>Connexion non autorisée</h1>
 {% endif %} 
 
 {% endblock body %}
-
-=======
-</script> {% else %}
-<h1>GO out</h1>
-{% endif %} {% endblock body %}
->>>>>>> 3ed4c8d827115297758332182d5c0e11740a5e98

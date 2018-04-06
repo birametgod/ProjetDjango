@@ -1,4 +1,10 @@
-{% extends "layout.html" %} {% block header %} {% if user.is_patient %}
+{% extends "layout.html" %} {% load static from staticfiles %} {% block header %} {% if user.is_patient %}
+<style type="text/css">
+    body{
+        position: relative;
+    }
+</style>
+<div data-spy="scroll" data-target=".navbar" data-offset="50">
 <nav class="navbar navbar-inverse navbar-fixed-top" style="height: 80px">
     <div class="container-fluid">
         <div class="navbar-header">
@@ -132,14 +138,14 @@
 {% endif %} {% endblock header %} {% block body %}
 
 <div class="col-sm-3 col-md-2 sidebar">
-    <ul class="nav nav-sidebar">
+    <ul class="nav nav-sidebar" style="margin-top: 30px">
         <li class="active">
-            <a href="#">Ordonnance
+            <a href="#section1">Ordonnance
                 <span class="sr-only">(current)</span>
             </a>
         </li>
         <li>
-            <a href="#">Pharmacie</a>
+            <a href="#section2">Pharmacie</a>
         </li>
         <li>
             <a href="#">Analytics</a>
@@ -177,56 +183,79 @@
         </li>
     </ul>
 </div>
-<div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
-        <h1 class="page-header">Notifications</h1>
+      <div id="section1" class="container-fluid">
+        <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main" style="margin-top: 50px">
+            <h1 class="page-header">Notifications Medecins</h1>
 
-        <div class="row placeholders">
-          <div class="col-xs-6 col-sm-3 placeholder">
-            <img src="data:image/gif;base64,R0lGODlhAQABAIAAAHd3dwAAACH5BAAAAAAALAAAAAABAAEAAAICRAEAOw==" width="200" height="200" class="img-responsive" alt="Generic placeholder thumbnail">
-            <h4>Label</h4>
-            <span class="text-muted">Something else</span>
-          </div>
-          <div class="col-xs-6 col-sm-3 placeholder">
-            <img src="data:image/gif;base64,R0lGODlhAQABAIAAAHd3dwAAACH5BAAAAAAALAAAAAABAAEAAAICRAEAOw==" width="200" height="200" class="img-responsive" alt="Generic placeholder thumbnail">
-            <h4>Label</h4>
-            <span class="text-muted">Something else</span>
-          </div>
-          <div class="col-xs-6 col-sm-3 placeholder">
-            <img src="data:image/gif;base64,R0lGODlhAQABAIAAAHd3dwAAACH5BAAAAAAALAAAAAABAAEAAAICRAEAOw==" width="200" height="200" class="img-responsive" alt="Generic placeholder thumbnail">
-            <h4>Label</h4>
-            <span class="text-muted">Something else</span>
-          </div>
-          <div class="col-xs-6 col-sm-3 placeholder">
-            <img src="data:image/gif;base64,R0lGODlhAQABAIAAAHd3dwAAACH5BAAAAAAALAAAAAABAAEAAAICRAEAOw==" width="200" height="200" class="img-responsive" alt="Generic placeholder thumbnail">
-            <h4>Label</h4>
-            <span class="text-muted">Something else</span>
-          </div>
+            <div class="row placeholders">
+              <div class="col-xs-6 col-sm-3 placeholder">
+                <img src="{% static 'img/default-avatar.png' %}" width="200" height="200" class="img-responsive" alt="Generic placeholder thumbnail">
+                <h4>Label</h4>
+                <span class="text-muted">Something else</span>
+              </div>
+              <div class="col-xs-6 col-sm-3 placeholder">
+                <img src="{% static 'img/default-avatar.png' %}" width="200" height="200" class="img-responsive" alt="Generic placeholder thumbnail">
+                <h4>Label</h4>
+                <span class="text-muted">Something else</span>
+              </div>
+              <div class="col-xs-6 col-sm-3 placeholder">
+                <img src="{% static 'img/default-avatar.png' %}" width="200" height="200" class="img-responsive" alt="Generic placeholder thumbnail">
+                <h4>Label</h4>
+                <span class="text-muted">Something else</span>
+              </div>
+              <div class="col-xs-6 col-sm-3 placeholder">
+                <img src="{% static 'img/default-avatar.png' %}" width="200" height="200" class="img-responsive" alt="Generic placeholder thumbnail">
+                <h4>Label</h4>
+                <span class="text-muted">Something else</span>
+              </div>
+            </div>
+
+            <h2 class="sub-header">Section title</h2>
+            <div class="table-responsive">
+              <table class="table table-striped">
+                <thead>
+                  <tr>
+                    <th>#</th>
+                    <th>Header</th>
+                    <th>Header</th>
+                    <th>Header</th>
+                    <th>Header</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td>1,001</td>
+                    <td>Lorem</td>
+                    <td>ipsum</td>
+                    <td>dolor</td>
+                    <td>sit</td>
+                  </tr>
+                </tbody>
+              </table>
         </div>
+      </div>
+    </div>
 
-        <h2 class="sub-header">Section title</h2>
-        <div class="table-responsive">
-          <table class="table table-striped">
+    <div id="section2" class="container-fluid" style="height: 500px; margin-left: 200px">
+          <h1 class="page-header">Notifications Pharmacies</h1>
+          <table class="table table-hover" id="myTable">
             <thead>
-              <tr>
-                <th>#</th>
-                <th>Header</th>
-                <th>Header</th>
-                <th>Header</th>
-                <th>Header</th>
+              <tr class="success">
+                <th> <i class="fa fa-map"></i> Expéditeur</th>
+                <th> <i class="fa fa-map"></i> Contenu</th>
               </tr>
             </thead>
             <tbody>
-              <tr>
-                <td>1,001</td>
-                <td>Lorem</td>
-                <td>ipsum</td>
-                <td>dolor</td>
-                <td>sit</td>
-              </tr>
+              {% for msg in notifications %}
+                  <tr>  
+                    <td>{{ msg.libelle }}</td>
+                    <td>{{ msg.libelle }}</td>
+                  </tr>
+              {% endfor %}
             </tbody>
           </table>
-        </div>
-      </div>
+    </div>
+</div>
 <script>
     $(function(){
         
