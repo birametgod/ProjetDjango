@@ -20,7 +20,7 @@ urlpatterns = [
         path('', patient_views.home),
         path('inscription/', patient_views.connexionView.as_view()),
         path('thanks/', patient_views.reponse,name="afficher_reponse"),
-        path('logout/', auth_views.logout,{'template_name':'patient/home.html'},name='patient_deconn'),#.logout nous gere la deconnexion , meme pas besoin d'ecrire une methode dans views.py,il nous redirige directement dans le template_name
+        path('logout/', auth_views.logout,{'template_name':'connexion/home.html'},name='patient_deconn'),#.logout nous gere la deconnexion , meme pas besoin d'ecrire une methode dans views.py,il nous redirige directement dans le template_name
         path('login/', auth_views.login,{'template_name':'patient/login.html'}), #meme chose pour .login ,patient/login.html est la page pour se connecter , django nous gere la verification et nous redirige vers l'url indiqué dans input type hidden de la page html
     ])),
 
@@ -29,7 +29,7 @@ urlpatterns = [
         path('', pharmacie_views.home),
         path('inscription/', pharmacie_views.connexionView.as_view()),
         path('thanks/', pharmacie_views.reponse,name="afficher_reponse"),
-        path('logout/', auth_views.logout,{'template_name':'patient/home.html'}),#.logout nous gere la deconnexion , meme pas besoin d'ecrire une methode dans views.py,il nous redirige directement dans le template_name
+        path('logout/', auth_views.logout,{'template_name':'connexion/home.html'},name='pharmacie_deconn'),#.logout nous gere la deconnexion , meme pas besoin d'ecrire une methode dans views.py,il nous redirige directement dans le template_name
         path('login/', auth_views.login,{'template_name':'pharmacie/login.html'}), #meme chose pour .login ,patient/login.html est la page pour se connecter , django nous gere la verification et nous redirige vers l'url indiqué dans input type hidden de la page html
 	path('partenaire/', pharmacie_views.partenaire), 
 	path('nonpartenaire/', pharmacie_views.nonpartenaire),

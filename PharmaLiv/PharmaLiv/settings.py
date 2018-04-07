@@ -45,6 +45,9 @@ INSTALLED_APPS = [
     'livreur',
     'payementLigne',
     'connexion',
+    'django_google_maps',
+    'sample',
+    'django_google_maps.tests.test_app',
 ]
 
 MIDDLEWARE = [
@@ -94,6 +97,10 @@ DATABASES = {
     }
     
 }
+
+TIME_ZONE = 'Africa/Dakar'
+
+GOOGLE_MAPS_API_KEY = 'AIzaSyBAXX01hkfSozgA5PMig6nqRXCbWtVFldA'
 
 
 

@@ -31,6 +31,7 @@ def notification(request):
     context = {
         'ordo':Ordonnances.objects.filter(patient_id=request.user.id).order_by('-dateSoumission'),  
         'messages':Ordonnances.objects.filter(patient_id=request.user.id).order_by('-dateSoumission'),
+        'nb_ordo': Ordonnances.objects.filter(patient_id=request.user.id).count(),
     } 
     Ordonnances.objects.filter(patient_id=request.user.id).update(notifications='lu')
     return render(request,'patient/messages.html',context)

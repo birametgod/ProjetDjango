@@ -5,7 +5,7 @@ from PharmaLiv import settings
 
 
 class Pharmacie(models.Model):
-    pharmacie = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
+    user = models.ForeignKey(settings.AUTH_USER_MODEL,on_delete=models.CASCADE)
     profil = models.ImageField(default = 'pharmacie.jpg', blank = True)
     adresse = models.CharField(max_length = 100, null = False)
     telephone = models.IntegerField(max_length = 9, null = False)
@@ -14,11 +14,11 @@ class Pharmacie(models.Model):
     slug = models.SlugField()
 
     def __str__(self):
-        return self.nom, self.adresse, self.telephone, self.horaire
+        return  self.adresse
     
 
     def _get_unique_slug(self):
-        slug = slugify(self.nom)
+        slug = slugify(self.adresse)
         unique_slug = slug
         num = 1
         while Pharmacie.objects.filter(slug=unique_slug).exists():
