@@ -45,6 +45,9 @@ INSTALLED_APPS = [
     'livreur',
     'payementLigne',
     'connexion',
+    'django_google_maps',
+    'sample',
+    'django_google_maps.tests.test_app',
 ]
 
 MIDDLEWARE = [
@@ -87,13 +90,17 @@ DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',   # Backends disponibles : 'postgresql', 'mysql', 'sqlite3' et 'oracle'.
         'NAME': 'pharmaLiv',             # Nom de la base de données
-        'USER': 'root',
-        'PASSWORD': '',        
+        'USER': 'birame',
+        'PASSWORD': 'cheickh',        
         'HOST': 'localhost',                    # Utile si votre base de données est sur une autre machine
-        'PORT': '3306',                         # ... et si elle utilise un autre port que celui par défaut
+        'PORT': '3307',                         # ... et si elle utilise un autre port que celui par défaut
     }
     
 }
+
+TIME_ZONE = 'Africa/Dakar'
+
+GOOGLE_MAPS_API_KEY = 'AIzaSyBAXX01hkfSozgA5PMig6nqRXCbWtVFldA'
 
 
 

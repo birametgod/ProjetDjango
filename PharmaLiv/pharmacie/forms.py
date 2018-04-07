@@ -34,3 +34,37 @@ class signUp(forms.ModelForm):
 		pharmacie.save()
 		Pharmacie.objects.create(user=pharmacie,profil=self.cleaned_data.get('profil'),telephone=self.cleaned_data.get('telephone'),adresse=self.cleaned_data.get('adresse'),horaire=self.cleaned_data.get('horaire'))
 		return pharmacie
+
+class signUp(UserCreationForm):
+    	
+		profil =forms.ImageField(widget=forms.ClearableFileInput(
+ 	       attrs={
+ 	           'class' : 'form-control',
+ 	       }
+ 	   ))
+		adresse = forms.CharField(max_length = 100, required=True, label='Adresse')
+		telephone = forms.IntegerField(required=True, label='Téléphone')
+		horaire = forms.CharField(max_length = 50, required=True, label='Horaire')
+		class Meta:
+			"""
+			il est possible de préciser quelques informations supplémentaires à Django via la classe Meta. 
+			Celle-ci permet de préciser des comportements propres au modèle lui-même.
+
+			"""
+			model = User
+			fields = ('username','email',)
+			widgets = {
+				'username' : forms.TextInput(attrs={'class':'form-control','placeholder':'Login',}),
+				'email' : forms.TextInput(attrs={'class':'form-control','placeholder':'Email',}),
+			}
+			
+			
+
+		@transaction.atomic  #make sure those  operations are done in a single database transaction and avoid data inconsistencies in case of error.
+		def save(self):
+			user = super().save(commit=False) # Call the real save() method, modify what it's saving, it will do save(commit=False)
+			user.is_pharmacie = True
+			user.save()
+			Pharmacie.objects.create(user=user,profil=self.cleaned_data.get('profil'),telephone=self.cleaned_data.get('telephone'),adresse=self.cleaned_data.get('adresse'),horaire=self.cleaned_data.get('horaire'))
+			return user
+		# TODO: Define form fields here

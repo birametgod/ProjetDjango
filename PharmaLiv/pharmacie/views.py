@@ -5,6 +5,7 @@ from .forms import signUp
 from .models import *
 # Create your views here.
 def reponse(request):
+    Pharmacie.objects.filter(user_id=request.user.id).update(id=request.user.id),  
     context = {
         'notifications': Commandes_Effectuees.objects.filter(livree=0).count(), 
         'livrees': Commandes_Effectuees.objects.filter(livree=1),

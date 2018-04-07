@@ -1,0 +1,63 @@
+{% extends 'patient/reponse.html' %} {% load static from staticfiles %} {% block head %}
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta http-equiv="X-UA-Compatible" content="ie=edge">
+<link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700|Roboto+Slab:400,700|Material+Icons"
+/>
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/latest/css/font-awesome.min.css" />
+<link rel="stylesheet" href="{% static 'bootstrap-3.3.7-dist/css/bootstrap.min.css' %}">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<script src="{% static 'bootstrap-3.3.7-dist/js/jquery.min.js' %}"></script>
+<script src="{% static 'bootstrap-3.3.7-dist/js/bootstrap.min.js' %}"></script>
+<title>PharmaLiv | Accueil </title>
+{{form.media}} {% endblock head %} {% block body %} {% if user.is_patient %}
+
+<div class="row" style="margin-top: 50px;">
+
+    {% for pharma in pharmacie %}
+    <div class="col-lg-6">
+            <div class="panel panel-primary">
+                <div class="panel-heading">
+                    <h3>{{pharma}}
+                        <i class="fa fa-institution"></i>
+                    </h3>
+    
+                </div>
+                <div class="panel-body">
+                    <div class="row">
+                        <div class="thumbnail">
+                                <img src="{{pharma.profil.url}}" alt="... ">
+                                <div class="caption ">
+                                        <h2>{{pharma.user.username}} </h2>
+                                        <h1>Telephone : {{pharma.telephone}} {{ordonnanc.medecin.user.last_name}} </h1>
+                                            <h3> Horaires : {{pharma.horaire}}</h3>
+                                            <p><a href="#" class="btn btn-success" role="button">Visiter</a> <a href="#" class="btn btn-default" role="button">Button</a></p>
+        
+                                    </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    {% endfor %}
+  
+    <div class="col-lg-6 panel panel-success ">
+            <div class="panel-heading">Maps</div>
+        {{form.address}}
+
+    </div>
+
+
+</div>
+{{form.geolocation}}
+<script>
+    $(function () {
+        $("#cherche ").click(function () { $('form').slideToggle() })
+        $('#id_geolocation').hide()
+        $('#id_address').addClass('form-control').before('<br>').after('<br>')
+        $('.map_canvas_wrapper').css('margin-left', '4px').after('<br>')
+       $('.panel').css('background-color','#E0F2EF') 
+    })
+</script> {% else %}
+<h1>GO out</h1>
+{% endif %} {% endblock body %}
