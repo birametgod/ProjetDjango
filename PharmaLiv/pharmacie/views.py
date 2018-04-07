@@ -18,9 +18,10 @@ def home(request):
 def partenaire(request):
     context = { 
         'notifications': Commandes_Effectuees.objects.filter(livree=0).count(), 
-        'partenaires': Pharmacie.objects.raw('SELECT * FROM pharmacie_pharmacie where partenaire=1')
+        'partenaires': Pharmacie.objects.raw('SELECT * FROM pharmacie_pharmacie where partenaire=1'),
+        'medoc': Fiche_Produit.objects.all()
     }
-    return render(request, 'pharmacie/acceuil_pharma.html', context)
+    return render(request, 'pharmacie/pageEcom.html', context)
 
 def nonpartenaire(request):
     context = {
