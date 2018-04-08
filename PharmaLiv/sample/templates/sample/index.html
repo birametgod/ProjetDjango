@@ -14,6 +14,12 @@
 
 <div class="row" style="margin-top: 50px;">
 
+        <div class="col-lg-6 panel panel-success ">
+                <div class="panel-heading">Maps</div>
+            {{form.address}}
+    
+        </div>
+
     {% for pharma in pharmacie %}
     <div class="col-lg-6">
             <div class="panel panel-primary">
@@ -41,11 +47,7 @@
         </div>
     {% endfor %}
   
-    <div class="col-lg-6 panel panel-success ">
-            <div class="panel-heading">Maps</div>
-        {{form.address}}
-
-    </div>
+  
 
 
 </div>

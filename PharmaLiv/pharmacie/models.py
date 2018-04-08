@@ -42,7 +42,7 @@ class Fiche_Produit(models.Model):
     slug = models.SlugField()
 
     def __str__(self):
-        return self
+        return self.titre
 
     def _get_unique_slug(self):
         slug = slugify(self.titre)

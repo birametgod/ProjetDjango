@@ -1,17 +1,30 @@
 from django.shortcuts import render,redirect
 from django.contrib.auth import authenticate, login
 from django.views.generic.edit import FormView
-from .forms import signUp
+from .forms import signUp,CreationFiche
 from .models import *
 # Create your views here.
-def reponse(request):
-    Pharmacie.objects.filter(user_id=request.user.id).update(id=request.user.id),  
-    context = {
-        'notifications': Commandes_Effectuees.objects.filter(livree=0).count(), 
-        'livrees': Commandes_Effectuees.objects.filter(livree=1),
-        'nonlivrees': Commandes_Effectuees.objects.filter(livree=0),
+
+
+class reponse(FormView):
+    template_name="pharmacie/reponse.html"
+    form_class = CreationFiche
+    success_url ='/pharmacie/thanks/'
+
+    def get_context_data(self, **kwargs):
+        
+        context = super(reponse, self).get_context_data(**kwargs)
+        context = {
+            'pharmacie': Pharmacie.objects.get(id=self.request.user.id),
+            'form':CreationFiche,
         }
-    return render(request,'pharmacie/reponse.html', context)
+        return context
+    
+    def form_valid(self,form):
+        form.save()
+        return super(reponse, self).form_valid(form)
+
+
 
 def home(request):
     return render(request,'pharmacie/home.html')

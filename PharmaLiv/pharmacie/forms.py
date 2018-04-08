@@ -8,32 +8,23 @@ from django.db import transaction
 
 
 class CreationFiche(forms.ModelForm):
-
+	pharmacie=forms.IntegerField(required=True, label='')
 	class Meta:
 		model = Fiche_Produit
 		fields = ('titre', 'photo', 'prix', 'description', 'types', )
+		widgets = {
+            'titre' : forms.TextInput(attrs={'class':'form-control','placeholder':'Titre',}),
+            'prix' : forms.NumberInput(attrs={'class':'form-control','placeholder':'Prix',}),
+            'description' : forms.Textarea(attrs={'class':'form-control','placeholder':'Description',}),
+            'email' : forms.EmailInput(attrs={'class':'form-control','placeholder':'Email',}),
+			'types' :forms.TextInput(attrs={'class':'form-control','placeholder':'Types',}), 
+        }
 
-
-class signUp(forms.ModelForm):
-	profil = forms.ImageField()
-	adresse = forms.CharField(max_length = 100, required=True, label='Adresse')
-	telephone = forms.IntegerField(required=True, label='Téléphone')
-	horaire = forms.CharField(max_length = 50, required=True, label='Horaire')
-
-
-	class Meta: 
-		model = User
-		fields = ('username', 'first_name', 'last_name', 'email', )
-
-
-
-	@transaction.atomic  #make sure those  operations are done in a single database transaction and avoid data inconsistencies in case of error.
 	def save(self):
-		pharmacie = super().save(commit=False) # Call the real save() method, modify what it's saving, it will do save(commit=False)
-		pharmacie.is_pharmacie = True
-		pharmacie.save()
-		Pharmacie.objects.create(user=pharmacie,profil=self.cleaned_data.get('profil'),telephone=self.cleaned_data.get('telephone'),adresse=self.cleaned_data.get('adresse'),horaire=self.cleaned_data.get('horaire'))
-		return pharmacie
+		Fiche_Produit.objects.create(nom_id=self.cleaned_data.get('pharmacie'),titre=self.cleaned_data.get('titre') ,photo=self.cleaned_data.get('photo'),prix=self.cleaned_data.get('prix'),description=self.cleaned_data.get('description'),types=self.cleaned_data.get('types'))
+
+
+
 
 class signUp(UserCreationForm):
     	

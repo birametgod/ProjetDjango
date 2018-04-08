@@ -1,5 +1,5 @@
 
- {% extends "patient/reponse.html" %} {% load static from staticfiles %} {% block header %} {% if user.is_patient %}
+ {% extends "layout.html" %} {% load static from staticfiles %} {% block header %} {% if user.is_pharmacie %}
 <style type="text/css">
     body{
         position: relative;
@@ -15,29 +15,13 @@
         </div>
 
         <div class="container">
-            <div class="notification">
-                <div id="notif-message" class="notif-message" style="display: none;" notice-type="success">
-                    Welcome!
-                </div>
-            </div>
-            <div class="navbar-header">
-                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-ex1-collapse">
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                </button>
-
-
-            </div>
-
-
             <div class="collapse navbar-collapse navbar-ex1-collapse">
 
                 <ul class="nav navbar-nav navbar-right" data-no-turbolink="">
 
                     <li>
                         <div itemscope="" itemtype="http://schema.org/WebSite">
-                            <meta itemprop="url" content="https://www.creative-tim.com/">
+                          
                             <form class="navbar-form navbar-right navbar-search-form" itemprop="potentialAction" itemscope="itemscope" itemtype="http://schema.org/SearchAction"
                                 style="display: none;" action="/search" accept-charset="UTF-8" method="get">
                                 <input name="utf8" type="hidden" value="✓">
@@ -70,20 +54,6 @@
                         </a>
 
                         <ul class="dropdown-menu dropdown-menu-navbar">
-                            <li data-no-turbolink="">
-                                <a href="/downloads">
-                                    <i class="material-icons md-light">shopping_cart</i>
-                                    Achats
-                                </a>
-                            </li>
-
-                            <li>
-                                <a href="/user/credit-history">
-                                    <i class="fa fa-diamond"></i>
-                                    Credits · 0
-                                </a>
-                            </li>
-
                             <li>
                                 <a href="/account">
                                     <i class="material-icons">settings</i>
@@ -92,25 +62,13 @@
                             </li>
 
                             <li>
-                                <a href="/logout">
+                                <a href="{% url 'pharmacie_deconn' %}">
                                     <i class="material-icons md-light">highlight_off</i>
                                     Se deconnecter
                                 </a>
                             </li>
                         </ul>
                     </li>
-
-
-                    <li class="noty-cart">
-                        <a href="#" data-toggle="modal" data-target="#product-cart-modal">
-                            <i class="material-icons md-light">shopping_cart</i>
-                            <span class="notification-bubble hidden" id="products-in-cart">
-                                0
-                            </span>
-                            <p>Panier </p>
-                        </a>
-                    </li>
-
                 </ul>
 
             </div>
@@ -153,7 +111,7 @@
         <li>
             <a href="#fich" data-toggle="collapse">Fiche de produits</a>
             <div id="fich" class="collapse" style="margin-left: 40px">
-                  <h5 data-target="#carousel-example-generic" data-slide-to="1"><a href="#">Créer un fiche</a></h5>
+                  <h5 data-target="#carousel-example-generic" data-slide-to="1"><a href="#">Créer une fiche</a></h5>
                   <h5 data-target="#carousel-example-generic" data-slide-to="2"><a href="#">Voir liste</a></h5>
             </div>
         </li>
@@ -198,14 +156,16 @@
 
                     <div class="jumbotron" style="margin-top: 30px; margin-left: 52px; height: 555px">
                 <div class="">
-                  <h3><b>Pharmacie Serigne Fallou Mbacké<i class="fa fa-institution"></i></b></h3>
+                  <h3><b>{{user.username}}<i class="fa fa-institution"></i></b></h3>
 
                 </div>
 
                 <div class="panel-body">
                    <div class="row">
                     <div class="col-xs-4 col-sm-4 col-lg-4" style="margin-top: 50px;">
-                      <a href="{% static 'img/avatarpharma.jpg' %}"><img src="{% static 'img/avatarpharma.jpg' %}" alt="image"/></a> 
+                        <div class="thumbnail">
+                            <img src="{{pharmacie.profil.url}}">
+                        </div>
                     </div>
                     <div class="col-xs-5 col-sm-5 col-lg-5" style="margin-top: 50px; font-weight: bold;">
                       <div class="row">
@@ -213,7 +173,7 @@
                               Nom :
                           </div>
                           <div class="col-sm-6">
-                           Pharmacie Serigne Fallou Mbacké
+                              {{user.username}}
                           </div>
                       </div>
                       <br>
@@ -222,7 +182,7 @@
                               Adresse :
                           </div>
                           <div class="col-sm-6">
-                           En Face Hopital Nabil Chouc Air
+                              {{pharmacie.adresse}}
                           </div>
                       </div>
                       <br>
@@ -231,7 +191,7 @@
                               Téléphone :
                           </div>
                           <div class="col-sm-6">
-                              XX-XXX-XX-XX
+                              {{pharmacie.telephone}}
                           </div>
                       </div>
                       <br>
@@ -240,7 +200,7 @@
                               Horaire :
                           </div>
                           <div class="col-sm-6">
-                              Xh - Xh
+                              {{pharmacie.horaire}}
                           </div>
                       </div>
                       <br>
@@ -249,7 +209,7 @@
                               Page E-commerce :
                           </div>
                           <div class="col-sm-6">
-                              <a href="#">Link</a>
+                              <a class="btn btn-danger" href="/pharmacie/partenaire/">Link >></a>
                           </div>
                       </div>
                     </div>
@@ -272,18 +232,20 @@
                   <div class="panel-body">
                       <h4>Creer une fiche de produit</h4>
                       <br>
-                      <form>
+                      <form enctype="multipart/form-data" method="POST">
+                          {% csrf_token %}
                         <div class="form-row">
                           <div class="col-md-4 mb-3">
                             <label for="validationServer01">Titre</label>
-                            <input type="text" class="form-control is-valid" id="validationServer01" placeholder="Titre" required>
+                            {{form.titre}}
+                            
                             <div class="valid-feedback">
                               <i style="color: green">Titre du produit</i>
                             </div>
                           </div>
                           <div class="col-md-4 mb-3">
                             <label for="validationServer02">Photo</label>
-                            <input type="file" class="custom-file-input" id="validatedCustomFile" required>
+                            {{form.photo}}
                             <div class="valid-feedback">
                               <i style="color: green">Choisir la photo du produit !</i>
                             </div>
@@ -291,7 +253,7 @@
 
                           <div class="col-md-4 mb-3">
                             <label for="validationServerUsername">Prix</label>
-                              <input type="number" class="form-control is-invalid" id="validationServerUsername" placeholder="Prix" aria-describedby="inputGroupPrepend3" min="100" required>
+                            {{form.prix}}
                               <div class="invalid-feedback">
                                 <i style="color: green">Donnez le prix du produit</i>
                               </div>
@@ -300,21 +262,18 @@
                         <div class="form-row">
                           <div class="col-md-6 mb-3">
                             <label for="validationServer03">Description</label>
-                            <textarea class="form-control" id="exampleFormControlTextarea1" rows="2" required></textarea>
+                            {{form.description}}
                             <div class="invalid-feedback">
                               <i style="color: green">Description ou Notice du produit</i>
                             </div>
                           </div>
                           <div class="col-md-3 mb-3">
                             <label for="validationServer04">Type</label>
-                            <input type="text" class="form-control is-invalid" id="validationServer04" placeholder="State" required>
-                            <div class="invalid-feedback">
-                              Please provide a valid state.
-                            </div>
+                            {{form.types}}
                           </div>
                           <div class="col-md-3 mb-3">
-                            <label for="validationServer05">Auteur</label>
-                            <input type="text" class="form-control is-invalid" id="validationServer05" placeholder="Zip" required>
+                              {{form.pharmacie}} 
+                          
                           </div>
                         </div>
                         
@@ -323,17 +282,9 @@
                           <div class="form-check">
                             <input class="form-check-input is-invalid" type="text" style="visibility: hidden;" value="" id="invalidCheck3">
                             <br><br><hr>
-                            <label class="form-check-label" for="invalidCheck3">
-                            <input class="form-check-input is-invalid" type="checkbox" value="" id="invalidCheck3" required>
-
-                              Agree to terms and conditions
-                            </label>
-                            <div class="invalid-feedback">
-                              You must agree before submitting.
-                            </div>
                           </div>
                         </div>
-                        <button class="btn btn-primary btn-lg" type="submit" style="float: right;"> Valider <i class="fa fa-thumbs-o-up"></i></button>
+                        <input class="btn btn-primary btn-lg" type="submit" style="float: right;" value="Valider">  
                       </form>
                   </div>  
               </div>
@@ -341,7 +292,7 @@
                 </div>
             
                 <div class="item">
-                   <div class="container" style="margin-top: 42px; margin-left: 40px; width: 1105px; height: 500px">
+                  <div class="container" style="margin-top: 42px; margin-left: 40px; width: 1105px; height: 500px">
                 <div class="panel panel-default">
                   <div class="panel-heading">
                     <h3> Liste des fiches de produits <i class="fa fa-cubes"></i></h3>
@@ -575,7 +526,8 @@
 </div>
 <script>
     $(function(){
-        
+      $("#cherche ").click(function () { $('form').slideToggle() })
+      $("#id_pharmacie").val("{{user.id}}")
         
     })
 </script>
@@ -592,7 +544,12 @@
             overflow-y: auto;
             background-color: #f5f5f5;
             border-right: 1px solid #eee;
+            
         }
+
+        .navbar {
+          height: 90px !important;
+      }
 </style>
 
 {% endblock body %}

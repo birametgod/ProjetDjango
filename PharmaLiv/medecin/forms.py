@@ -52,13 +52,6 @@ class envoiOrdonnance(forms.Form):
         }
     ))
     medecin=forms.IntegerField(required=True, label='Téléphone')
-    #medecin= forms.CharField(widget=forms.TextInput(
-    #    attrs={
-    #        'class' : 'form-control',
-    #        'placeholder' : "medecin ",
-    #    }
-    #))
-
     medicaments = forms.ImageField(widget=forms.ClearableFileInput(
         attrs={
             'class' : 'form-control',
