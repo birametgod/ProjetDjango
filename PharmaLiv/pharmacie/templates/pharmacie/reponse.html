@@ -209,7 +209,7 @@
                               Page E-commerce :
                           </div>
                           <div class="col-sm-6">
-                              <a class="btn btn-danger" href="/pharmacie/partenaire/">Link >></a>
+                              <a class="btn btn-danger" href="{% url 'afficher_medoc' id=user.id %}">Link >></a> 
                           </div>
                       </div>
                     </div>
@@ -527,7 +527,7 @@
 <script>
     $(function(){
       $("#cherche ").click(function () { $('form').slideToggle() })
-      $("#id_pharmacie").val("{{user.id}}")
+      $("#id_pharmacie").val("{{user.id}}").hide()
         
     })
 </script>

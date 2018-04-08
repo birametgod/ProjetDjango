@@ -1,4 +1,4 @@
-{% extends 'layout.html' %} {% block header %} {% if user.is_patient %}
+{% extends 'patient/reponse.html' %} {% block header %}
 <nav class="navbar navbar-inverse navbar-fixed-top" style="height: 80px">
     <div class="container-fluid">
         <div class="navbar-header">
@@ -124,12 +124,21 @@
                             </li>
 
                             <li>
-                                    <a href="{% url 'patient_deconn' %}">
+                                <a href="{% url 'patient_deconn' %}">
                                     <i class="material-icons md-light">highlight_off</i>
                                     Se deconnecter
                                 </a>
                             </li>
                         </ul>
+                    </li>
+
+
+                    <li class="noty-cart">
+                        <a href="#" data-toggle="modal" data-target="#product-cart-modal">
+                            <i class="material-icons md-light">shopping_cart</i>
+                            <span class="badge">{{panier|length}} </span>
+                            <p>Panier </p>
+                        </a>
                     </li>
 
                 </ul>
@@ -157,81 +166,37 @@
         </ul>-->
     </div>
 </nav>
-{% endif %} {% endblock header %} {% block body %} {% if user.is_patient %}
+{% endblock header %} {% block body %}
 <br>
 <br>
-{% if patien.sexe == "femme" %}
+<br>
 <div class="row">
-        <div class="jumbotron">
-            <h1>Bonjour, Mme {{user.last_name}}</h1>
-            <p class="lead">PharmaLiv vous souhaite la Bienvenue parmi nous, Nous vous offrons la possiblité de passer vos commandes plus facilement
-                et dans un temps trés court tout en prenant en compte votre localisation. </p>
-            <p>veuillez cliquer sur le bouton ci-dessous afin de voir vos ordonnances</p>
-            <p>Avant de commencer veuiller preciser votre etat, c'est à dire si vous etes en Etat de grossesse ou pas <a class="btn btn-xs btn-default" href="/patient/etat/">Renseigner Mon Etat »</a></p>
-            
-                
-            
-            <p>
-                    <a class="btn btn-lg btn-success" data-toggle="collapse" href="#collapseExample" role="button" aria-expanded="false" aria-controls="collapseExample">Cliquez pour Ouvrir »</a>
+    <table class="table table-striped">
+        <tr>
 
-            </p>
-            <div class="col-md-2 col-md-offset-9">
-                            <a class="btn btn-lg btn-danger" href="{% url 'map_name' %}" >Visiter Pharmacies »</a> 
-                            
-            </div>
-            <br>
-        </div>
-        {% else %} 
-        <div class="row">
-                <div class="jumbotron">
-                    <h1>Bonjour, Mr {{user.first_name}}</h1>
-                    <p class="lead">PharmaLiv vous souhaite la Bienvenue parmi nous, Nous vous offrons la possiblité de passer vos commandes plus facilement
-                        et dans un temps trés court tout en prenant en compte votre localisation. </p>
-                    <p>veuillez cliquer sur le bouton ci-dessous afin de voir vos ordonnances</p>
-                    <p>
-                        <a class="btn btn-lg btn-success" data-toggle="collapse" href="#collapseExample" role="button" aria-expanded="false" aria-controls="collapseExample">Cliquez pour Ouvrir »</a>
-                    </p>
-                    <div class="col-md-2 col-md-offset-9">
-                            <a class="btn btn-lg btn-danger" href="{% url 'map_name' %}" >Visiter Pharmacies »</a> 
-                    </div>
-                    <br>
-        </div>
-{% endif %}
+            <th>Titre</th>
+            <th>description</th>
+            <th>Categorie</th>
+            <th>Nombre</th>
+            <th>Prix</th>
 
-    <hr>
-    <div class="collapse" id="collapseExample">
-        <div class="card card-body">
-            <div class="jumbotron">
-                <div class="row">
-                    {% for ordonnanc in ordo %}
+        </tr>
 
 
-                    <div class="col-sm-6 col-md-4">
-                        <div class="thumbnail">
-                            <img src="{{ordonnanc.medicaments.url}}" alt="... ">
-                            <div class="caption ">
-                                <h1>{{ordonnanc.medecin.specialite.nom}} </h1>
-                                <h2>{{ordonnanc.medecin.user.first_name}} {{ordonnanc.medecin.user.last_name}} </h3>
-                                    <h3>{{ordonnanc.dateSoumission}}</h3>
-                                    <p>{{ordonnanc.libelle}}</p>
+        {% for item in panier %}
 
-                            </div>
-                        </div>
-                    </div>
+        <tr>
+            <td>{{item.produit.titre}}</td>
+            <td>{{item.produit.description}}</td>
+            <td>{{item.produit.categorie.nom}}</td>
+            <td>{{item.stock}}</td>
+            <td>{{item.total_prix}} Fcfa </td>
+            <td>{{item.produit.nom_id}}</td>
 
-                    {% endfor %}
-                </div>
-            </div>
+        </tr>
 
+        {% endfor %}
 
-        </div>
-    </div>
-    
+    </table>
 </div>
-<script>
-    $(function () {
-        $("#cherche ").click(function () { $('form').slideToggle() })
-    })
-</script> {% else %}
-<h1>GO out</h1>
-{% endif %} {% endblock body %}
+{% endblock body %}

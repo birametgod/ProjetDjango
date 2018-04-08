@@ -21,7 +21,7 @@ class CreationFiche(forms.ModelForm):
         }
 
 	def save(self):
-		Fiche_Produit.objects.create(nom_id=self.cleaned_data.get('pharmacie'),titre=self.cleaned_data.get('titre') ,photo=self.cleaned_data.get('photo'),prix=self.cleaned_data.get('prix'),description=self.cleaned_data.get('description'),types=self.cleaned_data.get('types'))
+		Fiche_Produit.objects.create(nom_id=self.cleaned_data.get('pharmacie'),titre=self.cleaned_data.get('titre'),photo=self.cleaned_data.get('photo'),prix=self.cleaned_data.get('prix'),description=self.cleaned_data.get('description'),types=self.cleaned_data.get('types'))
 
 
 

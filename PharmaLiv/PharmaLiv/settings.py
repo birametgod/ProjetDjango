@@ -151,3 +151,5 @@ STATICFILES_DIRS = (
 DATE_INPUT_FORMATS = ['%d-%m-%Y']
 MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+
+PAYEMENTLIGNE_SESSION_ID = 'payementLigne'

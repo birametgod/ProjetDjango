@@ -3,6 +3,7 @@ from django.contrib.auth import authenticate, login
 from django.views.generic.edit import FormView
 from .forms import signUp,CreationFiche
 from .models import *
+from payementLigne.forms import form_panier
 # Create your views here.
 
 
@@ -29,11 +30,20 @@ class reponse(FormView):
 def home(request):
     return render(request,'pharmacie/home.html')
 
-def partenaire(request):
+def detail(request,id):
+    panierForm = form_panier()
+    context = { 
+        'medoc': Fiche_Produit.objects.get(id=id,disponible=True),
+        'panier_form': panierForm,
+
+    }
+    return render(request, 'pharmacie/medicament.html', context)
+
+def partenaire(request,id):
     context = { 
         'notifications': Commandes_Effectuees.objects.filter(livree=0).count(), 
         'partenaires': Pharmacie.objects.raw('SELECT * FROM pharmacie_pharmacie where partenaire=1'),
-        'medoc': Fiche_Produit.objects.all()
+        'medoc': Fiche_Produit.objects.filter(nom_id=id,disponible=True)
     }
     return render(request, 'pharmacie/pageEcom.html', context)
 
