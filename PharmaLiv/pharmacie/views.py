@@ -32,6 +32,11 @@ class reponse(FormView):
         form.save()
         return super(reponse, self).form_valid(form)
 
+def livre_produit(request,id):
+    context ={
+        'indicommande' : Livreur.objects.get(user_id=id)
+    }
+    return render(request, 'pharmacie/livreur.html',context)
 
 
 def home(request):
