@@ -211,7 +211,8 @@
                                     <td>{{livraison.commande}}</td>
                                     <td>{{livraison.dateCommande}}</td>
                                     <td>{{livraison.dateLivraison}}</td>
-                                    <td><a href="{% url 'livree' id=livraison.id  %}">Déja livrée</a></td>
+                                    <td><a href="{% url 'livree' id=livraison.id idp=livraison.patient.user.id %}">Déja livrée</a></td>
+                                    <td>{{livraison.patient.user.id}}</td>
                                   </tr>
                                 {% empty %}
                                       <div class="alert alert-danger">

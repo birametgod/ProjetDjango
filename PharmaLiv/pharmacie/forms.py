@@ -2,9 +2,20 @@ from django import forms
 from .models import Fiche_Produit
 from .models import Pharmacie,Commandes_Effectuees
 from connexion.models import User
+from livreur.models import NotificationsLivreur
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.admin.widgets import AdminDateWidget
 from django.db import transaction
+
+
+
+class EnvoiCommandeForm(forms.ModelForm):
+	class Meta:
+		model = NotificationsLivreur
+		fields = '__all__'
+		widgets = {
+            'livreur' : forms.TextInput(attrs={'class':'form-control','placeholder':'livreur',}),
+        }
 
 
 class CreationFiche(forms.ModelForm):

@@ -1,9 +1,9 @@
 from django.shortcuts import render,redirect
 from django.contrib.auth import authenticate, login
 from django.views.generic.edit import FormView
-from .forms import signUp,CreationFiche,CommandeForm
+from .forms import signUp,CreationFiche,CommandeForm,EnvoiCommandeForm
 from .models import *
-from livreur.models import Livreur
+from livreur.models import Livreur,NotificationsLivreur
 from payementLigne.panier import Panier
 from payementLigne.forms import form_panier
 # Create your views here.
@@ -32,6 +32,21 @@ class reponse(FormView):
         form.save()
         return super(reponse, self).form_valid(form)
 
+
+def livre_produit(request,id):
+    formulaire = EnvoiCommandeForm()
+    context ={
+        'indicommande' : Livreur.objects.get(id=id),
+        'form':formulaire,
+    }
+    if request.method == 'POST':
+        form = EnvoiCommandeForm(request.POST)
+        if form.is_valid():
+            notif = NotificationsLivreur(**form.cleaned_data)
+            notif.save()
+            return render(request, 'pharmacie/livreur.html',context) 
+    else:
+        return render(request, 'pharmacie/livreur.html',context)
 
 
 def home(request):
@@ -83,7 +98,7 @@ def nonpartenaire(request):
     return render(request, 'pharmacie/nonpartenaire.html', context)
 
 class connexionView(FormView):
-    template_name="pharmacie/newForm.html"
+    template_name="pharmacie/formulaire.html"
     form_class = signUp
     success_url ='/pharmacie/thanks/'
 

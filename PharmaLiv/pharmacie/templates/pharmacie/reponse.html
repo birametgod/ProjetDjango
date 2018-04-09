@@ -485,7 +485,7 @@
 
 
         <div class="item">
-                   <div class="container" style="margin-top: 42px; margin-left: 40px; width: 1105px; height: 500px">
+                  <div class="container" style="margin-top: 42px; margin-left: 40px; width: 1105px; height: 500px">
                 <div class="panel panel-default">
                   <div class="panel-heading">
                     <h3>
@@ -508,12 +508,12 @@
                           {% for liv in l %}
                               <tr>  
                                 <td>{{ liv.user.last_name }}</td>
-                                <td>{{ liv.user.first_name }}</td>
+                                <td>{{ liv.use.first_name }}</td>
                                 <td>{{ liv.zoneDeLivraison.zoneDeLivraison }}</td>
                                 <td>{{ liv.telephone }}</td>
                                 <td>{{ liv.dateNaissance }}</td>
-                                <td>{{ liv.user.username }}</td>
-                                <td><a href="" class="btn btn-success"></a></td>
+                                <td>{{ liv.user.username }}</td> 
+                                <td><a href="{% url 'indilma_produit' id=liv.user.id %}" class="btn btn-success">Envoyer Commande</a></td>
                               </tr>
                           {% endfor %}
                         </tbody>
@@ -527,7 +527,7 @@
 
 
         <div class="item">
-                   <div class="container" style="margin-top: 42px; margin-left: 40px; width: 1105px; height: 500px">
+                  <div class="container" style="margin-top: 42px; margin-left: 40px; width: 1105px; height: 500px">
                 <div class="panel panel-default">
                   <div class="panel-heading">
                     <h3>

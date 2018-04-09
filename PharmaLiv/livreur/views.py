@@ -41,7 +41,7 @@ def MisAjourNotif(request, id):
 	
 	return render(request, 'livreur/reponse.html',context)
 
-def MisAjourCmd(request, id):
+def MisAjourCmd(request, id,idp):
 	context={
 		'livreur': Livreur.objects.filter(user_id=request.user.id),
 		'notificationsNonLu': NotificationsLivreur.objects.filter(livreur_id=request.user.id).filter(lu=False),
@@ -52,7 +52,7 @@ def MisAjourCmd(request, id):
 		'nblivraison':NotificationsLivreur.objects.filter(livreur_id=request.user.id, livree=False).count(),
 		'notif' : NotificationsLivreur.objects.filter(id=id).update(lu=True),
 		'cmd' : NotificationsLivreur.objects.filter(id=id).update(livree=True),
-		#'cmdlivree' : Commandes_Effectuees.objects.filter(patient_id).update(livree=True)
+		'cmdlivree' : Commandes_Effectuees.objects.filter(patient_id=idp).update(livree=True)
 	}
 	
 	return render(request, 'livreur/reponse.html',context)

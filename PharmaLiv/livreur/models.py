@@ -2,6 +2,7 @@ from django.db import models
 from PharmaLiv import settings
 from django import forms
 from patient.models import Patient
+from pharmacie.models import Commandes_Effectuees
 
 class Region(models.Model):
 	zoneDeLivraison = models.CharField(max_length=100, null=False)
@@ -32,9 +33,12 @@ class NotificationsLivreur(models.Model):
 	prenomPatient = models.CharField(max_length = 30, null = False)
 	adresse = models.CharField(max_length = 100, null = False)
 	telephonePatient = models.IntegerField(max_length = 9, null = False)
-	commande = models.CharField(max_length = 200, null = False)
+	commande =models.ForeignKey(Commandes_Effectuees, on_delete=models.CASCADE)
 	dateCommande = models.DateTimeField(auto_now_add = True, auto_now = False, verbose_name = "Date de la commande")
 	dateLivraison = models.DateTimeField(auto_now_add = True, auto_now = False, verbose_name = "Date de livrason")
 	lu = models.BooleanField(default=False)
 	livree = models.BooleanField(default=False)
+
+	def __str__(self):
+    		return self.adresse
 
