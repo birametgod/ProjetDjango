@@ -45,7 +45,7 @@ def partenaire(request,id):
         'partenaires': Pharmacie.objects.raw('SELECT * FROM pharmacie_pharmacie where partenaire=1'),
         'medoc': Fiche_Produit.objects.filter(nom_id=id,disponible=True)
     }
-    return render(request, 'pharmacie/pageEcom.html', context)
+    return render(request, 'pharmacie/partenaire.html', context)
 
 def nonpartenaire(request):
     context = {
