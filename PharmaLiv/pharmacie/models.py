@@ -116,7 +116,7 @@ class Commandes_Effectuees(models.Model):
     payer = models.BooleanField(default=False)
     patient = models.ForeignKey(Patient, on_delete = models.CASCADE)
     def __str__(self):
-    	return self
+    	return self.prenomPatient
 
     def _get_unique_slug(self):
         slug = slugify(self.nomPatient)

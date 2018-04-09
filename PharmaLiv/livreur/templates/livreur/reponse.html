@@ -11,12 +11,14 @@
         </li>
         <li data-target="#carousel-example-generic" data-slide-to="1">
             <a href="#">
-              <i class="fa fa-bell"></i> Notifications
-              <span class="badge badge-info" style="color: white; font-size: 17px"></span>
+              <i class="fa fa-bell"></i> Notifications 
+              <span class="badge badge-info" style="color: white; font-size: 17px">{{nombreDeNotifications}}</span>
             </a>
         </li>
         <li data-target="#carousel-example-generic" data-slide-to="2">
-            <a href="#"><i class="fa fa-ambulance"></i> A livrer</a>
+            <a href="#"><i class="fa fa-ambulance"></i> A livrer
+              <span class="badge badge-info" style="color: white; font-size: 17px">{{nblivraison}}</span>
+            </a>
         </li>
         <li data-target="#carousel-example-generic" data-slide-to="3">
             <a href="#"><i class="fa fa-map"></i> Map </a>
@@ -36,10 +38,10 @@
               <!-- Wrapper for slides -->
               <div class="carousel-inner">
                 <div class="item active">
-
+                    {% for livreur in livreur%}
                     <div class="jumbotron" style="margin-top: 30px; margin-left: 52px; height: 555px">
                         <div class="">
-                          <h3><b>Modou Mbaye <i class="fa fa-car" style="float: right;"></i></b></h3>
+                          <h3><b>{{user.first_name}} {{user.last_name}} <i class="fa fa-car" style="float: right;"></i></b></h3>
                         </div>
 
                         <div class="panel-body">
@@ -53,7 +55,7 @@
                                       Nom :
                                   </div>
                                   <div class="col-sm-6">
-                                      nomLivreur
+                                      {{user.last_name}}
                                   </div>
                               </div>
                               <br>
@@ -62,7 +64,7 @@
                                       Prénom :
                                   </div>
                                   <div class="col-sm-6">
-                                      prenomLivreur
+                                      {{user.first_name}}
                                   </div>
                               </div>
                               <br>
@@ -71,7 +73,7 @@
                                       Adresse :
                                   </div>
                                   <div class="col-sm-6">
-                                   En Face Hopital Nabil Chouc Air
+                                   {{livreur.adresse}}
                                   </div>
                               </div>
                               <br>
@@ -80,7 +82,7 @@
                                       Zone de Livraison :
                                   </div>
                                   <div class="col-sm-6">
-                                      XX-XXX-XX-XX
+                                      {{livreur.zoneDeLivraison}}
                                   </div>
                               </div>
                               <br>
@@ -93,46 +95,135 @@
                           </div> 
                         </div>
                     </div>
+                    {% endfor %}
                 </div>
 
                 <div class="item">
-                    <div style="margin-top: 42px; margin-left: 55px;">
-                        <div class="alert alert-success" role="alert">
+                    <div style="margin-top: 60px; margin-left: 70px;">
+                        
                           <h2 class="alert-heading">
-                            Mes notifications <i class="fa fa-bell"></i> 
-                            <span style="float: right; margin-right: 20px">{{nbreMsg}} messages</span>
+                            Mes notifications <i class="fa fa-bell"></i>
+                            <button class="btn btn-success"  style="float: right; margin-right: 30px">
+                                <span>{{nbreMsg}} messages</span>
+                            </button>
                           </h2>
                           <hr>
-                          <table class="table table-hover">
-                            <thead>
-                              <tr>
-                                <th style="width: 30%">Expéditeur</th>
-                                <th style="width: 70%">Contenu</th>
-                              </tr>
-                            </thead>
-                            <tbody>
-                              <tr>
-                                <td>John</td>
-                                <td>Doe</td>
-                              </tr>
-                            </tbody>
-                          </table>
+                          <div class="alert alert-info" role="alert">
+                              <h4 class="alert-heading">
+                                Messages non lus <i class="fa fa-envelope"></i> 
+                              </h4>
+                              <hr>
+                              
+                              <table class="table table-hover">
+                                <thead>
+                                  <tr>
+                                    <th style="width: 30%">Expéditeur</th>
+                                    <th style="width: 60%">Contenu</th>
+                                    <th style="width: 10%"></th>
+                                  </tr>
+                                </thead>
+                                <tbody>
+                                {% for notif in notificationsNonLu %}
+                                  <tr>
+                                    <td><b>{{notif.pharmacie}}</b></td>
+                                    <td><b>Vous avez une nouvelle commande à livrer</b></td>
+                                    <td>
+                                        <a href="{% url 'notifier' id=notif.id  %}">Voir détails</a>
+                                    </td>
+                                  </tr>
+                                {% empty %}
+                                      <div class="alert alert-danger">
+                                        <h3>Vide !
+                                        </h3>
+                                      </div>
+                                {% endfor %}
+                                </tbody>
+                              </table>
+                          </div>
+                          
+                          
+
+                          <div class="alert alert-success" role="alert">
+                              <h4 class="alert-heading">
+                                Messages lus <i class="fa fa-envelope"></i> 
+                              </h4>
+                              <hr>
+                              
+                              <table class="table table-hover">
+                                <thead>
+                                  <tr>
+                                    <th style="width: 30%">Expéditeur</th>
+                                    <th style="width: 70%">Contenu</th>
+                                  </tr>
+                                </thead>
+                                <tbody>
+                                {% for notif in notificationsLu %}
+                                  <tr style="background-color: white">
+                                    <td>{{notif.pharmacie}}</td>
+                                    <td>Vous avez une nouvelle commande à livrer</td>
+                                  </tr>
+                                {% empty %}
+                                      <div class="alert alert-danger">
+                                        <h3>Vide !
+                                        </h3>
+                                      </div>
+                                {% endfor %}
+                                </tbody>
+                              </table>
+                          </div>
                           <p class="mb-0"></p>
-                        </div>
+                        
                     </div>
                 </div>
 
                 <div class="item">
-                    <div style="margin-top: 42px; margin-left: 55px;">
-                        <div class="alert alert-success" role="alert">
+                    <div style="margin-top: 60px; margin-left: 70px;">
+
                           <h2 class="alert-heading">
                             A livrer <i class="fa fa-ambulance"></i>
-                            <span style="float: right; margin-right: 20px">{{x}} livraisons</span>
+                            <button class="btn btn-success" style="float: right; margin-right: 30px">
+                                <span>{{nblivraison}} livraisons</span>
+                            </button>
                           </h2>
                           <hr>
-
+                          <table class="table table-hover">
+                                <thead>
+                                  <tr class="success">
+                                    <th>Expéditeur</th>
+                                    <th>Nom Patient</th>
+                                    <th>Prénom patient</th>
+                                    <th>Adresse</th>
+                                    <th>Téléphone</th>
+                                    <th>Commande</th>
+                                    <th>Date de commande</th>
+                                    <th>Date de livraison</th>
+                                    <th></th>
+                                  </tr>
+                                </thead>
+                                <tbody>
+                                {% for livraison in livraison %}
+                                  <tr>
+                                    <td>{{livraison.pharmacie}}</td>
+                                    <td>{{livraison.nomPatient}}</td>
+                                    <td>{{livraison.prenomPatient}}</td>
+                                    <td>{{livraison.adresse}}</td>
+                                    <td>{{livraison.telephonePatient}}</td>
+                                    <td>{{livraison.commande}}</td>
+                                    <td>{{livraison.dateCommande}}</td>
+                                    <td>{{livraison.dateLivraison}}</td>
+                                    <td><a href="{% url 'livree' id=livraison.id idp=livraison.patient.user.id %}">Déja livrée</a></td>
+                                    <td>{{livraison.patient.user.id}}</td>
+                                  </tr>
+                                {% empty %}
+                                      <div class="alert alert-danger">
+                                        <h3>Vide !
+                                        </h3>
+                                      </div>
+                                {% endfor %}
+                                </tbody>
+                              </table>
                           <p class="mb-0"></p>
-                        </div>
+                        
                     </div>
                 </div>
 
@@ -143,6 +234,33 @@
     </div>
 </div>
 
+                            <!-- Modal -->
+                            <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true" style="margin-top: 100px;">
+                              <div class="modal-dialog" role="document">
+                                <div class="modal-content">
+                                  <div class="modal-header">
+                                    <h3 class="modal-title" id="exampleModalLabel">Détails Livraison
+                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                          <span aria-hidden="true">&times;</span>
+                                        </button>
+                                    </h3>
+                                  </div>
+                                  <div class="modal-body">
+                                    <div class="row alert alert-success" style="margin-left: 1px; margin-right: 1px">
+                                        <div class="col-sm-6">
+                                            dfghj
+                                        </div>
+                                        <div class="col-sm-6">
+                                            dfghjk
+                                        </div>
+                                    </div>
+                                  </div>
+                                  <div class="modal-footer">
+                                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Fermer</button>
+                                  </div>
+                                </div>
+                              </div>
+                            </div>
 <style>
         .sidebar {
             position: fixed;

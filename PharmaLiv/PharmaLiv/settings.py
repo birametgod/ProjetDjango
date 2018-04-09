@@ -48,6 +48,7 @@ INSTALLED_APPS = [
     'django_google_maps',
     'sample',
     'django_google_maps.tests.test_app',
+    'userAdmin',
 ]
 
 MIDDLEWARE = [

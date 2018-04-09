@@ -11,7 +11,7 @@
 	<script src="{% static 'bootstrap-3.3.7-dist/js/bootstrap.min.js' %}"></script>
 
 
-	<title>Pharmacie | Inscription</title>
+	<title>Livreur | Inscription</title>
 
 	<title>Inscription</title>
 
@@ -138,7 +138,7 @@
 						<!--      Wizard container        -->
 						<div class="wizard-container">
 							<div class="card wizard-card" data-color="green" id="wizardProfile">
-								<form action=""    method="POST">
+								<form action="" method="POST">
 									{% csrf_token %}
 									<!--        You can switch " data-color="purple" "  with one of the next bright colors: "green", "orange", "red", "blue"       -->
 
@@ -146,7 +146,7 @@
 										<h3 class="wizard-title">
 											Inscrivez-vous
 										</h3>
-										<h5>Pharmacie</h5>
+										<h5>Livreur</h5>
 									</div>
 									<div class="wizard-navigation">
 										<ul>
@@ -169,13 +169,58 @@
 												<div class="col-sm-4 col-sm-offset-1">
 													<div class="picture-container">
 														<div class="picture">
-															
-															{{form.profil}}
+															<img src="{% static 'img/default-avatar.png' %}" class="picture-src" id="wizardPicturePreview" title="" />
+															<input type="file" id="wizard-picture">
 														</div>
 														<h6>Photo Profil</h6>
 													</div>
 												</div>
-												
+												<div class="col-sm-6">
+													<div class="input-group">
+														<span class="input-group-addon">
+															<i class="material-icons">face</i>
+														</span>
+														<div class="form-group label-floating">
+															<label class="control-label">Prenom
+																<small></small>
+															</label>
+															{{form.first_name}}
+														</div>
+													</div>
+													<div class="input-group">
+														<span class="input-group-addon">
+															<i class="material-icons">record_voice_over</i>
+														</span>
+														<div class="form-group label-floating">
+															<label class="control-label">Nom
+																<small></small>
+															</label>
+															{{form.last_name}}
+														</div>
+													</div>
+
+													<div class="input-group">
+														<span class="input-group-addon">
+
+														</span>
+														<div class="form-group label-floating">
+															<label class="control-label">Date de naissance
+																<small></small>
+															</label>
+															{{form.dateNaissance}}
+														</div>
+													</div>
+													<div class="input-group">
+														<span class="input-group-addon">
+
+														</span>
+														<div class="form-group label-floating">
+															<label class="control-label">Sexe
+																<small></small>
+															</label>
+															{{form.sexe}}
+														</div>
+													</div>
 												</div>
 												<div class="col-sm-10 col-sm-offset-1">
 													<div class="input-group">
@@ -207,14 +252,14 @@
 
 												<div class="col-sm-5 col-sm-offset-1">
 													<div class="form-group label-floating">
-														<label class="control-label">Horaire</label>
-														{{form.horaire}}
+														<label class="control-label">Allergie</label>
+														{{form.allergie}}
 													</div>
 												</div>
 												<div class="col-sm-5">
 													<div class="form-group label-floating">
-														<label class="control-label">Telephone</label>
-														{{form.telephone}}
+														<label class="control-label">Traitement</label>
+														{{form.traitement}}
 													</div>
 												</div>
 											</div>
@@ -231,7 +276,7 @@
 																			<i class="material-icons"></i>
 																		</span>
 																		<div class="form-group label-floating">
-																			<label class="control-label">Nom
+																			<label class="control-label">Login
 																				<small></small>
 																			</label>
 																			{{form.username}}

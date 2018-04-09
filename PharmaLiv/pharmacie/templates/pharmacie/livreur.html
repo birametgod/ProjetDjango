@@ -1,1 +1,33 @@
 {% extends "layout.html" %}
+
+{% block body %}
+<br><br><br>
+    <div class="row">
+       
+            <div class="card card-body">
+                    <div class="jumbotron">
+                        <form class="form-horizontal" enctype="multipart/form-data" action="" method="post">
+    
+                            {% csrf_token %}
+
+                            {{ form.as_p }}
+                        
+                            <p>
+                            
+                                <input type="submit" class="btn btn-lg btn-success" value="Envoyer" style="float: right;">
+                            </p>
+                        </form>
+                    </div>
+                </div>
+    </div>
+
+    <script>
+            $(function () {
+                $("#id_livreur").val(" {{indicommande.user.id}}");
+                $("#id_pharmacie").val(" {{user.username}}").hide();
+                $("#id_livreur").hide();
+                
+            })
+        </script>
+
+{% endblock body %}

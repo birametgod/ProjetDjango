@@ -8,6 +8,13 @@ from pharmacie.models import Commandes_Effectuees
 def reponse(request):
 	Livreur.objects.filter(user_id=request.user.id).update(id=request.user.id),  
 	context = {
+		'livreur': Livreur.objects.filter(user_id=request.user.id),
+		'notificationsNonLu': NotificationsLivreur.objects.filter(livreur_id=request.user.id).filter(lu=False),
+		'notificationsLu': NotificationsLivreur.objects.filter(livreur_id=request.user.id).filter(lu=True),
+		'nombreDeNotifications': NotificationsLivreur.objects.filter(livreur_id=request.user.id).filter(lu=False).count(),
+		'nbreMsg': NotificationsLivreur.objects.filter(livreur_id=request.user.id).count(),
+		'livraison':NotificationsLivreur.objects.filter(livreur_id=request.user.id, livree=False),
+		'nblivraison':NotificationsLivreur.objects.filter(livreur_id=request.user.id, livree=False).count(),
 		#livreur': Livreur.objects.filter(livreur_id=request.user.id),
 		#'notifications': NotificationsLivreur.objects.filter(livreur_id=request.user.id).filter(lu=False),
 		#'nombreDeNotifications': NotificationsLivreur.objects.filter(livreur_id=request.user.id).filter(lu=False).count(),
@@ -18,6 +25,37 @@ def reponse(request):
 
 def home(request):
 	return render(request,'livreur/home.html')
+
+
+def MisAjourNotif(request, id):
+	context={
+		'livreur': Livreur.objects.filter(user_id=request.user.id),
+		'notificationsNonLu': NotificationsLivreur.objects.filter(livreur_id=request.user.id).filter(lu=False),
+		'notificationsLu': NotificationsLivreur.objects.filter(livreur_id=request.user.id).filter(lu=True),
+		'nombreDeNotifications': NotificationsLivreur.objects.filter(livreur_id=request.user.id).filter(lu=False).count(),
+		'nbreMsg': NotificationsLivreur.objects.filter(livreur_id=request.user.id).count(),
+		'livraison':NotificationsLivreur.objects.filter(livreur_id=request.user.id, livree=False),
+		'nblivraison':NotificationsLivreur.objects.filter(livreur_id=request.user.id, livree=False).count(),
+		'notif' : NotificationsLivreur.objects.filter(id=id).update(lu=True),
+	}
+	
+	return render(request, 'livreur/reponse.html',context)
+
+def MisAjourCmd(request, id,idp):
+	context={
+		'livreur': Livreur.objects.filter(user_id=request.user.id),
+		'notificationsNonLu': NotificationsLivreur.objects.filter(livreur_id=request.user.id).filter(lu=False),
+		'notificationsLu': NotificationsLivreur.objects.filter(livreur_id=request.user.id).filter(lu=True),
+		'nombreDeNotifications': NotificationsLivreur.objects.filter(livreur_id=request.user.id).filter(lu=False).count(),
+		'nbreMsg': NotificationsLivreur.objects.filter(livreur_id=request.user.id).count(),
+		'livraison':NotificationsLivreur.objects.filter(livreur_id=request.user.id, livree=False),
+		'nblivraison':NotificationsLivreur.objects.filter(livreur_id=request.user.id, livree=False).count(),
+		'notif' : NotificationsLivreur.objects.filter(id=id).update(lu=True),
+		'cmd' : NotificationsLivreur.objects.filter(id=id).update(livree=True),
+		'cmdlivree' : Commandes_Effectuees.objects.filter(patient_id=idp).update(livree=True)
+	}
+	
+	return render(request, 'livreur/reponse.html',context)
 
 
 class connexionView(FormView):
