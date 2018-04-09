@@ -21,7 +21,7 @@ def home(request):
 
 
 class connexionView(FormView):
-	template_name="livreur/newForm.html" #juste pour tester le formulaire de materialize bootstrap
+	template_name="livreur/formulaire.html" #juste pour tester le formulaire de materialize bootstrap
 	form_class = signUp
 	success_url ='/livreur/thanks/'
 

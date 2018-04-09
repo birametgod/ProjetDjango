@@ -45,9 +45,7 @@
             </li>
           </ul>
         </li>
-        <li>
-          <a href="/livreur/thanks">Livreur</a>
-        </li>
+      
       </ul>
       <form class="navbar-form navbar-left" style="margin-left: 70px; margin-top: 25px" action="/action_page.php">
         <div class="input-group">
@@ -99,7 +97,20 @@
                 </li>
               </ul>
             </a>
-          </li> 
+          </li>
+          {% elif user.is_livreur %}
+          <li class="dropdown">
+              <a class="dropdown-toggle" data-toggle="dropdown" href="#">
+                <span class="glyphicon glyphicon-log-in"></span> {{user.username}}
+                <span class="caret"></span>
+                <ul class="dropdown-menu" style="margin-top: 20px">
+                  <li>
+                      <a href="/livreur/thanks">Profil</a>
+                    <a href="{% url 'pharmacie_deconn' %} "> Se deconnecter</a>
+                  </li>
+                </ul>
+              </a>
+            </li> 
         {% else %}
         <li class="dropdown">
           <a class="dropdown-toggle" data-toggle="dropdown" href="#">
