@@ -179,6 +179,7 @@
             <th>Categorie</th>
             <th>Nombre</th>
             <th>Prix</th>
+            <th>supprimer</th>
 
         </tr>
 
@@ -191,8 +192,7 @@
             <td>{{item.produit.categorie.nom}}</td>
             <td>{{item.stock}}</td>
             <td>{{item.total_prix}} Fcfa </td>
-            <td>{{item.produit.nom_id}}</td>
-
+            <td><a href="{% url 'sup_panier' id=item.produit.id %}">supprimer</a></td>
         </tr>
 
         {% endfor %}
