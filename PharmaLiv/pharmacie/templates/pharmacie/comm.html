@@ -1,0 +1,57 @@
+{% extends "layout.html" %} {% block body %}
+<br>
+<br>
+<br>
+<div class="row">
+    {% for prod in produit %} 
+    <div class="panel-body">
+        <div class="row">
+            <div class="col-xs-4 col-sm-4 col-lg-4" style="margin-top: 50px;">
+                <div class="thumbnail">
+                    <img src="{{prod.produit.photo.url}}">
+                </div>
+            </div>
+            <div class="col-xs-5 col-sm-5 col-lg-5" style="margin-top: 50px; font-weight: bold;">
+                <div class="row">
+                    <div class="col-sm-4">
+                        Nom :
+                    </div>
+                    <div class="col-sm-6">
+                        {{prod.produit.titre}}
+                    </div>
+                </div>
+                <br>
+                <div class="row">
+                    <div class="col-sm-4">
+                        Categorie :
+                    </div>
+                    <div class="col-sm-6">
+                        {{prod.produit.types}}
+                    </div>
+                </div>
+                <br>
+                <div class="row">
+                    <div class="col-sm-4">
+                        Prix :
+                    </div>
+                    <div class="col-sm-6">
+                            {{prod.prix}} Fcfa
+                    </div>
+                </div>
+                <br>
+                <div class="row">
+                    <div class="col-sm-4">
+                        Stock :
+                    </div>
+                    <div class="col-sm-6">
+                        {{prod.stock}}
+                    </div>
+                </div>
+                <br>
+            </div>
+        </div>
+    </div>
+    {% endfor %}
+
+</div>
+{% endblock body %}

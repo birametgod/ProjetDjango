@@ -8,7 +8,7 @@ from pharmacie.models import Commandes_Effectuees
 def reponse(request):
 	Livreur.objects.filter(user_id=request.user.id).update(id=request.user.id),  
 	context = {
-		#'livreur': Livreur.objects.filter(livreur_id=request.user.id),
+		#livreur': Livreur.objects.filter(livreur_id=request.user.id),
 		#'notifications': NotificationsLivreur.objects.filter(livreur_id=request.user.id).filter(lu=False),
 		#'nombreDeNotifications': NotificationsLivreur.objects.filter(livreur_id=request.user.id).filter(lu=False).count(),
 		#'nbreMsg': NotificationsLivreur.objects.filter(livreur_id=request.user.id).count(),

@@ -1,6 +1,7 @@
 from django.db import models
 from django.utils.text import slugify
 from PharmaLiv import settings
+from patient.models import Patient
 # Create your models here.
 
 
@@ -106,13 +107,14 @@ class Commandes_Effectuees(models.Model):
     prenomPatient = models.CharField(max_length = 30, null = False)
     adresse = models.CharField(max_length = 100, null = False)
     telephonePatient = models.IntegerField(max_length = 9, null = False)
-    commande = models.CharField(max_length = 200, null = False)
-    dateCommande = models.DateTimeField(auto_now_add = True, auto_now = False, verbose_name = "Date de la commande")
-    dateLivraison = models.DateTimeField(auto_now_add = True, auto_now = False, verbose_name = "Date de livrason")
+    dateCommande = models.DateTimeField(auto_now_add = True, auto_now = False, verbose_name = "Date de la commande", null = False)
+    dateLivraison = models.DateTimeField(auto_now_add = True, auto_now = False, verbose_name = "Date de livrason", null = False)
     livree = models.BooleanField(default = False)
-    #lu = models.BooleanField(default=False)
     slug = models.SlugField()
-
+    ordonnance = models.ImageField(default = 'default.jpg', blank = True)
+    email = models.EmailField(max_length = 100, null = False)
+    payer = models.BooleanField(default=False)
+    patient = models.ForeignKey(Patient, on_delete = models.CASCADE)
     def __str__(self):
     	return self
 
@@ -145,3 +147,11 @@ class Commandes_Effectuees(models.Model):
         else:
             return klass.commandes().filter(nomPatient__contains=query)
 
+class detail_commande(models.Model):
+    commande = models.ForeignKey(Commandes_Effectuees, on_delete = models.CASCADE)
+    produit = models.ForeignKey(Fiche_Produit, on_delete = models.CASCADE)
+    prix = models.IntegerField(max_length=10, null = False)
+    stock = models.PositiveIntegerField()
+
+    def __str__(self):
+        return self.prix

@@ -171,34 +171,28 @@
 <br>
 <br>
 <div class="row">
-    <table class="table table-striped">
-        <tr>
-
-            <th>Titre</th>
-            <th>description</th>
-            <th>Categorie</th>
-            <th>Nombre</th>
-            <th>Prix</th>
-            <th>supprimer</th>
-
-        </tr>
-
-
-        {% for item in panier %}
-
-        <tr>
-            <td>{{item.produit.titre}}</td>
-            <td>{{item.produit.description}}</td>
-            <td>{{item.produit.categorie.nom}}</td>
-            <td>{{item.stock}}</td>
-            <td>{{item.total_prix}} Fcfa </td>
-            <td><a href="{% url 'sup_panier' id=item.produit.id %}">supprimer</a></td>
-        </tr>
-
-        {% endfor %}
-
-
-    </table>
+    
+    <h3>Votre commande</h3>
+   
+    {% for item in panier  %}
+        <li> {{item.produit.nom.user.username}}</li>
+        {{item.total_prix}}
+        {{item.stock}} * {{item.produit.titre}} 
+    {% endfor %}
+    {{panier.get_somme_prix}}
+    <form action="" enctype="multipart/form-data" method="post">
+        {% csrf_token %}
+        {{form.as_p}}
+        
+        <input type="submit" name="" id="">
+    </form>
+    
 </div> 
-<p><a href="{% url 'creer_commande' %}" class="btn btn-success">Acheter</a></p>
+<script>
+        $(function () {
+            $("#id_patient").val("{{user.id}}");
+            $("#id_patient").hide();
+            })
+    </script>
+
 {% endblock body %}

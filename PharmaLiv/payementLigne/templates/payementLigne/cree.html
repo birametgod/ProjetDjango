@@ -170,35 +170,9 @@
 <br>
 <br>
 <br>
-<div class="row">
-    <table class="table table-striped">
-        <tr>
+<div class="alert alert-success">
+    
+    <h3>Votre commande a été effectué</h3>
+</div>
 
-            <th>Titre</th>
-            <th>description</th>
-            <th>Categorie</th>
-            <th>Nombre</th>
-            <th>Prix</th>
-            <th>supprimer</th>
-
-        </tr>
-
-
-        {% for item in panier %}
-
-        <tr>
-            <td>{{item.produit.titre}}</td>
-            <td>{{item.produit.description}}</td>
-            <td>{{item.produit.categorie.nom}}</td>
-            <td>{{item.stock}}</td>
-            <td>{{item.total_prix}} Fcfa </td>
-            <td><a href="{% url 'sup_panier' id=item.produit.id %}">supprimer</a></td>
-        </tr>
-
-        {% endfor %}
-
-
-    </table>
-</div> 
-<p><a href="{% url 'creer_commande' %}" class="btn btn-success">Acheter</a></p>
 {% endblock body %}

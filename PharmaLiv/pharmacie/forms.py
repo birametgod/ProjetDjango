@@ -1,6 +1,6 @@
 from django import forms
 from .models import Fiche_Produit
-from .models import Pharmacie
+from .models import Pharmacie,Commandes_Effectuees
 from connexion.models import User
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.admin.widgets import AdminDateWidget
@@ -11,7 +11,7 @@ class CreationFiche(forms.ModelForm):
 	pharmacie=forms.IntegerField(required=True, label='')
 	class Meta:
 		model = Fiche_Produit
-		fields = ('titre', 'photo', 'prix', 'description', 'types', )
+		fields = ('titre', 'photo', 'prix', 'description', 'types', 'categorie','stock')
 		widgets = {
             'titre' : forms.TextInput(attrs={'class':'form-control','placeholder':'Titre',}),
             'prix' : forms.NumberInput(attrs={'class':'form-control','placeholder':'Prix',}),
@@ -21,9 +21,28 @@ class CreationFiche(forms.ModelForm):
         }
 
 	def save(self):
-		Fiche_Produit.objects.create(nom_id=self.cleaned_data.get('pharmacie'),titre=self.cleaned_data.get('titre'),photo=self.cleaned_data.get('photo'),prix=self.cleaned_data.get('prix'),description=self.cleaned_data.get('description'),types=self.cleaned_data.get('types'))
+		Fiche_Produit.objects.create(nom_id=self.cleaned_data.get('pharmacie'),titre=self.cleaned_data.get('titre'),photo=self.cleaned_data.get('photo'),prix=self.cleaned_data.get('prix'),description=self.cleaned_data.get('description'),types=self.cleaned_data.get('types'),categorie =self.cleaned_data.get('categorie'),stock=self.cleaned_data.get('stock'))
 
 
+
+class CommandeForm(forms.ModelForm):
+    	
+		
+		class Meta:
+			"""
+			il est possible de préciser quelques informations supplémentaires à Django via la classe Meta. 
+			Celle-ci permet de préciser des comportements propres au modèle lui-même.
+
+			"""
+			model = Commandes_Effectuees
+			fields = ('nomPatient','prenomPatient','email','adresse','telephonePatient','ordonnance','patient')
+			widgets = {
+				'nomPatient' : forms.TextInput(attrs={'class':'form-control','placeholder':'nom',}),
+				'email' : forms.TextInput(attrs={'class':'form-control','placeholder':'Email',}),
+				'patient' : forms.TextInput(attrs={'class':'form-control','placeholder':'patient',}),
+			}
+			
+			
 
 
 class signUp(UserCreationForm):
