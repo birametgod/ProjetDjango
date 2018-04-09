@@ -7,7 +7,7 @@ class Region(models.Model):
 	region = models.CharField(max_length=100, null=False)
 
 	def __str__(self):
-		return self.zoneDeLivraison, self.region
+		return self.region
 
 
 
@@ -20,7 +20,7 @@ class Livreur(models.Model):
 	zoneDeLivraison = models.ForeignKey(Region, on_delete=models.CASCADE)
 
 	def __str__(self):
-		return self.user, self.telephone
+		return self.adresse
 
 
 #class NotificationsLivreur(models.Model):

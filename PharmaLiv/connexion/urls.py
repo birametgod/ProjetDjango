@@ -60,6 +60,13 @@ urlpatterns = [
     path('panier/', include([
         path('', panier_views.panier_detail,name="panier_detail"),
         path('add/<int:id>', panier_views.add_panier, name='add_panier'),
+
+        ])),
+        
+    path('panier/', include([
+        path('', panier_views.panier_detail,name="panier_detail"),
+        path('add/<int:id>', panier_views.add_panier, name='add_panier'),
+        path('sup/<int:id>', panier_views.supprimer_panier, name='sup_panier'),
     ])),
 
 ]

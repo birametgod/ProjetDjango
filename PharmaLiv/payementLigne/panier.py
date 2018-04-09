@@ -27,15 +27,18 @@ class Panier(object):
             self.panier[produit_id]['stock']+= stock
         self.save()
 
-    def save(self):
-        self.session[settings.PAYEMENTLIGNE_SESSION_ID] =self.panier
-        self.session.modified =True 
-
     def remove(self,produit):
         produit_id=str(produit.id)
         if produit_id not in self.panier:
             del self.panier[produit_id]
             self.save()
+
+    
+    def save(self):
+        self.session[settings.PAYEMENTLIGNE_SESSION_ID] =self.panier
+        self.session.modified =True 
+
+    
 
     def __iter__(self):
         """ parcourt chaque qrticle dans le panier"""

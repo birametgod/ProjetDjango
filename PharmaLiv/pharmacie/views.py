@@ -54,7 +54,7 @@ def nonpartenaire(request):
     return render(request, 'pharmacie/nonpartenaire.html', context)
 
 class connexionView(FormView):
-    template_name="pharmacie/formulaire.html"
+    template_name="pharmacie/newForm.html"
     form_class = signUp
     success_url ='/pharmacie/thanks/'
 

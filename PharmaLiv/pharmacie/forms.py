@@ -33,9 +33,17 @@ class signUp(UserCreationForm):
  	           'class' : 'form-control',
  	       }
  	   ))
-		adresse = forms.CharField(max_length = 100, required=True, label='Adresse')
+		adresse = forms.CharField(widget=forms.TextInput(
+ 	       attrs={
+ 	           'class' : 'form-control',
+ 	       }
+ 	   	))
 		telephone = forms.IntegerField(required=True, label='Téléphone')
-		horaire = forms.CharField(max_length = 50, required=True, label='Horaire')
+		horaire = forms.CharField(widget=forms.TextInput(
+ 	       attrs={
+ 	           'class' : 'form-control',
+ 	       }
+ 	   	))
 		class Meta:
 			"""
 			il est possible de préciser quelques informations supplémentaires à Django via la classe Meta. 
@@ -45,7 +53,7 @@ class signUp(UserCreationForm):
 			model = User
 			fields = ('username','email',)
 			widgets = {
-				'username' : forms.TextInput(attrs={'class':'form-control','placeholder':'Login',}),
+				'username' : forms.TextInput(attrs={'class':'form-control','placeholder':'Nom',}),
 				'email' : forms.TextInput(attrs={'class':'form-control','placeholder':'Email',}),
 			}
 			
