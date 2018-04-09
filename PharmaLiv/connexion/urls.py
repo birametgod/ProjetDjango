@@ -5,6 +5,7 @@ from patient import views as patient_views
 from pharmacie import views as pharmacie_views
 from medecin import views as medecin_views
 from livreur import views as livreur_views
+from userAdmin import views as userAdmin_views
 from django.contrib.auth import views as auth_views
 
 """
@@ -52,9 +53,18 @@ urlpatterns = [
     path('livreur/', include([
         path('', livreur_views.home),
         path('inscription/', livreur_views.connexionView.as_view()),
+        path('notifications/<int:id>', livreur_views.MisAjourNotif, name="notifier"),
+        path('livree/<int:id>', livreur_views.MisAjourCmd, name="livree"),
         path('thanks/', livreur_views.reponse),
         path('logout/', auth_views.logout,{'template_name':'livreur/home.html',},name='livreur_deconn'),#.logout nous gere la deconnexion , meme pas besoin d'ecrire une methode dans views.py,il nous redirige directement dans le template_name
         path('login/', auth_views.login,{'template_name':'livreur/login.html'}), #meme chose pour .login ,patient/login.html est la page pour se connecter , django nous gere la verification et nous redirige vers l'url indiqué dans input type hidden de la page html
+    ])),
+
+    path('userAdmin/', include([
+        path('', userAdmin_views.home),
+        path('thanks/', userAdmin_views.reponse),
+        path('logout/', auth_views.logout,{'template_name':'userAdmin/home.html',},name='userAdmin_deconn'),#.logout nous gere la deconnexion , meme pas besoin d'ecrire une methode dans views.py,il nous redirige directement dans le template_name
+        path('login/', auth_views.login,{'template_name':'userAdmin/login.html'}), #meme chose pour .login ,patient/login.html est la page pour se connecter , django nous gere la verification et nous redirige vers l'url indiqué dans input type hidden de la page html
     ])),
     
     path('panier/', include([
