@@ -135,13 +135,11 @@
             <a href="#"><i class="fa fa-ambulance"></i> Livreurs</a>
         </li>
 
-        <li data-target="#carousel-example-generic" data-slide-to="6">
+        <li data-target="#carousel-example-generic" data-slide-to="7">
             <a href="#"><i class="fa fa-area-chart"></i> Reporting</a>
         </li>
 
-        <li data-target="#carousel-example-generic" data-slide-to="7">
-             <a href="#"><i class="fa fa-gears"></i> Paramètres </a> 
-        </li>
+      
 
         <li style="margin-top: 100px">
             <a href="#">Se déconnecter</a>
@@ -279,6 +277,18 @@
                               {{form.pharmacie}} 
                           
                           </div>
+                          <div class="col-md-3 mb-3">
+                              {{form.nom}} 
+                          
+                          </div>
+                          <div class="col-md-3 mb-3">
+                              {{form.categorie}} 
+                          
+                          </div>
+                          <div class="col-md-3 mb-3">
+                              {{form.stock}} 
+                          
+                          </div>
                         </div>
                         
                         <br>
@@ -306,22 +316,21 @@
                             <table class="table table-hover" id="myTable">
                               <thead>
                                 <tr>
-                                  <th> <i class="fa fa-user"></i> Photo</th>
                                   <th> <i class="fa fa-user"></i></i> Titre </th>
                                   <th> <i class="fa fa-map"></i> Description </th>
                                   <th> <i class="fa fa-phone"></i> Prix </th>
                                   <th> <i class="fa fa-braille"></i> Types </th>
-                                  <th> <i class="fa fa-calendar"></i> Catégorie </th>
+                                  <th> <i class="fa fa-calendar"></i> Stock </th>
                                 </tr>
                               </thead>
                               <tbody>
-                                {% for livree in livrees %}
+                                {% for prod in produit %}
                                     <tr>  
-                                     <td></td>
-                                     <td></td>
-                                     <td></td>
-                                     <td></td>
-                                     <td></td>
+                                     <td>{{prod.titre}}</td>
+                                     <td>{{prod.description}}</td>
+                                     <td>{{prod.prix}}</td>
+                                     <td>{{prod.types}}</td>
+                                     <td>{{prod.stock}}</td>
                                      <td></td>
                                     </tr>
 
@@ -406,11 +415,11 @@
                                   <th> <i class="fa fa-user"></i> Prénom</i> </th>
                                   <th> <i class="fa fa-map"></i> Adresse</th>
                                   <th> <i class="fa fa-phone"></i> Téléphone</th>
-                                  <th> <i class="fa fa-braille"></i> Commande</th>
+                                  <th> <i class="fa fa-braille"></i> Details</th>
                                   <th> <i class="fa fa-calendar"></i> Date de commande</th>
                                   <th> <i class="fa fa-calendar-check-o"></i> Date de livraison</th>
                                 </tr>
-                              </thead>
+                              </thead> 
                               <tbody>
                                 {% for nonLivree in nonlivrees %}
                                     <tr>  
@@ -418,7 +427,7 @@
                                       <td>{{ nonLivree.prenomPatient }}</td>
                                       <td>{{ nonLivree.adresse }}</td>
                                       <td>{{ nonLivree.telephonePatient }}</td>
-                                      <td>{{ nonLivree.commande }}</td>
+                                      <td><a href="{% url 'comm_produit' id=nonLivree.id %}" >details</a></td>
                                       <td>{{ nonLivree.dateCommande }}</td>
                                       <td>{{ nonLivree.dateLivraison }}</td>
                                     </tr>
@@ -454,15 +463,15 @@
                               <thead>
                                 <tr class="">
                                   <th> <i class="fa fa-user"></i> Expéditeur</th>
-                                  <th> <i class="fa fa-user"></i> Contenu</i> </th>
+                                  <th> <i class="fa fa-user"></i> Adresse</i> </th>
                                 </tr>
                               </thead>
                               <tbody>
                                 {% for nonLivree in nonlivrees %}
 
                                     <tr>  
-                                      <td>{{ nonLivree.nomPatient }}</td>
-                                      <td>{{ nonLivree.prenomPatient }}</td>
+                                      <td>{{ nonLivree.nomPatient }} {{ nonLivree.prenomPatient }}</td>
+                                      <td>{{ nonLivree.adresse }}</td>
                                     </tr>
 
                                 {% endfor %}
@@ -480,15 +489,35 @@
                 <div class="panel panel-default">
                   <div class="panel-heading">
                     <h3>
-                      Reporting <i class="fa fa-area-chart"></i>
+                      Livreur <i class="fa fa-ambulance"></i>
                     </h3>
                   </div>
-                    <div class="panel-body">
-                      <h2>En construction</h2>
-                      <div class="progress">
-                    <div class="progress-bar progress-bar-info" role="progressbar" aria-valuenow="50"
-                    aria-valuemin="0" aria-valuemax="100" style="width:50%">
-                      50% Complete (info)
+                  <div class="alert alert-danger" role="alert">
+                      <table class="table table-hover" id="myTable">
+                        <thead>
+                          <tr class="">
+                            <th> <i class="fa fa-user"></i> Nom </th>
+                            <th> <i class="fa fa-user"></i> Prénom</i> </th>
+                            <th> <i class="fa fa-map"></i> Adresse</th>
+                            <th> <i class="fa fa-phone"></i> Téléphone</th>
+                            <th> <i class="fa fa-braille"></i> DateNaissance</th>
+                            <th> <i class="fa fa-calendar"></i> Login</th>
+                          </tr>
+                        </thead> 
+                        <tbody>
+                          {% for liv in l %}
+                              <tr>  
+                                <td>{{ liv.user.last_name }}</td>
+                                <td>{{ liv.user.first_name }}</td>
+                                <td>{{ liv.zoneDeLivraison.zoneDeLivraison }}</td>
+                                <td>{{ liv.telephone }}</td>
+                                <td>{{ liv.dateNaissance }}</td>
+                                <td>{{ liv.user.username }}</td>
+                                <td><a href="" class="btn btn-success"></a></td>
+                              </tr>
+                          {% endfor %}
+                        </tbody>
+                      </table>
                     </div>
                   </div>
                   </div>
@@ -502,7 +531,7 @@
                 <div class="panel panel-default">
                   <div class="panel-heading">
                     <h3>
-                      Paramètres <i class="fa fa-gears"></i></a>
+                      Reporting <i class="fa fa-gears"></i></a>
                     </h3>
                   </div>
                     <div class="panel-body">

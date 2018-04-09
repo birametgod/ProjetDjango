@@ -92,17 +92,14 @@
                     <li class="dropdown dropdown-notifications">
                         <a href="" class="dropdown-toggle" data-toggle="dropdown">
 
-                            {% if notifications > 0 %}
-                            <button class="btn btn-danger" type="button">
-                                <i class="material-icons md-light">notifications</i>
-                                <span class="badge"> {{notifications}}</span>
-                            </button>
-                            {% else %}
+                    
+                           
+                        
                             <button class="btn btn-success" type="button">
                                 <i class="material-icons md-light">notifications</i>
-                                <span class="badge">0</span>
+                                
                             </button>
-                            {% endif %}
+                            
                         </a>
 
 
@@ -173,7 +170,6 @@
                     <li class="noty-cart">
                         <a href="{% url 'panier_detail' %}" >
                             <i class="material-icons md-light">shopping_cart</i>
-                        
                             <p>Panier </p> 
                         </a>
                     </li>

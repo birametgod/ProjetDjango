@@ -11,7 +11,6 @@ class Region(models.Model):
 		return self.zoneDeLivraison
 
 
-
 class Livreur(models.Model):
 	user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete = models.CASCADE)
 	sexe = models.CharField(max_length=1, null = False)
@@ -19,6 +18,7 @@ class Livreur(models.Model):
 	telephone = models.IntegerField  (max_length=9)
 	adresse = models.CharField(max_length=100, null=False)
 	zoneDeLivraison = models.ForeignKey(Region, on_delete=models.CASCADE)
+
 
 	def __str__(self):
 		return self.adresse

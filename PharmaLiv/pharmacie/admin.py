@@ -13,7 +13,7 @@ class Fiche_ProduitAdmin(admin.ModelAdmin):
 	ordering = ('nom', )
 
 class Commandes_EffectueesAdmin(admin.ModelAdmin):
-	list_display = ('nomPatient', 'prenomPatient', 'adresse', 'telephonePatient', 'commande', 'dateCommande', 'dateLivraison', 'livree')
+	list_display = ('nomPatient', 'prenomPatient', 'adresse', 'telephonePatient', 'dateCommande', 'dateLivraison', 'livree')
 	ordering = ('livree', )
 
 

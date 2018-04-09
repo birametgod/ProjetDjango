@@ -38,6 +38,8 @@ urlpatterns = [
 	    path('partenaire/<int:id>', pharmacie_views.partenaire,name="afficher_medoc"),
         path('detail/<int:id>',pharmacie_views.detail,name="show_medoc"),
 	    path('nonpartenaire/', pharmacie_views.nonpartenaire),
+        path('commande', pharmacie_views.creer_commande,name="creer_commande"),
+        path('produi/<int:id>', pharmacie_views.comm_prod,name="comm_produit"), 
     ])),
 
     #connexion et deconnexion medecin
