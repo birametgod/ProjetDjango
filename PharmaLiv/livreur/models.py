@@ -7,7 +7,7 @@ class Region(models.Model):
 	region = models.CharField(max_length=100, null=False)
 
 	def __str__(self):
-		return self.region
+		return self.zoneDeLivraison
 
 
 

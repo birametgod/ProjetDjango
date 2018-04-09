@@ -1,5 +1,6 @@
 from django import forms
 from PharmaLiv import settings
+from livreur.models import Region,Livreur
 from connexion.models import User
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.admin.widgets import AdminDateWidget
@@ -24,8 +25,7 @@ class signUp(UserCreationForm):
 			'placeholder' : 'Adresse',
 		}
 	))
-	region = forms.ChoiceField(choices=regions)
-	zoneDeLivraison = forms.ChoiceField(widget=forms.Select())
+	zoneDeLivraison = forms.ChoiceField(choices=[(choice.id, choice.zoneDeLivraison) for choice in Region.objects.all()])
 
 	class Meta:
 		"""
@@ -45,10 +45,10 @@ class signUp(UserCreationForm):
 	@transaction.atomic  #make sure those  operations are done in a single database transaction and avoid data inconsistencies in case of error.
 	def save(self):
 		user = super().save(commit=False) # Call the real save() method, modify what it's saving, it will do save(commit=False)
-		user.is_patient = True
+		user.is_livreur = True
 		user.save()
 		Livreur.objects.create(user=user,sexe=self.cleaned_data.get('sexe'),
-			adresse=self.cleaned_data.get('adresse'),region=self.cleaned_data.get('region'),
+			adresse=self.cleaned_data.get('adresse'),
 			dateNaissance=self.cleaned_data.get('dateNaissance'),telephone=self.cleaned_data.get('telephone'),
-			zoneDeLivraison=self.cleaned_data.get('zoneDeLivraison'))
+			zoneDeLivraison_id=self.cleaned_data.get('zoneDeLivraison'))
 		return user
