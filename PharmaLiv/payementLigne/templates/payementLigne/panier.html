@@ -1,11 +1,4 @@
-
- {% extends "patient/reponse.html" %} {% load static from staticfiles %} {% block header %} {% if user.is_patient %}
-<style type="text/css">
-    body{
-        position: relative;
-    }
-</style>
-<div data-spy="scroll" data-target=".navbar" data-offset="50">
+{% extends 'patient/reponse.html' %} {% block header %}
 <nav class="navbar navbar-inverse navbar-fixed-top" style="height: 80px">
     <div class="container-fluid">
         <div class="navbar-header">
@@ -59,6 +52,45 @@
                             <p>Search </p>
                         </a>
                     </li>
+                    <li class="dropdown dropdown-notifications">
+                        <a href="" class="dropdown-toggle" data-toggle="dropdown">
+
+                            {% if notifications > 0 %}
+                            <button class="btn btn-danger" type="button">
+                                <i class="material-icons md-light">notifications</i>
+                                <span class="badge"> {{notifications}}</span>
+                            </button>
+                            {% else %}
+                            <button class="btn btn-success" type="button">
+                                <i class="material-icons md-light">notifications</i>
+                                <span class="badge">0</span>
+                            </button>
+                            {% endif %}
+                        </a>
+
+
+
+                        <div class="dropdown-menu ">
+
+                            <a href="javascript:void(0)" class="btn-read-all disabled"></a>
+                            <ul class="scroll-area">
+                                {% for mess in messages %}
+                                <li data-no-turbolink="">
+                                    <a href="{% url 'notif'  %} ">
+                                        {{mess.medecin.user.first_name}} {{mess.medecin.user.last_name}}
+                                    </a>
+                                </li>
+                                {% endfor %}
+                                <li>
+                                    <a href="{% url 'notif'  %}">Autres</a>
+                                </li>
+                            </ul>
+                            <div class="clearfix"></div>
+                        </div>
+
+                    </li>
+
+
                     <li class="dropdown">
                         <a href="" class="dropdown-toggle" data-toggle="dropdown">
                             <div class="user-photo">
@@ -85,14 +117,14 @@
                             </li>
 
                             <li>
-                                <a href="/account">
+                                <a href="">
                                     <i class="material-icons">settings</i>
                                     Reglages
                                 </a>
                             </li>
 
                             <li>
-                                <a href="/logout">
+                                <a href="{% url 'patient_deconn' %}">
                                     <i class="material-icons md-light">highlight_off</i>
                                     Se deconnecter
                                 </a>
@@ -104,9 +136,7 @@
                     <li class="noty-cart">
                         <a href="#" data-toggle="modal" data-target="#product-cart-modal">
                             <i class="material-icons md-light">shopping_cart</i>
-                            <span class="notification-bubble hidden" id="products-in-cart">
-                                0
-                            </span>
+                            <span class="badge">{{panier|length}} </span>
                             <p>Panier </p>
                         </a>
                     </li>
@@ -136,121 +166,37 @@
         </ul>-->
     </div>
 </nav>
-{% endif %} {% endblock header %} 
+{% endblock header %} {% block body %}
+<br>
+<br>
+<br>
+<div class="row">
+    <table class="table table-striped">
+        <tr>
 
-  {% block body %}
- 
+            <th>Titre</th>
+            <th>description</th>
+            <th>Categorie</th>
+            <th>Nombre</th>
+            <th>Prix</th>
 
-<div class="col-sm-3 col-md-2 sidebar">
-    <ul class="nav nav-sidebar" style="margin-top: 30px">
-        <li class="active">
-            <a href="#section1">Ordonnance
-                <span class="sr-only">(current)</span>
-            </a>
-        </li>
-        <li>
-            <a href="#section2">Pharmacie</a>
-        </li>
-        <li>
-            <a href="#">Analytics</a>
-        </li>
-        <li style="margin-top: 300px">
-            <a href="{% url 'afficher_repons' %}"><i class="fa fa-reply"></i> Retour à l'accueil</a>
-        </li>
-    </ul>
-    
+        </tr>
+
+
+        {% for item in panier %}
+
+        <tr>
+            <td>{{item.produit.titre}}</td>
+            <td>{{item.produit.description}}</td>
+            <td>{{item.produit.categorie.nom}}</td>
+            <td>{{item.stock}}</td>
+            <td>{{item.total_prix}} Fcfa </td>
+            <td>{{item.produit.nom_id}}</td>
+
+        </tr>
+
+        {% endfor %}
+
+    </table>
 </div>
-      <div id="section1" class="container-fluid">
-        <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main" style="margin-top: 50px">
-            <h1 class="page-header">Ordonnances</h1>
-
-            <div class="row">
-                    {% for ordonnanc in ordo %}
-
-
-                    <div class="col-sm-6 col-md-4">
-                        <div class="thumbnail">
-                            <a href="{{ordonnanc.medicaments.url}}"><img src="{{ordonnanc.medicaments.url}}" alt="image" width="500" height="500" /></a> 
-                            <div class="caption ">
-                                <h3>{{ordonnanc.medecin.specialite.nom}} </h3>
-                                <h4>{{ordonnanc.medecin.user.first_name}} {{ordonnanc.medecin.user.last_name}} </h4>
-                                    <h5>{{ordonnanc.dateSoumission}}</h5>
-                                    <p>{{ordonnanc.libelle}}</p>
-
-                            </div>
-                        </div>
-                    </div>
-
-                    {% endfor %}
-                </div>
-
-            
-      </div>
-    </div>
-
-    <div id="section2" class="container-fluid" style="height: 500px; margin-left: 200px;">
-        <div class="container" style=" background-image: url('/static/img/pharma.jpg'); height: 200px; margin-left: -130px">
-                <div style="background-color: rgba(0,0,0,0.7); height: 200px; width: 1155px">
-                    <div class="row">
-                        <div style="margin-top: 50px; color: white; margin-left: 50px; text-align: center;">
-                        <div class="col-md-4 btn btn-dark">
-                            <h1>{{ nb_ordo }}</h1>
-                            <h3> Ordonnances reçues</h3>
-                        </div>
-                        <div class="col-md-4 btn btn-dark">
-                            <h1>X</h1>
-                            <h3> Notifications reçues</h3>
-                        </div>
-                        <div class="col-md-4 btn btn-dark">
-                            <h1>Y</h1>
-                            <h3> Médicaments achetés</h3>
-                        </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-          <h1 class="page-header">Notifications Pharmacies</h1>
-          <table class="table table-hover" id="myTable">
-            <thead>
-              <tr class="success">
-                <th> <i class="fa fa-map"></i> Expéditeur</th>
-                <th> <i class="fa fa-map"></i> Contenu</th>
-                <th> <i class="fa fa-calendar"></i> Date</th>
-              </tr>
-            </thead>
-            <tbody>
-              {% for msg in messages %}
-                  <tr>  
-                    <td>{{Pharmacie.user.first_name}}</td>
-                    <td>{{ msg.libelle}}</td>
-                    <td>{{ msg.dateSoumission }}</td>
-                  </tr>
-              {% endfor %}
-            </tbody>
-          </table>
-    </div>
-</div>
-<script>
-    $(function(){
-        
-        
-    })
-</script>
-<style>
-        .sidebar {
-            position: fixed;
-            top: 51px;
-            bottom: 0;
-            left: 0;
-            z-index: 1000;
-            display: block;
-            padding: 20px;
-            overflow-x: hidden;
-            overflow-y: auto;
-            background-color: #f5f5f5;
-            border-right: 1px solid #eee;
-        }
-</style>
-
 {% endblock body %}

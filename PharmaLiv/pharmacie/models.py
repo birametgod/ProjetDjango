@@ -31,6 +31,28 @@ class Pharmacie(models.Model):
             self.slug = self._get_unique_slug()
         super().save()
 
+class Categorie(models.Model):
+    nom = models.CharField(max_length=200,)
+    slug = models.SlugField()
+
+    def __str__(self):
+        return self.nom
+
+    def _get_unique_slug(self):
+        slug = slugify(self.nom)
+        unique_slug = slug
+        num = 1
+        while Fiche_Produit.objects.filter(slug=unique_slug).exists():
+            unique_slug = '{}-{}'.format(slug, num)
+            num += 1
+        return unique_slug
+
+    def save(self, *args, **kwargs):
+        if not self.slug:
+            self.slug = self._get_unique_slug()
+        super().save()
+
+
 
 class Fiche_Produit(models.Model):
     titre = models.CharField(max_length = 50, null = False)
@@ -39,10 +61,14 @@ class Fiche_Produit(models.Model):
     description = models.TextField(max_length=200, default='DESC', null = False)
     types = models.CharField(max_length = 10, default = 'Pharmacie', null = False)
     nom = models.ForeignKey(Pharmacie, on_delete = models.CASCADE, null = False)
+    categorie = models.ForeignKey(Categorie, on_delete = models.CASCADE, null = False)
+    stock = models.PositiveIntegerField()
+    disponible = models.BooleanField(default=True)
     slug = models.SlugField()
+    
 
     def __str__(self):
-        return self
+        return self.titre
 
     def _get_unique_slug(self):
         slug = slugify(self.titre)

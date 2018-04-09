@@ -17,6 +17,8 @@ class Commandes_EffectueesAdmin(admin.ModelAdmin):
 	ordering = ('livree', )
 
 
+
+admin.site.register(Categorie)
 admin.site.register(Pharmacie, PharmacieAdmin)
 admin.site.register(Fiche_Produit, Fiche_ProduitAdmin)
 admin.site.register(Commandes_Effectuees, Commandes_EffectueesAdmin)
