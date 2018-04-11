@@ -7,7 +7,7 @@
 
       
         <div class="col-lg-6">
-                <form action=""  enctype="multipart/form-data" method="post">
+                <form action="" enctype="multipart/form-data" method="post">
                     {% csrf_token %}
                     
                     <div class="form-group">
@@ -35,6 +35,13 @@
                                 {{form.patient}}
                         </div>
                         <div class="form-group">
+                                <div>
+                                        <label for="">Cochez si vous avez lu la notice</label>
+                                </div> 
+                                {{form.lu}}
+                            
+                        </div>
+                        <div class="form-group">
                                 <label for="exampleInputEmail2">Ordonnance</label>
                                 {{form.ordonnance}}
                         </div>
@@ -43,7 +50,7 @@
         </div>
         <div class="col-lg-6">
                 <h3>Votre commande</h3>
-               
+            
             
                 <table class="table">
     

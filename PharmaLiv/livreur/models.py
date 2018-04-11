@@ -41,4 +41,3 @@ class NotificationsLivreur(models.Model):
 
 	def __str__(self):
     		return self.adresse
-
