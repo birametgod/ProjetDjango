@@ -1,204 +1,233 @@
-{% extends 'patient/reponse.html' %} {% block header %}
-<nav class="navbar navbar-inverse navbar-fixed-top" style="height: 80px">
-    <div class="container-fluid">
-        <div class="navbar-header">
-            <a class="navbar-brand" href="/" style="margin-top: 10px">
-                <span class="glyphicon glyphicon-plus"></span>PharmaLiv
-            </a>
-        </div>
+{% extends 'pharmacie/pageEcom.html' %} {% block header %}
 
-        <div class="container">
-            <div class="notification">
-                <div id="notif-message" class="notif-message" style="display: none;" notice-type="success">
-                    Welcome!
+<nav class="navbar navbar-inverse " style="height: 80px">
+        <div class="container-fluid">
+    
+            <div class="navbar-header">
+                <br>
+                <a href="#">
+                    <img src="/static/img/face.png" class="col-md-2">
+                </a>
+                <a href="#">
+                    <img src="/static/img/instagram.png" class="col-md-2">
+                </a>
+                <a href="#">
+                    <img src="/static/img/twitter.png" class="col-md-2">
+                </a>
+            </div>
+    
+    
+    
+    
+            <div class="container">
+                <div class="notification">
+                    <div id="notif-message" class="notif-message" style="display: none;" notice-type="success">
+                        Welcome!
+                    </div>
+                </div>
+                <div class="navbar-header">
+                    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-ex1-collapse">
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+    
+    
+                </div>
+    
+    
+                <div class="collapse navbar-collapse navbar-ex1-collapse">
+    
+                    <ul class="nav navbar-nav navbar-right" data-no-turbolink="">
+    
+                        <li>
+                            <div itemscope="" itemtype="http://schema.org/WebSite">
+                                <meta itemprop="url" content="https://www.creative-tim.com/">
+                                <form class="navbar-form navbar-right navbar-search-form" itemprop="potentialAction" itemscope="itemscope" itemtype="http://schema.org/SearchAction"
+                                    style="display: none;" action="/search" accept-charset="UTF-8" method="get">
+                                    <input name="utf8" type="hidden" value="✓">
+                                    <div class="form-group">
+                                        <meta itemprop="target" content="https://www.creative-tim.com/search?q={}">
+                                        <input type="text" name="q" id="q" class="form-control search" placeholder="Search..." itemprop="query-input">
+                                        <input type="submit" class="btn btn-success" value="rechercher">
+                                    </div>
+                                </form>
+                            </div>
+                        </li>
+                        <li>
+                            <a href="#" id="cherche" data-toggle="search-form">
+    
+                                <i class="material-icons md-light">search</i>
+                                <span class="notification-bubble hidden" id="products-in-cart">
+                                    0
+                                </span>
+                                <p> </p>
+                            </a>
+                        </li>
+                        <li class="dropdown dropdown-notifications">
+                            <a href="" class="dropdown-toggle" data-toggle="dropdown">
+                                <i class="material-icons md-light">notifications</i>
+                            </a>
+    
+    
+    
+                            <div class="dropdown-menu ">
+    
+                                <a href="javascript:void(0)" class="btn-read-all disabled"></a>
+                                <ul class="scroll-area">
+                                    {% for mess in messages %}
+                                    <li data-no-turbolink="">
+                                        <a href="{% url 'notif'  %} ">
+                                            {{mess.medecin.user.first_name}} {{mess.medecin.user.last_name}}
+                                        </a>
+                                    </li>
+                                    {% endfor %}
+                                    <li>
+                                        <a href="{% url 'notif'  %}">Autres</a>
+                                    </li>
+                                </ul>
+                                <div class="clearfix"></div>
+                            </div>
+    
+                        </li>
+    
+    
+                        <li class="dropdown">
+                            <a href="/patient/thanks">
+                                <div class="user-photo">
+                                    <i class="material-icons md-light">perm_identity</i>
+                                </div>
+                            </a>
+                        </li>
+    
+    
+                        <li class="noty-cart">
+                            <a href="{% url 'panier_detail' %}">
+                                    <i class="material-icons md-light">shopping_cart</i>
+                                    <span class="badge">{{panier|length}} </span>
+                                
+                            </a>
+                        </li>
+    
+                    </ul>
+    
                 </div>
             </div>
-            <div class="navbar-header">
-                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-ex1-collapse">
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                </button>
-
-
-            </div>
-
-
-            <div class="collapse navbar-collapse navbar-ex1-collapse">
-
-                <ul class="nav navbar-nav navbar-right" data-no-turbolink="">
-
-                    <li>
-                        <div itemscope="" itemtype="http://schema.org/WebSite">
-                            <meta itemprop="url" content="https://www.creative-tim.com/">
-                            <form class="navbar-form navbar-right navbar-search-form" itemprop="potentialAction" itemscope="itemscope" itemtype="http://schema.org/SearchAction"
-                                style="display: none;" action="/search" accept-charset="UTF-8" method="get">
-                                <input name="utf8" type="hidden" value="✓">
-                                <div class="form-group">
-                                    <meta itemprop="target" content="https://www.creative-tim.com/search?q={}">
-                                    <input type="text" name="q" id="q" class="form-control search" placeholder="Search..." itemprop="query-input">
-                                    <input type="submit" class="btn btn-success" value="rechercher">
-                                </div>
-                            </form>
-                        </div>
-                    </li>
-                    <li>
-                        <a href="#" id="cherche" data-toggle="search-form">
-
-                            <i class="material-icons md-light">search</i>
-                            <span class="notification-bubble hidden" id="products-in-cart">
-                                0
-                            </span>
-                            <p>Search </p>
-                        </a>
-                    </li>
-                    <li class="dropdown dropdown-notifications">
-                        <a href="" class="dropdown-toggle" data-toggle="dropdown">
-
-                            {% if notifications > 0 %}
-                            <button class="btn btn-danger" type="button">
-                                <i class="material-icons md-light">notifications</i>
-                                <span class="badge"> {{notifications}}</span>
-                            </button>
-                            {% else %}
-                            <button class="btn btn-success" type="button">
-                                <i class="material-icons md-light">notifications</i>
-                                <span class="badge">0</span>
-                            </button>
-                            {% endif %}
-                        </a>
-
-
-
-                        <div class="dropdown-menu ">
-
-                            <a href="javascript:void(0)" class="btn-read-all disabled"></a>
-                            <ul class="scroll-area">
-                                {% for mess in messages %}
-                                <li data-no-turbolink="">
-                                    <a href="{% url 'notif'  %} ">
-                                        {{mess.medecin.user.first_name}} {{mess.medecin.user.last_name}}
-                                    </a>
-                                </li>
-                                {% endfor %}
-                                <li>
-                                    <a href="{% url 'notif'  %}">Autres</a>
-                                </li>
-                            </ul>
-                            <div class="clearfix"></div>
-                        </div>
-
-                    </li>
-
-
-                    <li class="dropdown">
-                        <a href="" class="dropdown-toggle" data-toggle="dropdown">
-                            <div class="user-photo">
-                                <i class="material-icons md-light">perm_identity</i>
-                            </div>
-                            <p>{{user.username}}
-                                <span class="caret"></span>
-                            </p>
-                        </a>
-
-                        <ul class="dropdown-menu dropdown-menu-navbar">
-                            <li data-no-turbolink="">
-                                <a href="/downloads">
-                                    <i class="material-icons md-light">shopping_cart</i>
-                                    Achats
-                                </a>
-                            </li>
-
+            <!-- <ul class="nav navbar-nav navbar-right" style="margin-top: 20px">
+    
+                <li class="dropdown">
+                    <a class="dropdown-toggle" data-toggle="dropdown" href="#">
+                        <span class="glyphicon glyphicon-log-in"></span> {{user.username}}
+                        <span class="caret"></span>
+                        <ul class="dropdown-menu" style="margin-top: 10px">
                             <li>
-                                <a href="/user/credit-history">
-                                    <i class="fa fa-diamond"></i>
-                                    Credits · 0
-                                </a>
-                            </li>
-
-                            <li>
-                                <a href="">
-                                    <i class="material-icons">settings</i>
-                                    Reglages
-                                </a>
-                            </li>
-
-                            <li>
-                                <a href="{% url 'patient_deconn' %}">
-                                    <i class="material-icons md-light">highlight_off</i>
-                                    Se deconnecter
-                                </a>
+                                <a href="/patient/thanks">Profil</a>
+                                <a href="{% url 'patient_deconn' %} "> Se deconnecter</a>
+    
                             </li>
                         </ul>
-                    </li>
-
-
-                    <li class="noty-cart">
-                        <a href="#" data-toggle="modal" data-target="#product-cart-modal">
-                            <i class="material-icons md-light">shopping_cart</i>
-                            <span class="badge">{{panier|length}} </span>
-                            <p>Panier </p>
-                        </a>
-                    </li>
-
-                </ul>
-
+                    </a>
+                </li>
+    
+                </a>
+                </li>
+            </ul>-->
+        </div>
+    </nav>
+    
+    <div class="top-container">
+        <div class="row">
+            <div class="col-sm-6">
+                <h1>Bienvenue</h1>
+                <h3>{{user.first_name}} {{user.last_name}}</h3>
+            </div>
+            <div class="col-sm-6">
+                <form class="navbar-form navbar-left" style="float:right; margin-left: 70px; margin-top: 25px" action="/action_page.php">
+                    <div class="input-group">
+                        <input type="text" class="form-control" placeholder="Recherche ..." name="search" style="width: 380px">
+                        <div class="input-group-btn">
+                            <button class="btn btn-default" type="submit">
+                                <i class="glyphicon glyphicon-search"></i>
+                            </button>
+                        </div>
+                    </div>
+                </form>
             </div>
         </div>
-        <!-- <ul class="nav navbar-nav navbar-right" style="margin-top: 20px">
-
-            <li class="dropdown">
-                <a class="dropdown-toggle" data-toggle="dropdown" href="#">
-                    <span class="glyphicon glyphicon-log-in"></span> {{user.username}}
-                    <span class="caret"></span>
-                    <ul class="dropdown-menu" style="margin-top: 10px">
-                        <li>
-                            <a href="/patient/thanks">Profil</a>
-                            <a href="{% url 'patient_deconn' %} "> Se deconnecter</a>
-
-                        </li>
-                    </ul>
-                </a>
-            </li>
-
-            </a>
-            </li>
-        </ul>-->
     </div>
-</nav>
+    
+    <div class="header" id="myHeader" style="z-index:1000;background-color:white">
+        <a class="navbar-brand btn btn-default" href="/" style="margin-top: 10px; margin-left:500px">
+            <span class="glyphicon glyphicon-plus"></span>PharmaLiv
+        </a>
+        <a class="navbar-brand btn btn-default" href="/patient/thanks" style="margin-top: 10px; margin-left:10px">
+            <span class="glyphicon glyphicon-plus"></span>Profil
+        </a>
+    </div>
+
 {% endblock header %} {% block body %}
 <br>
 <br>
 <br>
 <div class="row">
-    <table class="table table-striped">
-        <tr>
+        <table class="table">
+                <tr>
+        
+                    <th>Produit</th>
+                    <th>Prix</th>
+                    <th>Categorie</th>
+                    <th>Nombre</th>
+                    <th>Total</th>
+                    <th>supprimer</th>
+        
+                </tr>
+        
+        
+                {% for item in panier %}
+        
+                <tr>
+                    <td><div class="thumbnail">
+                            <img src="{{item.produit.photo.url}}" class="col-md-4">
+                            <div class="caption">
+                              <h1> {{item.produit.titre}}</h1>
+                              <p>{{item.produit.description}}</p>
+                            </div>
+                          </div>
+                       
 
-            <th>Titre</th>
-            <th>description</th>
-            <th>Categorie</th>
-            <th>Nombre</th>
-            <th>Prix</th>
-            <th>supprimer</th>
+                    </td>
+                    <td>{{item.produit.prix}} Fcfa </td>
+                    <td>{{item.produit.categorie.nom}}</td>
+                    <td>{{item.stock}}</td>
+                    <td>{{item.total_prix}} Fcfa </td>
+                    <td><a href="{% url 'sup_panier' id=item.produit.id %}"><i class="glyphicon glyphicon-remove"></i></a></td>
+                </tr>
+        
+                {% endfor %}
+        
+        
+            </table> 
+</div>
+<p><a href="{% url 'creer_commande' %}" class="btn btn-success">Commander</a></p>
+<script>
+        $(function () {
+            $('.thumbnail').css('border', 'none')
+            $('.material-icons').css('font-size', '20px').css('color', 'black').css('display', ' flex')
+            $('.navbar-inverse').css('background-color', 'white').css('border-color', 'white')
+            $('.navbar-nav').css('margin-left', '382px')
+            $('h3:eq(2)').css('font-weight', 'lighter')
+        })
+        window.onscroll = function () { myFunction() };
 
-        </tr>
+        var header = document.getElementById("myHeader");
+        var sticky = header.offsetTop;
 
-
-        {% for item in panier %}
-
-        <tr>
-            <td>{{item.produit.titre}}</td>
-            <td>{{item.produit.description}}</td>
-            <td>{{item.produit.categorie.nom}}</td>
-            <td>{{item.stock}}</td>
-            <td>{{item.total_prix}} Fcfa </td>
-            <td><a href="{% url 'sup_panier' id=item.produit.id %}">supprimer</a></td>
-        </tr>
-
-        {% endfor %}
-
-
-    </table>
-</div> 
-<p><a href="{% url 'creer_commande' %}" class="btn btn-success">Acheter</a></p>
+        function myFunction() {
+            if (window.pageYOffset >= sticky) {
+                header.classList.add("sticky");
+            } else {
+                header.classList.remove("sticky");
+            }
+        }
+    </script> 
 {% endblock body %}

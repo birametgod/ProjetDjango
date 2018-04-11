@@ -60,6 +60,7 @@ def comm_prod(request,id):
     return render(request,'pharmacie/comm.html',context)
 
 def creer_commande(request):
+    patient = Patient.objects.get(user_id=request.user.id)
     panier = Panier(request)
     if request.method == 'POST':
         form = CommandeForm(request.POST)
@@ -71,7 +72,7 @@ def creer_commande(request):
             return render(request,'payementLigne/cree.html',{'commande':commande})
     else:
         form = CommandeForm()
-    return render(request,'payementLigne/commande.html',{'panier':panier,'form':form})
+    return render(request,'payementLigne/commande.html',{'panier':panier,'form':form,'patient':patient,})
 
 
 def detail(request,id):
