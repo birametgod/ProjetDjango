@@ -9,6 +9,7 @@ from django.db import transaction
 
 
 
+
 class EnvoiCommandeForm(forms.ModelForm):
 	class Meta:
 		model = NotificationsLivreur
@@ -39,6 +40,7 @@ class CreationFiche(forms.ModelForm):
 class CommandeForm(forms.ModelForm):
     	
 		
+		
 		class Meta:
 			"""
 			il est possible de préciser quelques informations supplémentaires à Django via la classe Meta. 
@@ -46,7 +48,7 @@ class CommandeForm(forms.ModelForm):
 
 			"""
 			model = Commandes_Effectuees
-			fields = ('nomPatient','prenomPatient','email','adresse','telephonePatient','ordonnance','patient','lu',)
+			fields = ('nomPatient','prenomPatient','email','adresse','telephonePatient','ordonnance','patient','lu','payer',)
 			widgets = {
 				'nomPatient' : forms.TextInput(attrs={'class':'form-control','placeholder':'nom'}),
 				'email' : forms.TextInput(attrs={'class':'form-control','placeholder':'Email',}),

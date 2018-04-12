@@ -1,0 +1,67 @@
+{% extends "pharmacie/pageEcom.html" %}
+    
+{% block body %}
+<br> <br><br>
+
+        <div class="card card-body">
+            <div class="jumbotron">
+                <div class="row">
+                
+                        
+
+                    <div class="col-sm-6 col-md-4">
+                        <div class="thumbnail">
+                            <img src="{{medoc.photo.url}}" alt="... ">
+                            <div class="caption ">
+  
+   {% for me in medoc  %}
+   {{me}}
+   {% endfor %}
+                                   
+                        
+
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-sm-6 col-md-4">
+                            
+                                <div class="caption ">
+                                    <h1>{{medoc.titre}} </h1>
+                                    <h2>{{medoc.prix}} Fcfa </h2>
+                                    <h3>{{medoc.description}} </h3>
+                                    <h4>Stock : {{medoc.stock}} </h4>
+                                    
+                                    
+                                </div>
+                            </div>
+                        </div>
+
+                    
+                </div>
+        
+
+
+        </div>
+    </div>
+    <script>
+            $(function () {
+                $('.thumbnail').css('border', 'none')
+                $('.material-icons').css('font-size', '20px').css('color', 'black').css('display', ' flex')
+                $('.navbar-inverse').css('background-color', 'white').css('border-color', 'white')
+                $('.navbar-nav').css('margin-left','382px') 
+            })
+            window.onscroll = function() {myFunction()};
+    
+            var header = document.getElementById("myHeader");
+            var sticky = header.offsetTop;
+    
+            function myFunction() {
+            if (window.pageYOffset >= sticky) {
+                header.classList.add("sticky");
+            } else {
+                header.classList.remove("sticky");
+            }
+            }
+        </script> 
+{% endblock body %}
+    

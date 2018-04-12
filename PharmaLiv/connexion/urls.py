@@ -42,7 +42,7 @@ urlpatterns = [
         path('cree/', pharmacie_views.compte),
         path('produi/<int:id>', pharmacie_views.comm_prod,name="comm_produit"),
         path('livreur/<int:id>', pharmacie_views.livre_produit,name="indilma_produit"), 
-
+        path('search/', pharmacie_views.search),
     ])),
 
     #connexion et deconnexion medecin
@@ -50,7 +50,7 @@ urlpatterns = [
         path('', medecin_views.home),
         path('inscription/', medecin_views.connexionView.as_view()),
         path('thanks/', medecin_views.reponse.as_view(),name="afficher_reponse"),
-        path('logout/', auth_views.logout,{'template_name':'medecin/home.html',},name='medecin_deconn'),#.logout nous gere la deconnexion , meme pas besoin d'ecrire une methode dans views.py,il nous redirige directement dans le template_name
+        path('logout/', auth_views.logout,{'template_name':'connexion/home.html',},name='medecin_deconn'),#.logout nous gere la deconnexion , meme pas besoin d'ecrire une methode dans views.py,il nous redirige directement dans le template_name
         path('login/', auth_views.login,{'template_name':'medecin/login.html'}), #meme chose pour .login ,patient/login.html est la page pour se connecter , django nous gere la verification et nous redirige vers l'url indiqué dans input type hidden de la page html
     ])),
 
@@ -67,6 +67,7 @@ urlpatterns = [
 
     path('userAdmin/', include([
         path('', userAdmin_views.home),
+        path('zone/', userAdmin_views.regionForm, {'template_name':'userAdmin/reponse.html'}),
         path('thanks/', userAdmin_views.reponse),
         path('logout/', auth_views.logout,{'template_name':'userAdmin/home.html',},name='userAdmin_deconn'),#.logout nous gere la deconnexion , meme pas besoin d'ecrire une methode dans views.py,il nous redirige directement dans le template_name
         path('login/', auth_views.login,{'template_name':'userAdmin/login.html'}), #meme chose pour .login ,patient/login.html est la page pour se connecter , django nous gere la verification et nous redirige vers l'url indiqué dans input type hidden de la page html

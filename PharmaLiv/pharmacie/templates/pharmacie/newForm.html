@@ -35,10 +35,11 @@
 	<link href="{% static 'css/demo.css' %}" rel="stylesheet" />
 </head>
 <style>
-		input#id_profil {
-			color: blue !important;
-		}
+	input#id_profil {
+		color: blue !important;
+	}
 </style>
+
 <body>
 
 	<div class="image-container set-full-height" style="background-color: black">
@@ -173,7 +174,7 @@
 												<div class="col-sm-4 col-sm-offset-1">
 													<div class="picture-container">
 														<div class="picture">
-															
+
 															{{form.profil}}
 														</div>
 														<h6>Photo Profil</h6>
@@ -196,8 +197,8 @@
 
 														</span>
 														<div class="form-group">
-															
-															
+
+
 														</div>
 													</div>
 												</div>
@@ -220,7 +221,7 @@
 										<div class="tab-pane" id="address">
 											<div class="row">
 												<div class="col-sm-12">
-													<h4 class="info-text">  </h4>
+													<h4 class="info-text"> </h4>
 												</div>
 												<div class="col-sm-7 col-sm-offset-1">
 													<div class="form-group label-floating">
@@ -249,33 +250,33 @@
 											<div class="row">
 												<div class="col-sm-10 col-sm-offset-1">
 													<div class="col-sm-10 col-sm-offset-1">
-													
-																<div class="col-sm-10 col-sm-offset-1">
-																		<div class="input-group">
-																			<span class="input-group-addon">
-																				<i class="material-icons"></i>
-																			</span>
-																			<div class="form-group label-floating">
-																				<label class="control-label">Password
-																					<small></small>
-																				</label>
-																				{{form.password1}}
-																			</div>
-																		</div>
-																	</div>
-																	<div class="col-sm-10 col-sm-offset-1">
-																			<div class="input-group">
-																				<span class="input-group-addon">
-																					<i class="material-icons"></i>
-																				</span>
-																				<div class="form-group label-floating">
-																					<label class="control-label">Password Confirmation
-																						<small></small>
-																					</label>
-																					{{form.password2}}
-																				</div>
-																			</div>
-																		</div>
+
+														<div class="col-sm-10 col-sm-offset-1">
+															<div class="input-group">
+																<span class="input-group-addon">
+																	<i class="material-icons"></i>
+																</span>
+																<div class="form-group label-floating">
+																	<label class="control-label">Password
+																		<small></small>
+																	</label>
+																	{{form.password1}}
+																</div>
+															</div>
+														</div>
+														<div class="col-sm-10 col-sm-offset-1">
+															<div class="input-group">
+																<span class="input-group-addon">
+																	<i class="material-icons"></i>
+																</span>
+																<div class="form-group label-floating">
+																	<label class="control-label">Password Confirmation
+																		<small></small>
+																	</label>
+																	{{form.password2}}
+																</div>
+															</div>
+														</div>
 														<div class="form-group has-errors text-danger small">
 															{{form.errors}}
 														</div>
@@ -283,7 +284,7 @@
 
 												</div>
 											</div>
-											
+
 										</div>
 									</div>
 									<div class="wizard-footer">

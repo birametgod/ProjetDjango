@@ -86,6 +86,13 @@ def detail(request,id):
     }
     return render(request, 'pharmacie/medicament.html', context)
 
+def search(request):
+    query = request.GET.get('query','')
+    context={
+        'medoc':Fiche_Produit.search(query)
+    }
+    return render(request,'pharmacie/resultat.html',context)
+
 def partenaire(request,id):
     context = { 
         

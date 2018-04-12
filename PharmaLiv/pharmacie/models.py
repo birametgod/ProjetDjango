@@ -4,6 +4,11 @@ from PharmaLiv import settings
 from patient.models import Patient
 # Create your models here.
 
+paiement= (
+		('Wari', 'Wari'),
+		('Orange Money', 'Orange Money'),
+		('Carte de credit', 'Carte de credit'),
+		)
 
 class Pharmacie(models.Model):
     user = models.ForeignKey(settings.AUTH_USER_MODEL,
@@ -79,6 +84,7 @@ class Fiche_Produit(models.Model):
             unique_slug = '{}-{}'.format(slug, num)
             num += 1
         return unique_slug
+    
 
     def save(self, *args, **kwargs):
         if not self.slug:
@@ -86,19 +92,19 @@ class Fiche_Produit(models.Model):
         super().save()
 
     @classmethod
-    def produits(cls):
-        return cls.objects.filter('titre').order_by('prix')
+    def publiees(cls):
+        return cls.objects.all().order_by('prix')
 
     @classmethod
-    def liste_produits(cls, types):
-        return cls.publiees().filter(types=types)
+    def liste_publiees(cls,request):
+        return cls.publiees().filter(nom_id=request.user.id)
 
     @classmethod
     def search(klass, query):
         if query == '':
             return []
         else:
-            return klass.publiees().filter(titre__contains=query)
+            return klass.liste_publiees().filter(titre__contains=query)
 
 
 class Commandes_Effectuees(models.Model):
@@ -114,7 +120,7 @@ class Commandes_Effectuees(models.Model):
     slug = models.SlugField()
     ordonnance = models.ImageField(default='default.jpg', blank=True)
     email = models.EmailField(max_length=100, null=False)
-    payer = models.BooleanField(default=False)
+    payer = models.CharField(max_length=100, choices = paiement)
     patient = models.ForeignKey(Patient, on_delete=models.CASCADE)
     lu = models.BooleanField(default=False)
 
