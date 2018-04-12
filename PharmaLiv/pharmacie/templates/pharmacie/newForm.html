@@ -11,7 +11,7 @@
 	<script src="{% static 'bootstrap-3.3.7-dist/js/bootstrap.min.js' %}"></script>
 
 
-	<title>Pharmacie | Inscription</title>
+	<title>Patient | Inscription</title>
 
 	<title>Inscription</title>
 
@@ -34,7 +34,11 @@
 	<!-- CSS Just for demo purpose, don't include it in your project -->
 	<link href="{% static 'css/demo.css' %}" rel="stylesheet" />
 </head>
-
+<style>
+		input#id_profil {
+			color: blue !important;
+		}
+</style>
 <body>
 
 	<div class="image-container set-full-height" style="background-color: black">
@@ -138,7 +142,7 @@
 						<!--      Wizard container        -->
 						<div class="wizard-container">
 							<div class="card wizard-card" data-color="green" id="wizardProfile">
-								<form action=""    method="POST">
+								<form action="" enctype="multipart/form-data" method="POST">
 									{% csrf_token %}
 									<!--        You can switch " data-color="purple" "  with one of the next bright colors: "green", "orange", "red", "blue"       -->
 
@@ -146,7 +150,7 @@
 										<h3 class="wizard-title">
 											Inscrivez-vous
 										</h3>
-										<h5>Pharmacie</h5>
+										<h5>Patient</h5>
 									</div>
 									<div class="wizard-navigation">
 										<ul>
@@ -175,7 +179,27 @@
 														<h6>Photo Profil</h6>
 													</div>
 												</div>
-												
+												<div class="col-sm-6">
+													<div class="input-group">
+														<span class="input-group-addon">
+															<i class="material-icons">face</i>
+														</span>
+														<div class="form-group label-floating">
+															<label class="control-label">Nom
+																<small></small>
+															</label>
+															{{form.username}}
+														</div>
+													</div>
+													<div class="input-group">
+														<span class="input-group-addon">
+
+														</span>
+														<div class="form-group">
+															
+															
+														</div>
+													</div>
 												</div>
 												<div class="col-sm-10 col-sm-offset-1">
 													<div class="input-group">
@@ -207,14 +231,14 @@
 
 												<div class="col-sm-5 col-sm-offset-1">
 													<div class="form-group label-floating">
-														<label class="control-label">Horaire</label>
-														{{form.horaire}}
+														<label class="control-label">Telephone</label>
+														{{form.telephone}}
 													</div>
 												</div>
 												<div class="col-sm-5">
 													<div class="form-group label-floating">
-														<label class="control-label">Telephone</label>
-														{{form.telephone}}
+														<label class="control-label">Horaire</label>
+														{{form.horaire}}
 													</div>
 												</div>
 											</div>
@@ -225,19 +249,7 @@
 											<div class="row">
 												<div class="col-sm-10 col-sm-offset-1">
 													<div class="col-sm-10 col-sm-offset-1">
-															<div class="col-sm-10 col-sm-offset-1">
-																	<div class="input-group">
-																		<span class="input-group-addon">
-																			<i class="material-icons"></i>
-																		</span>
-																		<div class="form-group label-floating">
-																			<label class="control-label">Nom
-																				<small></small>
-																			</label>
-																			{{form.username}}
-																		</div>
-																	</div>
-																</div>
+													
 																<div class="col-sm-10 col-sm-offset-1">
 																		<div class="input-group">
 																			<span class="input-group-addon">

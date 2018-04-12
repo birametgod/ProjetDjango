@@ -9,6 +9,9 @@
 	<link rel="stylesheet" href="{% static 'bootstrap-3.3.7-dist/css/bootstrap.min.css' %}">
 	<script src="{% static 'bootstrap-3.3.7-dist/js/jquery.min.js' %}"></script>
 	<script src="{% static 'bootstrap-3.3.7-dist/js/bootstrap.min.js' %}"></script>
+	<link rel="stylesheet" href="http://code.jquery.com/ui/1.11.0/themes/smoothness/jquery-ui.css"> 
+<script src="http://code.jquery.com/jquery-1.9.1.js"></script>
+<script src="http://code.jquery.com/ui/1.11.0/jquery-ui.js"></script>
 
 
 	<title>Livreur | Inscription</title>
@@ -252,14 +255,14 @@
 
 												<div class="col-sm-5 col-sm-offset-1">
 													<div class="form-group label-floating">
-														<label class="control-label">Allergie</label>
-														{{form.allergie}}
+														<label class="control-label">Zone</label>
+														{{form.zoneDeLivraison}}
 													</div>
 												</div>
 												<div class="col-sm-5">
 													<div class="form-group label-floating">
-														<label class="control-label">Traitement</label>
-														{{form.traitement}}
+														<label class="control-label">Telephone</label>
+														{{form.telephone}}
 													</div>
 												</div>
 											</div>
@@ -365,7 +368,21 @@
 		$('#menu').css('background', 'green')
 		$('#menu').css('height', '75')
 		$('.navbar').css('background-color', 'unset').css('height', '60px')
+
+		
 	})
+
+	$(document).ready(
+      function() {
+          $('.datepicker').datepicker(
+              {
+                  onClose: function(dateText, inst) {
+                          alert("My date is: " + dateText);
+                      }
+              }
+          );
+      }
+  );
 </script>
 
 </html>

@@ -5,6 +5,9 @@ from connexion.models import User
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.admin.widgets import AdminDateWidget
 from django.db import transaction
+from functools import partial
+
+DateInput = partial(forms.DateInput, {'class': 'datepicker'})
 
 class signUp(UserCreationForm):
 	sexes = (
@@ -17,7 +20,7 @@ class signUp(UserCreationForm):
 	)
 
 	sexe = forms.ChoiceField(choices=sexes)
-	dateNaissance =forms.DateField(input_formats=settings.DATE_INPUT_FORMATS)
+	dateNaissance =forms.DateField( widget=DateInput())
 	telephone = forms.IntegerField()
 	adresse = forms.CharField(widget=forms.TextInput(
 		attrs={
@@ -34,11 +37,12 @@ class signUp(UserCreationForm):
 
 		"""
 		model = User
-		fields = ('username','first_name','last_name',)
+		fields = ('username','first_name','last_name','email',)
 		widgets = {
 			'username' : forms.TextInput(attrs={'class':'form-control','placeholder':'Login',}),
 			'first_name' : forms.TextInput(attrs={'class':'form-control','placeholder':'Prénom',}),
 			'last_name' : forms.TextInput(attrs={'class':'form-control','placeholder':'Nom',}),
+			'email' : forms.TextInput(attrs={'class':'form-control','placeholder':'Email',}),
 		}
 
 

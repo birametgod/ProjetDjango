@@ -8,6 +8,8 @@ from payementLigne.panier import Panier
 from payementLigne.forms import form_panier
 # Create your views here.
 
+def compte(request):
+    return render(request,'pharmacie/compte.html')
 
 class reponse(FormView):
     template_name="pharmacie/reponse.html"
@@ -15,7 +17,7 @@ class reponse(FormView):
     success_url ='/pharmacie/thanks/'
 
     def get_context_data(self, **kwargs):
-        
+        Pharmacie.objects.filter(user_id=self.request.user.id).update(id=self.request.user.id)
         context = super(reponse, self).get_context_data(**kwargs)
         context = {
             'pharmacie': Pharmacie.objects.get(id=self.request.user.id),
@@ -99,9 +101,9 @@ def nonpartenaire(request):
     return render(request, 'pharmacie/nonpartenaire.html', context)
 
 class connexionView(FormView):
-    template_name="pharmacie/formulaire.html"
+    template_name="pharmacie/newForm.html"
     form_class = signUp
-    success_url ='/pharmacie/thanks/'
+    success_url ='/pharmacie/cree/'
 
     def form_valid(self,form):
         """This method is called when valid form data has been POSTed.
