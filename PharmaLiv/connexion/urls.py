@@ -66,6 +66,7 @@ urlpatterns = [
 
     path('userAdmin/', include([
         path('', userAdmin_views.home),
+        path('zone/', userAdmin_views.regionForm, {'template_name':'userAdmin/reponse.html'}),
         path('thanks/', userAdmin_views.reponse),
         path('logout/', auth_views.logout,{'template_name':'userAdmin/home.html',},name='userAdmin_deconn'),#.logout nous gere la deconnexion , meme pas besoin d'ecrire une methode dans views.py,il nous redirige directement dans le template_name
         path('login/', auth_views.login,{'template_name':'userAdmin/login.html'}), #meme chose pour .login ,patient/login.html est la page pour se connecter , django nous gere la verification et nous redirige vers l'url indiqué dans input type hidden de la page html

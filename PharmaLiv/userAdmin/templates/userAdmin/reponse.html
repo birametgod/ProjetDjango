@@ -14,7 +14,9 @@
                 <span class="fa fa-user"></span> Patients
             </a>
             <div id="patient" class="collapse" style="margin-left: 40px">
-                  <h5 data-target="#carousel-example-generic" data-slide-to="1"><a href="#">Liste</a></h5>
+                  <h5 data-target="#carousel-example-generic" data-slide-to="1">
+                    <a href="#"><span class="fa fa-file-text"></span> Liste</a>
+                  </h5>
                   <h5 data-target="#carousel-example-generic" data-slide-to="2">
                     <a href="#"><span class="fa fa-area-chart"></span> Statistiques</a>
                   </h5>
@@ -25,7 +27,9 @@
                 <span class="fa fa-medkit"></span> Pharmacies
             </a>
             <div id="phar" class="collapse" style="margin-left: 40px">
-                  <h5 data-target="#carousel-example-generic" data-slide-to="3"><a href="#">Liste</a></h5>
+                  <h5 data-target="#carousel-example-generic" data-slide-to="3">
+                    <a href="#"><span class="fa fa-file-text"></span> Liste</a>
+                  </h5>
                   <h5 data-target="#carousel-example-generic" data-slide-to="4">
                     <a href="#"><span class="fa fa-area-chart"></span> Statistiques</a>
                   </h5>
@@ -36,7 +40,9 @@
                 <span class="fa fa-user-md"></span> Medecins
             </a>
             <div id="med" class="collapse" style="margin-left: 40px">
-                  <h5 data-target="#carousel-example-generic" data-slide-to="5"><a href="#">Liste</a></h5>
+                  <h5 data-target="#carousel-example-generic" data-slide-to="5">
+                    <a href="#"><span class="fa fa-file-text"></span> Liste</a>
+                  </h5>
                   <h5 data-target="#carousel-example-generic" data-slide-to="6">
                     <a href="#"><span class="fa fa-area-chart"></span> Statistiques</a>
                   </h5>
@@ -47,11 +53,18 @@
                 <span class="fa fa-ambulance"></span> Livreurs
             </a>
             <div id="liv" class="collapse" style="margin-left: 40px">
-                  <h5 data-target="#carousel-example-generic" data-slide-to=""><a href="#">Liste</a></h5>
-                  <h5 data-target="#carousel-example-generic" data-slide-to="">
+                  <h5 data-target="#carousel-example-generic" data-slide-to="7">
+                    <a href="#"><span class="fa fa-file-text"></span> Liste</a>
+                  </h5>
+                  <h5 data-target="#carousel-example-generic" data-slide-to="8">
                     <a href="#"><span class="fa fa-area-chart"></span> Statistiques</a>
                   </h5>
             </div>
+        </li>
+        <li data-target="#carousel-example-generic" data-slide-to="9">
+            <a href="#">
+                <span class="fa fa-ambulance"></span> Zone de livraison
+            </a>
         </li>
     </ul>
 </div>
@@ -66,48 +79,230 @@
               <div class="carousel-inner">
                 <div class="item active">
                     <div style="margin-top: 60px; margin-left: 70px;">
+                        jqjck:ub jsqb bsjq
+                    </div>
+                </div>
+
+                <div class="item">
+                    <div style="margin-top: 50px; margin-left: 70px;">
+                        <div class="container" style="width: 100%">
+                          <h2>Liste patients
+                          <span style="float: right;">
+                            <button class="btn btn-success">{{nbrpatient}} Patients</button>
+                          </span>
+                          </h2>
+                          <hr>
+                          <div class="row">
+                          {% for patient in patient %}
+                            <div class="col-md-4 col-sm-4">
+                                <div class="card" style="width: 18rem;">
+                                  <a href="{% static '/img/default-avatar.png' %}">
+                                    <img class="card-img-top" alt="Card image cap" style="margin-left: 50px" src="{% static '/img/default-avatar.png' %}" />
+                                  </a> 
+                                  <div class="card-body">
+                                    <h4 class="card-title" style="text-align: center; margin-left: 120px">{{patient.user.first_name}} {{patient.user.last_name}}</h4>
+                                    <p class="card-text">
+                                    <table class="table table-hover">
+                                      <thead>
+                                        <tr>
+                                          <th>Date de naissance</th>
+                                          <th>Sexe</th>
+                                          <th>Adresse</th>
+                                          <th>Login</th>
+                                        </tr>
+                                      </thead>
+                                      <tbody>
+                                         <tr>
+                                        <td>{{patient.dateNaissance}}</td>
+                                        <td>{{patient.sexe}}</td>
+                                        <td>{{patient.adresse}}</td>
+                                        <td>{{patient.user.username}}</td>
+                                      </tr>
+                                      </tbody>
+                                    </table>
+                                    </p>
+                                  </div>
+                                </div>
+                            </div>
+                            {% empty %}
+                            <div class="alert alert-danger" role="alert">
+                              <h2>Aucun Patient</h2>
+                            </div>
+                            {% endfor %}
+                          </div>
+                        </div>
+                    </div>
+                </div>
+
+
+                <div class="item">
+                    <div style="margin-top: 60px; margin-left: 70px;">
+                      <div class="row">
+                        <div class="col-md-6 col-sm-4">
+                          <div id="chartContainer1" style="height: 470px; width: 50%;"></div>
+                        </div>
                         
+                        <div class="col-md-6 col-sm-4">
+                          <div id="chartContainer2" style="height: 470px; width: 50%;"></div>
+                        </div>
+                      </div>
+                    </div>
+                </div>
+                
+
+                <div class="item">
+                    <div style="margin-top: 50px; margin-left: 70px">
+                        <div class="container" style="width: 100%">
+                          <h2>Liste pharmacies
+                          <span style="float: right;">
+                            <button class="btn btn-success">{{nbrpharmacie}} Pharmacies</button>
+                          </span>
+                          </h2>
+                          <hr>
+                        <div class="row">
+                          {% for pharmacie in pharmacie %}
+                            <div class="col-md-4 col-sm-4">
+                                <div class="card" style="width: 18rem;">
+                                  <a href="{% static '/img/default-avatar.png' %}">
+                                    <img class="card-img-top" alt="Card image cap" style="margin-left: 50px" src="{% static '/img/default-avatar.png' %}" />
+                                  </a> 
+                                  <div class="card-body">
+                                    <h4 class="card-title" style="text-align: center; margin-left: 120px">             {{pharmacie.user.first_name}} {{pharmacie.user.last_name}}
+                                    </h4>
+                                    <p class="card-text">
+                                    <table class="table table-hover" style="margin-left: 70px">
+                                      <thead>
+                                        <tr>
+                                          <th>Adresse</th>
+                                          <th>Login</th>
+                                        </tr>
+                                      </thead>
+                                      <tbody>
+                                         <tr>
+                                        <td>{{pharmacie.adresse}}</td>
+                                        <td>{{pharmacie.user.username}}</td>
+                                      </tr>
+                                      </tbody>
+                                    </table>
+                                    </p>
+                                  </div>
+                                </div>
+                            </div>
+                            {% empty %}
+                            <div class="alert alert-danger" role="alert">
+                              <h2>Aucune Pharmacie</h2>
+                            </div>
+                            {% endfor %}
+                          </div>
+                        </div>
                     </div>
                 </div>
 
                 <div class="item">
                     <div style="margin-top: 60px; margin-left: 70px;">
-                        <div class="container">
-                          <h2>Liste patients
+                          <div id="chartContainer3" style="height: 470px; width: 50%; margin-left: 250px"></div>
+                    </div>
+                </div>
+
+                <div class="item">
+                      <div style="margin-top: 50px; margin-left: 70px">
+                        <div class="container" style="width: 100%">
+                          <h2>Liste medecins
                           <span style="float: right;">
-                            <button class="btn bnt-success"> patients</button>
+                            <button class="btn btn-success">{{nbrmedecin}} Medecins</button>
                           </span>
                           </h2>
                           <hr>
-                          <table class="table table-hover">
-                          {% for patient in patient %}
+                          <table class="table table-hover ">
+                          
                             <thead>
-                              <tr>
+                              <tr class="success">
                                 <th>ID</th>
                                 <th>Nom</th>
                                 <th>Prénom</th>
-                                <th>Date de Naissance</th>
-                                <th>Sexe</th>
-                                <th>Adresse</th>
+                                <th>Date de naissance</th>
                                 <th>Téléphone</th>
+                                <th>Hopital</th>
+                                <th>Spécialité</th>
                                 <th>Login</th>
                               </tr>
                             </thead>
                             <tbody>
-                            
+                            {% for medecin in medecin %}
                               <tr>
-                                <td>{{patient.id}}</td>
-                                <td>{{patient.last_name}}</td>
-                                <td>{{patient.first_name}}</td>
-                                <td>{{patient.dateNaissance}}</td>
-                                <td>{{patient.sexe}}</td>
-                                <td>{{patient.adresse}}</td>
-                                <td>{{patient.telephone}}</td>
-                                <td>{{patient.username}}</td>
+                                <td>{{medecin.id}}</td>
+                                <td>{{medecin.user.last_name}}</td>
+                                <td>{{medecin.user.first_name}}</td>
+                                <td>{{medecin.dateNaissance}}</td>
+                                <td>{{medecin.telephone}}</td>
+                                <td>{{medecin.hopital}}</td>
+                                <td>{{medecin.specialite.nom}}</td>
+                                <td>{{medecin.user.username}}</td>
                               </tr>
                               {% empty %}
                               <div class="alert alert-danger">
-                                  <h2>Vide !</h2>
+                                  <h2>Aucun medecin !</h2>
+                              </div>
+                            {% endfor %}
+                            </tbody>
+                          </table>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="item">
+                    <div style="margin-top: 60px; margin-left: 70px;">
+                      <div class="row">
+                        <div class="col-md-4 col-sm-4">
+                          <div id="chartContainer4" style="height: 470px; width: 50%;"></div>
+                        </div>
+                        <div class="col-md-4 col-sm-4">
+                          <div id="chartContainer5" style="height: 470px; width: 50%; margin-left: 150px"></div>
+                        </div>
+                      </div>
+                    </div>
+                </div>
+
+                 <div class="item">
+                      <div style="margin-top: 50px; margin-left: 70px">
+                        <div class="container" style="width: 100%">
+                          <h2>Liste livreurs
+                          <span style="float: right;">
+                            <button class="btn btn-success">{{nbrlivreur}} Livreurs</button>
+                          </span>
+                          </h2>
+                          <hr>
+                          <table class="table table-hover ">
+                          
+                            <thead>
+                              <tr class="success">
+                                <th>ID</th>
+                                <th>Nom</th>
+                                <th>Prénom</th>
+                                <th>Sexe</th>
+                                <th>Date de naissance</th>
+                                <th>Téléphone</th>
+                                <th>Adresse</th>
+                                <th>Zone de livraison</th>
+                                <th>Login</th>
+                              </tr>
+                            </thead>
+                            <tbody>
+                            {% for livreur in livreur %}
+                              <tr>
+                                <td>{{livreur.id}}</td>
+                                <td>{{livreur.user.last_name}}</td>
+                                <td>{{livreur.user.first_name}}</td>
+                                <td>{{livreur.user.sexe}}</td>
+                                <td>{{livreur.dateNaissance}}</td>
+                                <td>{{livreur.telephone}}</td>
+                                <td>{{livreur.adresse}}</td>
+                                <td>{{livreur.zoneDeLivraison}}</td>
+                                <td>{{livreur.user.username}}</td>
+                              </tr>
+                              {% empty %}
+                              <div class="alert alert-danger">
+                                  <h2>Aucun livreur !</h2>
                               </div>
                             {% endfor %}
                             </tbody>
@@ -118,35 +313,57 @@
 
 
                 <div class="item">
-                    <div style="margin-top: 60px; margin-left: 100px;">
-                        <div id="chartContainer" style="height: 470px; width: 50%;"></div>
-                    </div>
+                    <div style="margin-top: 60px; margin-left: 70px;">
+                      <div class="row">
+                        <div class="col-md-4 col-sm-4">
+                          <div id="chartContainer6" style="height: 470px; width: 50%;"></div>
+                        </div>
+                        <div class="col-md-4 col-sm-4">
+                          <div id="chartContainer7" style="height: 470px; width: 50%; margin-left: 150px"></div>
+                        </div>
+                      </div>
                     </div>
                 </div>
+
 
                 <div class="item">
-                    <div style="margin-top: 60px; margin-left: 70px;">
-
+                    <div style="margin-top: 50px; margin-left: 55px;">
+                      <div class="container" style="width: 100%">
+                         <div class="jumbotron">
+                            <h1 class="display-2">Créer une zone de livraison</h1>
+                            <form method="POST" action="" style="margin-top:100px">
+                              {% csrf_token %}
+                              <div class="form-group row">
+                                <label for="inputEmail3" class="col-sm-2 col-form-label">Zone</label>
+                                <div class="col-sm-10">
+                                  <input type="text" class="form-control" name="zoneDeLivraison" placeholder="Zone de livraison" style="width: 750px">
+                                </div>
+                              </div>
+                              <div class="form-group row">
+                                <label for="inputPassword3" class="col-sm-2 col-form-label">Région</label>
+                                <div class="col-sm-10">
+                                  <select class="custom-select mr-sm-2" id="inlineFormCustomSelect" name="region" style="width: 750px">
+                                    <option selected>Dakar</option>
+                                    <option>Thies</option>
+                                    <option>Saint-Louis</option>
+                                    <option>Diourbel</option>
+                                    <option>Fatick</option>
+                                    <option>Kaolack</option>
+                                    <option>Louga</option>
+                                  </select>
+                                </div>
+                              </div>
+                              <div class="form-group row">
+                                <div class="col-sm-10">
+                                  <button type="submit" class="btn btn-primary">Créer</button>
+                                </div>
+                              </div>
+                            </form>
+                          </div>
+                      </div>
                     </div>
                 </div>
 
-                <div class="item">
-                    <div style="margin-top: 60px; margin-left: 70px;">
-
-                    </div>
-                </div>
-
-                <div class="item">
-                    <div style="margin-top: 60px; margin-left: 70px;">
-
-                    </div>
-                </div>
-
-                <div class="item">
-                    <div style="margin-top: 60px; margin-left: 70px;">
-
-                    </div>
-                </div>
 
             </div>
         </div>
@@ -156,40 +373,201 @@
 </div>
 <script src="https://canvasjs.com/assets/script/canvasjs.min.js"> </script>
 <script type="text/javascript">
-window.onload = function () {
+  window.onload = function () {
 
-var chart = new CanvasJS.Chart("chartContainer", {
-  theme: "dark2", // "light2", "dark1", "dark2"
+var chart1 = new CanvasJS.Chart("chartContainer1", {
+  theme: "light1", // "light2", "dark1", "dark2"
   animationEnabled: true, // change to true   
   title:{
-    text: "Nombre de patients inscrits / mois "
+    text: "Nombre de patients inscrits / mois (année 2018)"
+  },
+  data: [
+  {
+    // Change type to "bar", "area", "spline", "pie",etc.
+    type: "pie",
+    dataPoints: [
+      { label: "Janvier",  y: {{nbrpatientJanv}}  },
+      { label: "Fevrier", y: {{nbrpatientFev}}  },
+      { label: "Mars", y: {{nbrpatientMars}}  },
+      { label: "Avril",  y: {{nbrpatientAvril}}  },
+      { label: "Mai",  y: {{nbrpatientJuin}}  },
+      {label: "Juin", y : {{nbrpatientJuil}}},
+      {label: "Aout", y : {{nbrpatientAout}}},
+      {label: "Septembre", y : {{nbrpatientSept}} },
+      {label: "Octobre", y : {{nbrpatientOct}} },
+      {label: "Novembre", y : {{nbrpatientNov}} },
+      {label: "Décembre", y : {{nbrpatientDec}} },
+    ],
+  }
+  ]
+});
+chart1.render();
+
+
+var chart2 = new CanvasJS.Chart("chartContainer2", {
+  theme: "light1", // "light2", "dark1", "dark2"
+  animationEnabled: true, // change to true   
+  title:{
+    text: "Nombre de patients / sexe et Total"
   },
   data: [
   {
     // Change type to "bar", "area", "spline", "pie",etc.
     type: "column",
     dataPoints: [
-      { label: "Janvier",  y: 0  },
-      { label: "Fevrier", y: 0  },
-      { label: "Mars", y: 12  },
-      { label: "Avril",  y: 20  },
-      { label: "Mai",  y: 0  },
-      {label: "Juin", y : 0},
-      {label: "Aout", y : 0},
-      {label: "Septembre", y : 0},
-      {label: "Octobre", y : 0},
-      {label: "Novembre", y : 0},
-      {label: "Décembre", y : 0},
+      { label: "Homme",  y: {{nbrpatientHomme}}  },
+      { label: "Femme", y: {{nbrpatientFemme}}  },
+      { label: "Total", y: {{nbrpatientTotal}}  },
+    ]
+  }
+  ]
+});
+chart2.render();
+
+
+var chart3 = new CanvasJS.Chart("chartContainer3", {
+  theme: "light1", // "light2", "dark1", "dark2"
+  animationEnabled: true, // change to true   
+  title:{
+    text: "Nombre de pharmacies inscrits / mois (année 2018)"
+  },
+  data: [
+  {
+    // Change type to "bar", "area", "spline", "pie",etc.
+    type: "pie",
+    dataPoints: [
+      { label: "Janvier",  y: {{nbrpharmaJanv}}  },
+      { label: "Fevrier", y: {{nbrpharmaFev}}  },
+      { label: "Mars", y: {{nbrpharmaMars}}  },
+      { label: "Avril",  y: {{nbrpharmaAvril}}  },
+      { label: "Mai",  y: {{nbrpharmaJuin}}  },
+      {label: "Juin", y : {{nbrpharmaJuil}}},
+      {label: "Aout", y : {{nbrpharmaAout}}},
+      {label: "Septembre", y : {{nbrpharmaSept}} },
+      {label: "Octobre", y : {{nbrpharmaOct}} },
+      {label: "Novembre", y : {{nbrpharmaNov}} },
+      {label: "Décembre", y : {{nbrpharmaDec}} },
 
 
     ]
   }
   ]
 });
-chart.render();
+chart3.render();
+
+
+var chart4 = new CanvasJS.Chart("chartContainer4", {
+  theme: "light1", // "light2", "dark1", "dark2"
+  animationEnabled: true, // change to true   
+  title:{
+    text: "Nombre de medecins inscrits / mois (année 2018)"
+  },
+  data: [
+  {
+    // Change type to "bar", "area", "spline", "pie",etc.
+    type: "pie",
+    dataPoints: [
+      { label: "Janvier",  y: {{nbrmedJanv}}  },
+      { label: "Fevrier", y: {{nbrmedFev}}  },
+      { label: "Mars", y: {{nbrmedMars}}  },
+      { label: "Avril",  y: {{nbrmedAvril}}  },
+      { label: "Mai",  y: {{nbrmedJuin}}  },
+      {label: "Juin", y : {{nbrmedJuil}}},
+      {label: "Aout", y : {{nbrmedAout}}},
+      {label: "Septembre", y : {{nbrmedSept}} },
+      {label: "Octobre", y : {{nbrmedOct}} },
+      {label: "Novembre", y : {{nbrmedNov}} },
+      {label: "Décembre", y : {{nbrmedDec}} },
+
+
+    ]
+  }
+  ]
+});
+chart4.render();
+
+
+var chart5 = new CanvasJS.Chart("chartContainer5", {
+  theme: "light1", // "light2", "dark1", "dark2"
+  animationEnabled: true, // change to true   
+  title:{
+    text: "Nombre de medecins / Spécialité"
+  },
+  data: [
+  {
+    // Change type to "bar", "area", "spline", "pie",etc.
+    type: "area",
+    dataPoints: [
+      { label: "Dermato",  y: {{nbrmedDer}}  },
+      { label: "Ophtalmo", y: {{nbrmedOph}}  },
+      { label: "Gynéco",  y: {{nbrmedGyn}}  },
+      {label: "Dentiste", y : {{nbrmedDent}} },
+      {label: "Pédiatre", y : {{nbrmedPed}} },
+      {label: "Chirurgien", y : {{nbrmedChir}} },
+      {label: "Psychologue", y : {{nbrmedPsy}} },
+    ]
+  }
+  ]
+});
+chart5.render();
+
+
+var chart6 = new CanvasJS.Chart("chartContainer6", {
+  theme: "light2", // "light2", "dark1", "dark2"
+  animationEnabled: true, // change to true   
+  title:{
+    text: "Nombre de livreurs inscrits / mois (année 2018)"
+  },
+  data: [
+  {
+    // Change type to "bar", "area", "spline", "pie",etc.
+    type: "pie",
+    dataPoints: [
+      { label: "Janvier",  y: {{nbrpatJanv}}  },
+      { label: "Fevrier", y: {{nbrpatFev}}  },
+      { label: "Mars", y: {{nbrpatMars}}  },
+      { label: "Avril",  y: {{nbrpatAvril}}  },
+      { label: "Mai",  y: {{nbrpatJuin}}  },
+      {label: "Juin", y : {{nbrpatJuil}}},
+      {label: "Aout", y : {{nbrpatAout}}},
+      {label: "Septembre", y : {{nbrpatSept}} },
+      {label: "Octobre", y : {{nbrpatOct}} },
+      {label: "Novembre", y : {{nbrpatNov}} },
+      {label: "Décembre", y : {{nbrpatDec}} },
+
+
+    ]
+  }
+  ]
+});
+chart6.render();
+
+
+var chart7 = new CanvasJS.Chart("chartContainer7", {
+  theme: "light2", // "light2", "dark1", "dark2"
+  animationEnabled: true, // change to true   
+  title:{
+    text: "Nombre de livreurs inscrits / mois (année 2018)"
+  },
+  data: [
+  {
+    // Change type to "bar", "area", "spline", "pie",etc.
+    type: "area",
+    dataPoints: [
+      { label: "Dakar : Grand-Dakar, PT-E, Fann",  y: {{nbrlivzone1}}  },
+      { label: "Thies : Sud-Std, Mbour1, GS", y: {{nbrlivzone2}}  },
+      { label: "Dakar : Colobane, HLM, Castor", y: {{nbrlivzone3}}  },
+      { label: "Thies : GT, Cité-Lamy",  y: {{nbrlivzone4}}  },
+      { label: "Dakar : Mariste, Marinas, Cité ISRA",  y: {{nbrlivzone5}}  },
+    ]
+  }
+  ]
+});
+chart7.render();
 
 }
-</script>             
+</script>
+
 <style>
         .sidebar {
             position: fixed;
@@ -204,6 +582,7 @@ chart.render();
             background-color: #f5f5f5;
             border-right: 1px solid #eee;
         }
+
 </style>
 {% endblock body %}
     

@@ -1,80 +1,113 @@
 {% extends 'layout.html' %}
 {% load static from staticfiles %}
 {% block body %}
-<div class="col-sm-3 col-md-2 sidebar">
-    <ul class="nav nav-sidebar" style="margin-top: 30px">
-        <li data-target="#carousel-example-generic" data-slide-to="0" class="active">
-            <a href="#section1">
-                <i class="fa fa-building"></i> PharmaLiv
-                <span class="sr-only">(current)</span>
-            </a>
-        </li>
-        <li data-target="#carousel-example-generic" data-slide-to="1">
-            <a href="#">
-              <i class="fa fa-user"></i> Patients 
-              <span class="badge badge-info" style="color: white; font-size: 17px">{{nombreDeNotifications}}</span>
-            </a>
-        </li>
-        <li data-target="#carousel-example-generic" data-slide-to="2">
-            <a href="#"><i class="fa fa-medkit"></i> Pharmacies
-              <span class="badge badge-info" style="color: white; font-size: 17px">{{nblivraison}}</span>
-            </a>
-        </li>
-        <li data-target="#carousel-example-generic" data-slide-to="3">
-            <a href="#"><i class="fa fa-user-md"></i> Medecins </a>
-        </li>
-        <li data-target="#carousel-example-generic" data-slide-to="4">
-            <a href="#"><i class="fa fa-ambulance"></i> Livreurs</a>
-        </li>
-    </ul>
-</div>
-
-<div id="section1" class="container-fluid">
-       <div class="container principal" style="margin-left: 40px">
-         <section class="section-white">
-          <div class="container">
-
-            <div id="carousel-example-generic" class="carousel slide">
-              <!-- Wrapper for slides -->
-              <div class="carousel-inner">
-                <div class="item active">
-                    
-                </div>
-
-                <div class="item">
-                    <div style="margin-top: 60px; margin-left: 70px;">
-                        
-                    </div>
-                </div>
-
-                <div class="item">
-                    <div style="margin-top: 60px; margin-left: 70px;">
-
-                    </div>
-                </div>
-
-            </div>
-        </div>
-    </div>
-    </section>
-    </div>
-</div>
-
-                           
 <style>
-        .sidebar {
-            position: fixed;
-            top: 51px;
-            bottom: 0;
-            left: 0;
-            z-index: 1000;
-            display: block;
-            padding: 20px;
-            overflow-x: hidden;
-            overflow-y: auto;
-            background-color: #f5f5f5;
-            border-right: 1px solid #eee;
+    body{
+        background-image: url('/static/img/admin.png');
+        background-size: cover;
+        background-attachment: fixed;
+    }
+    .form1 {border: 3px solid #f1f1f1; background-color: rgba(255, 255, 255, 0.6);}
+
+    input[type=text], input[type=password] {
+        width: 71%;
+        padding: 12px 20px;
+        margin: 8px 0;
+        display: inline-block;
+        border: 1px solid #ccc;
+        box-sizing: border-box;
+    }
+
+    button {
+        background-color: #4CAF50;
+        color: white;
+        padding: 14px 20px;
+        margin: 8px 0;
+        border: none;
+        cursor: pointer;
+        width: 71%;
+    }
+
+    button:hover {
+        opacity: 0.8;
+    }
+
+    .cancelbtn {
+        width: auto;
+        padding: 10px 18px;
+        background-color: #f44336;
+    }
+
+    .cancelbtn a{
+        color :white;
+    }
+
+    .imgcontainer {
+        text-align: center;
+        margin: 24px 0 12px 0;
+    }
+
+    img.avatar {
+        width: 18%;
+        border-radius: 50%;
+    }
+
+    .container {
+        padding: 16px;
+    }
+
+    span.psw {
+        float: right;
+        padding-top: 16px;
+    }
+
+    /* Change styles for span and cancel button on extra small screens */
+    @media screen and (max-width: 300px) {
+        span.psw {
+           display: block;
+           float: none;
         }
+        .cancelbtn {
+           width: 100%;
+        }
+    }
 </style>
+
+<div class="container" style="width: 75%; margin-top: 40px">
+    <div class="row">
+        <form  action="" method="POST" class="form1">
+
+            {% csrf_token %}
+            <div class="imgcontainer">
+                <img src="{% static 'img/default-avatar.png' %}" alt="Avatar" class="avatar">
+                <h3>Administrateur</h3>
+            </div>
+
+            <div class="container">
+                <label for="username"><b><h4>Identifiant</h4></b></label>
+                <br>
+                <input type="text" placeholder="Votre Identifiant" name="username" required>
+                <br>
+                <label for="password"><b><h4>Mot de passe</h4></b></label>
+                <br>
+                <input type="password" placeholder="Votre mot de passe" name="password" required>
+                <br><br>
+                <button type="submit">Login</button>
+                <br><br>
+                <label>
+                  <input type="checkbox" checked="checked" name="remember"> Remember me
+                </label>
+            </div>
+            <div class="container" style="background-color:rgba(0,0,0,0.1); width: 100%">
+                <button type="button" class="cancelbtn"><a href="/">Annuler</a></button>
+                <span class="psw">Forgot <a href="#">password?</a></span>
+            </div>
+
+            <input type="hidden" name="next" value="/userAdmin/thanks/" />
+
+        </form>
+    </div>
+</div>
 {% endblock body %}
     
+
