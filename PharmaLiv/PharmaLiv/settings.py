@@ -25,6 +25,7 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 SECRET_KEY = '663@(z6lo7^3tsepw+(u#aatosbqhz(qc^v+p$d!83p!$qlxp2'
 
 # SECURITY WARNING: don't run with debug turned on in production!
+
 DEBUG = True
 
 ALLOWED_HOSTS = []
@@ -94,14 +95,10 @@ DATABASES = {
         'USER': 'root',
         'PASSWORD': '',        
         'HOST': 'localhost',                    # Utile si votre base de données est sur une autre machine
-<<<<<<< HEAD
         'PORT': '3306',                         # ... et si elle utilise un autre port que celui par défaut
-=======
-        'PORT': '3307',                         # ... et si elle utilise un autre port que celui par défaut
     },
     'OPTIONS': {
         'init_command': "SET sql_mode='STRICT_TRANS_TABLES'",
->>>>>>> a6db8a9ff49cfa35ce9ff02409320985a4197769
     }
     
 }

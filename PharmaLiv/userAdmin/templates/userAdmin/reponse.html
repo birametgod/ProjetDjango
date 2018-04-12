@@ -3,21 +3,15 @@
 {% block body %}
 <div class="col-sm-3 col-md-2 sidebar">
     <ul class="nav nav-sidebar" style="margin-top: 30px">
-        <li data-target="#carousel-example-generic" data-slide-to="0" class="active">
-            <a href="#section1">
-                <i class="fa fa-building"></i> PharmaLiv
-                <span class="sr-only">(current)</span>
-            </a>
-        </li>
         <li>
             <a href="#patient" data-toggle="collapse">
                 <span class="fa fa-user"></span> Patients
             </a>
             <div id="patient" class="collapse" style="margin-left: 40px">
-                  <h5 data-target="#carousel-example-generic" data-slide-to="1">
+                  <h5 data-target="#carousel-example-generic" data-slide-to="0" class="active">
                     <a href="#"><span class="fa fa-file-text"></span> Liste</a>
                   </h5>
-                  <h5 data-target="#carousel-example-generic" data-slide-to="2">
+                  <h5 data-target="#carousel-example-generic" data-slide-to="1">
                     <a href="#"><span class="fa fa-area-chart"></span> Statistiques</a>
                   </h5>
             </div>
@@ -27,10 +21,10 @@
                 <span class="fa fa-medkit"></span> Pharmacies
             </a>
             <div id="phar" class="collapse" style="margin-left: 40px">
-                  <h5 data-target="#carousel-example-generic" data-slide-to="3">
+                  <h5 data-target="#carousel-example-generic" data-slide-to="2">
                     <a href="#"><span class="fa fa-file-text"></span> Liste</a>
                   </h5>
-                  <h5 data-target="#carousel-example-generic" data-slide-to="4">
+                  <h5 data-target="#carousel-example-generic" data-slide-to="3">
                     <a href="#"><span class="fa fa-area-chart"></span> Statistiques</a>
                   </h5>
             </div>
@@ -40,10 +34,10 @@
                 <span class="fa fa-user-md"></span> Medecins
             </a>
             <div id="med" class="collapse" style="margin-left: 40px">
-                  <h5 data-target="#carousel-example-generic" data-slide-to="5">
+                  <h5 data-target="#carousel-example-generic" data-slide-to="4">
                     <a href="#"><span class="fa fa-file-text"></span> Liste</a>
                   </h5>
-                  <h5 data-target="#carousel-example-generic" data-slide-to="6">
+                  <h5 data-target="#carousel-example-generic" data-slide-to="5">
                     <a href="#"><span class="fa fa-area-chart"></span> Statistiques</a>
                   </h5>
             </div>
@@ -53,17 +47,23 @@
                 <span class="fa fa-ambulance"></span> Livreurs
             </a>
             <div id="liv" class="collapse" style="margin-left: 40px">
-                  <h5 data-target="#carousel-example-generic" data-slide-to="7">
+                  <h5 data-target="#carousel-example-generic" data-slide-to="6">
                     <a href="#"><span class="fa fa-file-text"></span> Liste</a>
                   </h5>
-                  <h5 data-target="#carousel-example-generic" data-slide-to="8">
+                  <h5 data-target="#carousel-example-generic" data-slide-to="7">
                     <a href="#"><span class="fa fa-area-chart"></span> Statistiques</a>
                   </h5>
             </div>
         </li>
-        <li data-target="#carousel-example-generic" data-slide-to="9">
+        <li data-target="#carousel-example-generic" data-slide-to="8">
             <a href="#">
                 <span class="fa fa-ambulance"></span> Zone de livraison
+            </a>
+        </li>
+
+        <li data-target="#carousel-example-generic" data-slide-to="9">
+            <a href="#">
+                <span class="fa fa-ambulance"></span> Users
             </a>
         </li>
     </ul>
@@ -78,12 +78,6 @@
               <!-- Wrapper for slides -->
               <div class="carousel-inner">
                 <div class="item active">
-                    <div style="margin-top: 60px; margin-left: 70px;">
-                        jqjck:ub jsqb bsjq
-                    </div>
-                </div>
-
-                <div class="item">
                     <div style="margin-top: 50px; margin-left: 70px;">
                         <div class="container" style="width: 100%">
                           <h2>Liste patients
@@ -330,41 +324,59 @@
                     <div style="margin-top: 50px; margin-left: 55px;">
                       <div class="container" style="width: 100%">
                          <div class="jumbotron">
-                            <h1 class="display-2">Créer une zone de livraison</h1>
-                            <form method="POST" action="" style="margin-top:100px">
-                              {% csrf_token %}
-                              <div class="form-group row">
-                                <label for="inputEmail3" class="col-sm-2 col-form-label">Zone</label>
-                                <div class="col-sm-10">
-                                  <input type="text" class="form-control" name="zoneDeLivraison" placeholder="Zone de livraison" style="width: 750px">
-                                </div>
+                            <h1>Créer une zone de livraison</h1>
+                            {% if envoi %}
+                              <div class="alert alert-success">
+                                Zone de livraison enregistrée !
                               </div>
-                              <div class="form-group row">
-                                <label for="inputPassword3" class="col-sm-2 col-form-label">Région</label>
-                                <div class="col-sm-10">
-                                  <select class="custom-select mr-sm-2" id="inlineFormCustomSelect" name="region" style="width: 750px">
-                                    <option selected>Dakar</option>
-                                    <option>Thies</option>
-                                    <option>Saint-Louis</option>
-                                    <option>Diourbel</option>
-                                    <option>Fatick</option>
-                                    <option>Kaolack</option>
-                                    <option>Louga</option>
-                                  </select>
-                                </div>
-                              </div>
-                              <div class="form-group row">
-                                <div class="col-sm-10">
-                                  <button type="submit" class="btn btn-primary">Créer</button>
-                                </div>
-                              </div>
-                            </form>
+                            {% endif %}
+                            <div style="width: 60%; margin-left: 300px">
+                              <form action="" method="POST">
+                                {% csrf_token %}
+                                {% for error in form.non_field_errors %}
+                                  <div class="form-group has-errors text-danger small">
+                                    {{error}}
+                                  </div>
+                                {% endfor %}
+                                {% for field in form %}
+                                  <div class="form-group has-errors text-danger small">
+                                    {{field.errors}}
+                                  </div>
+                                  <div class="form-group has-errors text-danger small">
+                                  </div>
+                                  <div class="form-group">
+                                    <div class="row">
+                                      <div class="col-sm-3 col-md-3">
+                                        <b>{{field.label}}</b>   
+                                      </div>
+                                      <div class="col-sm-3 col-md-3">
+                                        {{field}}
+                                      </div>
+                                    </div>
+                                  </div>
+                                {% endfor %}
+                                <button class="btn btn-primary">Valider</button>
+                              </form>
+                            </div>
+
+
+                            
                           </div>
                       </div>
                     </div>
                 </div>
 
-
+                <div class="item">
+                  <div style="margin-top: 60px; margin-left: 70px">
+                    <div class="row">
+                      <div class="col-sm-3 col-md-3">
+                        <div class="jumbotron bg-dark">
+                          <h1><i class="fa fa-user"></i></h1>  {{nbrpatient}} patients
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
             </div>
         </div>
     </div>
@@ -547,7 +559,7 @@ var chart7 = new CanvasJS.Chart("chartContainer7", {
   theme: "light2", // "light2", "dark1", "dark2"
   animationEnabled: true, // change to true   
   title:{
-    text: "Nombre de livreurs inscrits / mois (année 2018)"
+    text: "Nombre de livreurs / zone (année 2018)"
   },
   data: [
   {

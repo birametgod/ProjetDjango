@@ -4,7 +4,7 @@ from medecin.models import *
 from livreur.models import *
 from pharmacie.models import Pharmacie
 from .models import userAdmin
-from .forms import signUp, region
+from .forms import signUp, regionForm
 from django.contrib.auth import authenticate, login
 from django.views.generic.edit import FormView
 from connexion.models import User
@@ -122,13 +122,14 @@ class connexionView(FormView):
 		user= form.save()
 		login(self.request,user)
 		return super().form_valid(form)
+	
 
+def zone(request):
+	form = regionForm(request.POST or None)
+	if form.is_valid(): 
+		zoneDeLivraison = form.cleaned_data['zoneDeLivraison']
+		region = form.cleaned_data['region']
+		envoi = True
+		form.save()
+	return render(request, 'userAdmin/reponse.html', locals())
 
-class regionForm(FormView):
-    template_name="userAdmin/reponse.html"
-    form_class = region
-    success_url ='/userAdmin/thanks/'
-    
-    def form_valid(self,form):
-        form.save()
-    
