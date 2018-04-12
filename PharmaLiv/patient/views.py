@@ -2,6 +2,8 @@ from django.shortcuts import render,redirect
 from django.contrib.auth import authenticate, login
 from django.views.generic.edit import FormView
 from .forms import signUp,FemmeForm
+from pharmacie.models import Commandes_Effectuees 
+from livreur.models import NotificationsLivreur
 from patient.models import Ordonnances,Patient
 # Create your views here.
 def reponse(request):
@@ -30,8 +32,8 @@ def home(request):
 def notification(request):
     context = {
         'ordo':Ordonnances.objects.filter(patient_id=request.user.id).order_by('-dateSoumission'),  
-        'messages':Ordonnances.objects.filter(patient_id=request.user.id).order_by('-dateSoumission'),
-        'nb_ordo': Ordonnances.objects.filter(patient_id=request.user.id).count(),
+        'messages':NotificationsLivreur.objects.filter(patient_id=request.user.id).filter(livree=True),
+        'nb_ordo': NotificationsLivreur.objects.filter(patient_id=request.user.id).count(),
     } 
     Ordonnances.objects.filter(patient_id=request.user.id).update(notifications='lu')
     return render(request,'patient/messages.html',context)

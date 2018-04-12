@@ -195,7 +195,7 @@
                         <div style="margin-top: 50px; color: white; margin-left: 50px; text-align: center;">
                         <div class="col-md-4 btn btn-dark">
                             <h1>{{ nb_ordo }}</h1>
-                            <h3> Ordonnances reçues</h3>
+                            <h3>Notifications Commandes </h3>
                         </div>
                         <div class="col-md-4 btn btn-dark">
                             <h1>X</h1>
@@ -215,16 +215,16 @@
             <thead>
               <tr class="success">
                 <th> <i class="fa fa-map"></i> Expéditeur</th>
-                <th> <i class="fa fa-map"></i> Contenu</th>
-                <th> <i class="fa fa-calendar"></i> Date</th>
+                <th> <i class="fa fa-map"></i> Date Commande</th>
+                <th> <i class="fa fa-calendar"></i> Date Livraison</th>
               </tr>
             </thead>
             <tbody>
               {% for msg in messages %}
                   <tr>  
-                    <td>{{Pharmacie.user.first_name}}</td>
-                    <td>{{ msg.libelle}}</td>
-                    <td>{{ msg.dateSoumission }}</td>
+                    <td>{{msg.pharmacie}}</td>
+                    <td>{{ msg.dateCommande}}</td>
+                    <td>{{ msg.dateLivraison }}</td>
                   </tr>
               {% endfor %}
             </tbody>

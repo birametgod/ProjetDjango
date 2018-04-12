@@ -1,48 +1,132 @@
-{% extends 'layout.html' %}
-{% load static from staticfiles %}
+{% extends 'layout.html' %} {% load static from staticfiles %} {% block head %}
 
-{% block head %}
-  
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/latest/css/font-awesome.min.css" />
-  <link rel="stylesheet" href="{% static 'bootstrap-3.3.7-dist/css/bootstrap.min.css' %}">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-  <script src="{% static 'bootstrap-3.3.7-dist/js/jquery.min.js' %}"></script>
-  <script src="{% static 'bootstrap-3.3.7-dist/js/bootstrap.min.js' %}"></script>
-  <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700|Roboto+Slab:400,700|Material+Icons"
-  />
-  <title>PharmaLiv | Accueil </title>
-  <style>
-    /* Remove the navbar's default margin-bottom and rounded borders */ 
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/latest/css/font-awesome.min.css" />
+<link rel="stylesheet" href="{% static 'bootstrap-3.3.7-dist/css/bootstrap.min.css' %}">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<script src="{% static 'bootstrap-3.3.7-dist/js/jquery.min.js' %}"></script>
+<script src="{% static 'bootstrap-3.3.7-dist/js/bootstrap.min.js' %}"></script>
+<link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700|Roboto+Slab:400,700|Material+Icons"
+/>
+<title>PharmaLiv | Accueil </title>
+<style>
+    /* Remove the navbar's default margin-bottom and rounded borders */
+
+    .navbar-brand.btn-default {
+        color: black;
+        background-color: whitesmoke !important;
+        border-color: #ccc;
+    }
+
+    .navbar-brand.btn {
+        display: block !important;
+        background-color: none !important;
+        border-radius: 0px !important;
+    }
+
+    a.navbar-brand.btn.btn-default:visited {
+        color: black;
+        display: block;
+    }
+
+    .navbar-brand {
+        font-weight: bolder !important;
+        float: left;
+        height: 50px;
+        padding: 15px 15px;
+        font-size: 18px !important;
+        line-height: 20px;
+    }
+
     .navbar {
-      margin-bottom: 0;
-      border-radius: 0;
+        margin-bottom: 0;
+        border-radius: 0;
     }
-    
+
     /* Add a gray background color and some padding to the footer */
+
     footer {
-      background-color: #f2f2f2;
-      padding: 25px;
+        background-color: #f2f2f2;
+        padding: 25px;
     }
-  
-    .product_view .modal-dialog{max-width: 800px; width: 100%;}
-    .pre-cost{text-decoration: line-through; color: #a5a5a5;}
-    .space-ten{padding: 10px 0;}
-  </style>
-  
-{% endblock head %}
-{% block header %}
-{% if user.is_patient %}
+
+    .product_view .modal-dialog {
+        max-width: 800px;
+        width: 100%;
+    }
+
+    .pre-cost {
+        text-decoration: line-through;
+        color: #a5a5a5;
+    }
+
+    .space-ten {
+        padding: 10px 0;
+    }
+
+    .top-container {
+        background-color: #f1f1f1;
+        padding: 30px;
+        text-align: center;
+    }
+
+    .header {
+        padding: 10px 16px;
+
+    }
+
+    .content {
+        padding: 16px;
+    }
+
+    a {
+        color: black;
+        font-weight: bolder;
+    }
+
+    .sticky {
+        position: fixed;
+        top: 0;
+        width: 100%;
+    }
+
+    .sticky+.content {
+        padding-top: 102px;
+    }
+
+    .btn-primary {
+        color: black !important;
+        background-color: whitesmoke !important;
+        border-color: white;
+    }
+
+    .btn {
+        border-radius: 0px !important;
+    }
+</style>
+
+{% endblock head %} {% block header %} {% if user.is_patient %}
 
 
-<nav class="navbar navbar-inverse navbar-fixed-top" style="height: 80px">
+<nav class="navbar navbar-inverse " style="height: 80px">
     <div class="container-fluid">
+
         <div class="navbar-header">
-            <a class="navbar-brand" href="/" style="margin-top: 10px">
-                <span class="glyphicon glyphicon-plus"></span>PharmaLiv
+            <br>
+            <a href="#">
+                <img src="/static/img/face.png" class="col-md-2">
+            </a>
+            <a href="#">
+                <img src="/static/img/instagram.png" class="col-md-2">
+            </a>
+            <a href="#">
+                <img src="/static/img/twitter.png" class="col-md-2">
             </a>
         </div>
+
+
+
 
         <div class="container">
             <div class="notification">
@@ -86,20 +170,12 @@
                             <span class="notification-bubble hidden" id="products-in-cart">
                                 0
                             </span>
-                            <p>Search </p>
+                            <p> </p>
                         </a>
                     </li>
                     <li class="dropdown dropdown-notifications">
                         <a href="" class="dropdown-toggle" data-toggle="dropdown">
-
-                    
-                           
-                        
-                            <button class="btn btn-success" type="button">
-                                <i class="material-icons md-light">notifications</i>
-                                
-                            </button>
-                            
+                            <i class="material-icons md-light">notifications</i>
                         </a>
 
 
@@ -126,51 +202,17 @@
 
 
                     <li class="dropdown">
-                        <a href="" class="dropdown-toggle" data-toggle="dropdown">
+                        <a href="/patient/thanks">
                             <div class="user-photo">
                                 <i class="material-icons md-light">perm_identity</i>
                             </div>
-                            <p>{{user.username}}
-                                <span class="caret"></span>
-                            </p>
                         </a>
-
-                        <ul class="dropdown-menu dropdown-menu-navbar">
-                            <li data-no-turbolink="">
-                                <a href="/downloads">
-                                    <i class="material-icons md-light">shopping_cart</i>
-                                    Achats
-                                </a>
-                            </li>
-
-                            <li>
-                                <a href="/user/credit-history">
-                                    <i class="fa fa-diamond"></i>
-                                    Credits · 0
-                                </a>
-                            </li>
-
-                            <li>
-                                <a href="">
-                                    <i class="material-icons">settings</i>
-                                    Reglages
-                                </a>
-                            </li>
-
-                            <li>
-                                    <a href="{% url 'patient_deconn' %}">
-                                    <i class="material-icons md-light">highlight_off</i>
-                                    Se deconnecter
-                                </a>
-                            </li>
-                        </ul>
                     </li>
 
 
                     <li class="noty-cart">
-                        <a href="{% url 'panier_detail' %}" >
+                        <a href="{% url 'panier_detail' %}">
                             <i class="material-icons md-light">shopping_cart</i>
-                            <p>Panier </p> 
                         </a>
                     </li>
 
@@ -200,366 +242,171 @@
     </div>
 </nav>
 
+<div class="top-container">
+    <div class="row">
+        <div class="col-sm-6">
+            <h1>Bienvenue</h1>
+            <h3>{{user.first_name}} {{user.last_name}}</h3>
+        </div>
+        <div class="col-sm-6">
+            <form class="navbar-form navbar-left" style="float:right; margin-left: 70px; margin-top: 25px" action="/action_page.php">
+                <div class="input-group">
+                    <input type="text" class="form-control" placeholder="Recherche ..." name="search" style="width: 380px">
+                    <div class="input-group-btn">
+                        <button class="btn btn-default" type="submit">
+                            <i class="glyphicon glyphicon-search"></i>
+                        </button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+<div class="header" id="myHeader" style="z-index:1000;background-color:white">
+    <a class="navbar-brand btn btn-default" href="/" style="margin-top: 10px; margin-left:500px">
+        <span class="glyphicon glyphicon-plus"></span>PharmaLiv
+    </a>
+    <a class="navbar-brand btn btn-default" href="/" style="margin-top: 10px; margin-left:10px">
+        <span class="glyphicon glyphicon-plus"></span>Acceuil
+    </a>
+    
+</div>
+
+
+
 {% else %}
 
 <nav class="navbar navbar-inverse navbar-fixed-top" style="height: 80px">
     <div class="container-fluid">
-      <div class="navbar-header">
-        <a class="navbar-brand" href="/" style="margin-top: 20px">
-          <span class="glyphicon glyphicon-plus"></span>PharmaLiv
-        </a>
-      </div>
-      <ul class="nav navbar-nav" style="margin-top: 20px">
-        <li class="">
-          <a href="#">Accueil</a>
-        </li>
-        <li class="dropdown">
-          <a class="dropdown-toggle" data-toggle="dropdown" href="#">Pharmacies
-            <span class="caret"></span>
-          </a>
-          <ul class="dropdown-menu" style="margin-top: 10px">
-            
-            <li>
-              <a href="/pharmacie/nonpartenaire">Non Partenaire</a>
-            </li>
-          </ul>
-        </li>
-        <li>
-          <a href="#">Livreur</a>
-        </li>
-      </ul>
-      <form class="navbar-form navbar-left" style="margin-left: 70px; margin-top: 25px" action="/action_page.php">
-        <div class="input-group">
-          <input type="text" class="form-control" placeholder="Recherche ..." name="search" style="width: 380px">
-          <div class="input-group-btn">
-            <button class="btn btn-default" type="submit">
-              <i class="glyphicon glyphicon-search"></i>
-            </button>
-          </div>
-        </div>
-      </form>
-      <ul class="nav navbar-nav navbar-right" style="margin-top: 20px">
-        <li class="dropdown">
-            <a class="dropdown-toggle" data-toggle="dropdown" href="#">
-              <span class="glyphicon glyphicon-log-in"></span> {{user.username}}
-              <span class="caret"></span>
-              <ul class="dropdown-menu" style="margin-top: 20px">
-                <li>
-                    <a href="/pharmacie/thanks">Profil</a>
-                  <a href="{% url 'pharmacie_deconn' %} "> Se deconnecter</a>
-                </li>
-              </ul>
+        <div class="navbar-header">
+            <a class="navbar-brand" href="/" style="margin-top: 20px">
+                <span class="glyphicon glyphicon-plus"></span>PharmaLiv
             </a>
-          </li> 
-    
-          </a>
-        </li>
-      </ul>
-    </div>
-  </nav>
-
-{% endif %} 
-{% endblock header %}
-
-
-
-{% block body %}
-<div class="container" style="margin-top: 80px; margin-bottom: 30px;">
-	<div class="row">
-		<div class="col-xs-6 col-sm-6 col-lg-6">
-			<div class="container">
-				<h3>{{medoc.nom.user.username}}</h3>
-			</div>
-		</div>
-		<div class="col-xs-6 col-sm-6 col-lg-6">
-			<div class="container">
-				<form class="navbar-form navbar-left" >
-			        <div class="input-group">
-			          <input type="text" class="form-control" placeholder="Recherche ..." name="search" style="width: 380px">
-			          <div class="input-group-btn">
-			            <button class="btn btn-default" type="submit">
-			              <i class="glyphicon glyphicon-search"></i>
-			            </button>
-			          </div>
-			        </div>
-			    </form>
-		    </div>
-		</div>
-	</div>
-	
-</div>
-
-
-<div class="jumbotron" >
-  <div class="container">
-    <div class="col-xs-8 col-sm-8 col-lg-8">
-    	<img src="{% static 'img/paracétamol.jpg' %}" width="700" height="400">
-    </div>
-
-    <div class="col-xs-s-4 col-sm-4 col-lg-4" style="margin-top: 150px">
-    	<h1>Some text</h1>
-    </div>
-  </div>
-</div>
-  
-<div class="container-fluid bg-3 text-center">    
-  <h3>Quelques produits</h3><br>
-  <div class="row">
-  {% for medic in medoc %}
-  
-    <div class="col-md-4">
-              <div class="thumbnail">
-                <img src= "{{medic.photo.url}} " alt="" class="img-responsive">
-                <div class="caption">
-                  <h4 class="pull-right">{{medic.prix}} Fcfa</h4>
-                  <h4><a href="#">{{medic.titre}}</a></h4>
-                  <p>{{medic.description}}</p>
-                </div>
-                <div class="ratings">
-                  <p>
-                    <span class="glyphicon glyphicon-star"></span>
-                    <span class="glyphicon glyphicon-star"></span>
-                    <span class="glyphicon glyphicon-star"></span>
-                    <span class="glyphicon glyphicon-star"></span>
-                    <span class="glyphicon glyphicon-star"></span>
-                    (15 reviews)
-                  </p>
-                </div>
-                <div class="space-ten"></div>
-                <div class="btn-ground text-center"> 
-
-                      <a class="btn btn-primary" href="{% url 'show_medoc' id=medic.id %}"><i class="glyphicon glyphicon-eye-open"></i>Pharmacie</a>
-                      <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#product_view"><i class="fa fa-search"></i> Détails</button>
-                  
-                    
-                </div>
-                <div class="space-ten"></div>
-              </div>
-            </div> 
-  
-  {% endfor %}
-</div> 
-  <div class="row">
-  
-
-    <div class="col-md-4">
-              <div class="thumbnail">
-                <img src="{% static 'img/bandamor.jpg' %}" alt="" class="img-responsive">
-                <div class="caption">
-                  <h4 class="pull-right">XOF</h4>
-                  <h4><a href="#">Bandamor</a></h4>
-                  <p>Description du medic</p>
-                </div>
-                <div class="ratings">
-                  <p>
-                    <span class="glyphicon glyphicon-star"></span>
-                    <span class="glyphicon glyphicon-star"></span>
-                    <span class="glyphicon glyphicon-star"></span>
-                    <span class="glyphicon glyphicon-star"></span>
-                    <span class="glyphicon glyphicon-star"></span>
-                     (15 reviews)
-                  </p>
-                </div>
-                <div class="space-ten"></div>
-                <div class="btn-ground text-center">
-                    <button type="button" class="btn btn-primary"><i class="fa fa-shopping-cart"></i> Ajouter au panier</button>
-                    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#product_view"><i class="fa fa-search"></i> Détails</button>
-                </div>
-                <div class="space-ten"></div>
-              </div>
-            </div>
-
-    <div class="col-md-4">
-              <div class="thumbnail">
-                <img src="{% static 'img/medic.jpg' %}" alt="" class="img-responsive">
-                <div class="caption">
-                  <h4 class="pull-right">XOF</h4>
-                  <h4><a href="#">Oscillococcinum</a></h4>
-                  <p>Description du medoc</p>
-                </div>
-                <div class="ratings">
-                  <p>
-                    <span class="glyphicon glyphicon-star"></span>
-                    <span class="glyphicon glyphicon-star"></span>
-                    <span class="glyphicon glyphicon-star"></span>
-                    <span class="glyphicon glyphicon-star"></span>
-                    <span class="glyphicon glyphicon-star"></span>
-                     (15 reviews)
-                  </p>
-                </div>
-                <div class="space-ten"></div>
-                <div class="btn-ground text-center">
-                    <button type="button" class="btn btn-primary"><i class="fa fa-shopping-cart"></i> Ajouter au panier</button>
-                    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#product_view"><i class="fa fa-search"></i> Détails</button>
-                </div>
-                <div class="space-ten"></div>
-              </div>
-            </div>
-  </div>
-
-  <div class="row">
-    <div class="col-md-4">
-              <div class="thumbnail">
-                <img src="{% static 'img/biotiq.jpg' %}" alt="" class="img-responsive">
-                <div class="caption">
-                  <h4 class="pull-right">XOF</h4>
-                  <h4><a href="#">Anti Biotique</a></h4>
-                  <p>Description du medoc</p>
-                </div>
-                <div class="ratings">
-                  <p>
-                    <span class="glyphicon glyphicon-star"></span>
-                    <span class="glyphicon glyphicon-star"></span>
-                    <span class="glyphicon glyphicon-star"></span>
-                    <span class="glyphicon glyphicon-star"></span>
-                    <span class="glyphicon glyphicon-star"></span>
-                     (15 reviews)
-                  </p>
-                </div>
-                <div class="space-ten"></div>
-                <div class="btn-ground text-center">
-                    <button type="button" class="btn btn-primary"><i class="fa fa-shopping-cart"></i> Ajouter au panier</button>
-                    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#product_view"><i class="fa fa-search"></i> Détails</button>
-                </div>
-                <div class="space-ten"></div>
-              </div>
-            </div>
-
-    <div class="col-md-4">
-              <div class="thumbnail">
-                <img src="{% static 'img/efferalgan.jpg' %}" alt="" class="img-responsive">
-                <div class="caption">
-                  <h4 class="pull-right">1525 F CFA</h4>
-                  <h4><a href="#">Efferalgan</a></h4>
-                  <p>Description du medoc</p>
-                </div>
-                <div class="ratings">
-                  <p>
-                    <span class="glyphicon glyphicon-star"></span>
-                    <span class="glyphicon glyphicon-star"></span>
-                    <span class="glyphicon glyphicon-star"></span>
-                    <span class="glyphicon glyphicon-star"></span>
-                    <span class="glyphicon glyphicon-star"></span>
-                     (15 reviews)
-                  </p>
-                </div>
-                <div class="space-ten"></div>
-                <div class="btn-ground text-center">
-                    <button type="button" class="btn btn-primary"><i class="fa fa-shopping-cart"></i> Ajouter au panier</button>
-                    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#product_view"><i class="fa fa-search"></i> Détails</button>
-                </div>
-                <div class="space-ten"></div>
-              </div>
-            </div>
-
-    <div class="col-md-4">
-              <div class="thumbnail">
-                <img src="{% static 'img/paracétamol.jpg' %}" alt="" class="img-responsive">
-                <div class="caption">
-                  <h4 class="pull-right">1285 F CFA</h4>
-                  <h4><a href="#">Paracétamol</a></h4>
-                  <p>Description du medoc</p>
-                </div>
-                <div class="ratings">
-                  <p>
-                    <span class="glyphicon glyphicon-star"></span>
-                    <span class="glyphicon glyphicon-star"></span>
-                    <span class="glyphicon glyphicon-star"></span>
-                    <span class="glyphicon glyphicon-star"></span>
-                    <span class="glyphicon glyphicon-star"></span>
-                     (15 reviews)
-                  </p>
-                </div>
-                <div class="space-ten"></div>
-                <div class="btn-ground text-center">
-                    <button type="button" class="btn btn-primary"><i class="fa fa-shopping-cart"></i> Ajouter au panier</button>
-                    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#product_view"><i class="fa fa-search"></i> Détails</button>
-                </div>
-                <div class="space-ten"></div>
-              </div>
-            </div>
-  </div>
-
-  <div class="modal fade product_view" id="product_view" style="margin-top: 100px">
-    <div class="modal-dialog">
-        <div class="modal-content">
-            <div class="modal-header">
-                <a href="#" data-dismiss="modal" class="class pull-right"><span class="glyphicon glyphicon-remove"></span></a>
-                <h3 class="modal-title">Détails du produit</h3>
-            </div>
-            <div class="modal-body">
-                <div class="row">
-                    <div class="col-md-6 product_img">
-                        <img src="http://img.bbystatic.com/BestBuy_US/images/products/5613/5613060_sd.jpg" class="img-responsive">
-                    </div>
-                    <div class="col-md-6 product_content">
-                        <h4>Product Id: <span>51526</span></h4>
-                        <div class="rating">
-                            <span class="glyphicon glyphicon-star"></span>
-                            <span class="glyphicon glyphicon-star"></span>
-                            <span class="glyphicon glyphicon-star"></span>
-                            <span class="glyphicon glyphicon-star"></span>
-                            <span class="glyphicon glyphicon-star"></span>
-                            (10 reviews)
-                        </div>
-                        <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.Lorem Ipsum is simply dummy text of the printing and typesetting industry.</p>
-                        
-                        <div class="row">
-                            <div class="col-md-6">
-                                <h3 class="cost"><span class="glyphicon glyphicon-usd"></span> 75.00 <small class="pre-cost"><span class="glyphicon glyphicon-usd"></span> 60.00</small></h3>
-                            </div>
-                           
-                            <div class="col-md-6" style="margin-top: 20px">
-                                <select class="form-control" name="select">
-                                    <option value="" selected="">QTY</option>
-                                    <option value="">1</option>
-                                    <option value="">2</option>
-                                    <option value="">3</option>
-                                    <option value="">4</option>
-                                    <option value="">5</option>
-                                </select>
-                            </div>
-                            <!-- end col -->
-                        </div>
-                        <div class="space-ten"></div>
-                        <div class="btn-ground">
-                            <button type="button" class="btn btn-primary"><span class="glyphicon glyphicon-shopping-cart"></span> Add To Cart</button>
-                            <button type="button" class="btn btn-primary"><span class="glyphicon glyphicon-heart"></span> Add To Wishlist</button>
-                        </div>
-                    </div>
-                </div>
-            </div>
         </div>
+        <ul class="nav navbar-nav" style="margin-top: 20px">
+            <li class="">
+                <a href="#">Accueil</a>
+            </li>
+            <li class="dropdown">
+                <a class="dropdown-toggle" data-toggle="dropdown" href="#">Pharmacies
+                    <span class="caret"></span>
+                </a>
+                <ul class="dropdown-menu" style="margin-top: 10px">
+
+                    <li>
+                        <a href="/pharmacie/nonpartenaire">Non Partenaire</a>
+                    </li>
+                </ul>
+            </li>
+            <li>
+                <a href="#">Livreur</a>
+            </li>
+        </ul>
+
+        <ul class="nav navbar-nav navbar-right" style="margin-top: 20px">
+            <li class="dropdown">
+                <a class="dropdown-toggle" data-toggle="dropdown" href="#">
+                    <span class="glyphicon glyphicon-log-in"></span> {{user.username}}
+                    <span class="caret"></span>
+                    <ul class="dropdown-menu" style="margin-top: 20px">
+                        <li>
+                            <a href="/pharmacie/thanks">Profil</a>
+                            <a href="{% url 'pharmacie_deconn' %} "> Se deconnecter</a>
+                        </li>
+                    </ul>
+                </a>
+            </li>
+
+            </a>
+            </li>
+        </ul>
     </div>
-</div>
+</nav>
+
+{% endif %} {% endblock header %} {% block body %}
+<div class="content">
+    <div class="container" style="margin-top: 80px; margin-bottom: 30px;">
+        <div class="row">
+            <div class="col-xs-6 col-sm-6 col-lg-6">
+                <div class="container">
+                    <h3>{{medoc.nom.user.username}}</h3>
+                </div>
+            </div>
+
+        </div>
+
+    </div>
+
+    <div class="container-fluid bg-3 text-center" >
+        <h3> Produits</h3>
+        <br>
+        <div class="row">
+            {% for medic in medoc %}
+
+            <div class="col-md-3">
+                <div class="thumbnail">
+                    <img src="{{medic.photo.url}} " alt="" class="img-responsive">
+                    <div class="caption">
+                        <h4 class="pull-right">{{medic.prix}} Fcfa</h4>
+                        <h4>
+                            <a href="#">{{medic.titre}}</a>
+                        </h4>
+                        <p>{{medic.description}}</p>
+                    </div>
+                    <div class="ratings">
+                        <p>
+                            <span class="glyphicon glyphicon-star"></span>
+                            <span class="glyphicon glyphicon-star"></span>
+                            <span class="glyphicon glyphicon-star"></span>
+                            <span class="glyphicon glyphicon-star"></span>
+                            <span class="glyphicon glyphicon-star"></span>
+                            (15 reviews)
+                        </p>
+                    </div>
+                    <div class="space-ten"></div>
+                    <div class="btn-ground text-center">
+
+                        <a class="btn btn-primary" href="{% url 'show_medoc' id=medic.id %}">
+                            <i class="glyphicon glyphicon-eye-open"></i>Pharmacie</a>
+                        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#product_view">
+                            <i class="fa fa-search"></i> Notice</button>
 
 
-</div><br>
+                    </div>
+                    <div class="space-ten"></div>
+                </div>
+            </div>
 
-<div class="container-fluid bg-3 text-center">    
-  <div class="row">
-    <div class="col-sm-3">
-      <p>Some text..</p>
-      <img src="https://placehold.it/150x80?text=IMAGE" class="img-responsive" style="width:100%" alt="Image">
-    </div>
-    <div class="col-sm-3"> 
-      <p>Some text..</p>
-      <img src="https://placehold.it/150x80?text=IMAGE" class="img-responsive" style="width:100%" alt="Image">
-    </div>
-    <div class="col-sm-3"> 
-      <p>Some text..</p>
-      <img src="https://placehold.it/150x80?text=IMAGE" class="img-responsive" style="width:100%" alt="Image">
-    </div>
-    <div class="col-sm-3">
-      <p>Some text..</p>
-      <img src="https://placehold.it/150x80?text=IMAGE" class="img-responsive" style="width:100%" alt="Image">
-    </div>
-  </div>
-</div><br><br>
+            {% endfor %}
+        </div>
+        <br>
+        <br>
 
-<footer class="container-fluid text-center navbar navbar-inverse" style="height: 300px">
-  <p>Footer Text</p>
-</footer>
-{% endblock body %}
-  
+        <footer class="container-fluid text-center navbar navbar-inverse" style="height: 300px">
+            <p>Footer Text</p>
+        </footer>
 
+    </div>
+
+    <script>
+        $(function () {
+            $('.thumbnail').css('border', 'none')
+            $('.material-icons').css('font-size', '20px').css('color', 'black').css('display', ' flex')
+            $('.navbar-inverse').css('background-color', 'white').css('border-color', 'white')
+            $('.navbar-nav').css('margin-left', '382px')
+            $('h3:eq(2)').css('font-weight', 'lighter')
+        })
+        window.onscroll = function () { myFunction() };
+
+        var header = document.getElementById("myHeader");
+        var sticky = header.offsetTop;
+
+        function myFunction() {
+            if (window.pageYOffset >= sticky) {
+                header.classList.add("sticky");
+            } else {
+                header.classList.remove("sticky");
+            }
+        }
+    </script> {% endblock body %}

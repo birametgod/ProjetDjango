@@ -46,11 +46,14 @@ class CommandeForm(forms.ModelForm):
 
 			"""
 			model = Commandes_Effectuees
-			fields = ('nomPatient','prenomPatient','email','adresse','telephonePatient','ordonnance','patient')
+			fields = ('nomPatient','prenomPatient','email','adresse','telephonePatient','ordonnance','patient','lu',)
 			widgets = {
-				'nomPatient' : forms.TextInput(attrs={'class':'form-control','placeholder':'nom',}),
+				'nomPatient' : forms.TextInput(attrs={'class':'form-control','placeholder':'nom'}),
 				'email' : forms.TextInput(attrs={'class':'form-control','placeholder':'Email',}),
 				'patient' : forms.TextInput(attrs={'class':'form-control','placeholder':'patient',}),
+				'prenomPatient' : forms.TextInput(attrs={'class':'form-control','placeholder':'prenom',}),
+				'adresse' : forms.TextInput(attrs={'class':'form-control','placeholder':'adresse',}),
+				'telephonePatient' : forms.TextInput(attrs={'class':'form-control','placeholder':'telephone',}),
 			}
 			
 			
