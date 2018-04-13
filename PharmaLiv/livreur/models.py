@@ -5,8 +5,17 @@ from patient.models import Patient
 from pharmacie.models import Commandes_Effectuees
 
 class Region(models.Model):
+	choices={
+		('dakar', 'Dakar'),
+		('thies', 'Thiès'),
+		('Saint-Louis', 'Saint-Louis'),
+		('Mbour', 'Mbour'),
+		('Fatick', 'Fatick'),
+		('Kaolack', 'Kaolack'),
+		('Louga', 'Louga')
+	}
 	zoneDeLivraison = models.CharField(max_length=100, null=False)
-	region = models.CharField(max_length=100, null=False)
+	region = models.CharField(max_length=10, choices=choices)
 
 	def __str__(self):
 		return self.zoneDeLivraison

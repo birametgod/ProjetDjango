@@ -24,11 +24,7 @@ class signUp(UserCreationForm):
 		return user
 
 
-class region(forms.ModelForm):
+class regionForm(forms.ModelForm):
 	class Meta:
 		model = Region
-		fields = ('zoneDeLivraison','region',)
-		widgets = {
-			'zoneDeLivraison' : forms.TextInput(attrs={'class':'form-control','placeholder':'zone',}),
-			'region' : forms.TextInput(attrs={'class':'form-control','placeholder':'region',}),
-		}
+		fields = '__all__'
